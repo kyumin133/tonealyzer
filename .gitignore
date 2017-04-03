@@ -18,3 +18,5 @@ node_modules/
 
 # Ignore Byebug command history file.
 .byebug_history
+
+client_id.json
