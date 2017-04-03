@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
+import { createBrowserHistory } from 'history';
 
 import configureStore from './store/store';
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
+  const history = createBrowserHistory();
 
   let preloadedState =  {
                             session: {
@@ -14,20 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                           };
 
-  if (window.currentUser !== undefined)
-    store = configureStore(preloadedState);
+  if (!!window.currentUser)
+    store = configureStore(history, preloadedState);
   else {
-    store = configureStore();
+    store = configureStore(history);
   }
 
   const root = document.getElementById('root');
   window.store = store;
 
-  document.addEventListener('keydown', (e) => {
-    if (!window.currentUser) {
-      return;
-    }
-  });
-
-  ReactDOM.render(<Root store={ store }/>, root);
+  ReactDOM.render(<Root store={ store } history={ history }/>, root);
 });
