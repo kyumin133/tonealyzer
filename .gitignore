@@ -23,10 +23,7 @@ app/assets/javascripts/bundle.js.map
 
 
 config/initializers/omniauth.rb
-config/initializers/omniauth2.rb
-=======
+
 
 # Ignore application configuration
 /config/application.yml
-
-client_id.json
