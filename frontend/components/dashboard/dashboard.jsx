@@ -1,33 +1,134 @@
 import React from "react";
 import { LineChart } from "react-d3-basic";
 
-class Dashboard extends React.Component {
-  render() {
-    let chartSeries =  [
-      {
-        field: 'y',
-        name: 'y',
-        color: 'cornflowerblue'
-      }
-    ];
+const SELECTED_LINE = {
+  opacity: 1,
+  strokeWidth: "3px"
+};
 
-    let x = (d) => {
+const UNSELECTED_LINE = {
+  opacity: 0.3,
+  strokeWidth: "1px"
+};
+
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.x = (d) => {
       return d.x;
     };
 
-    // let y = (d) => {
-    //   return d.value;
-    // };
+    let dataSet = [];
+    for (let i = 0; i < 10; i++) {
+      dataSet.push({
+        x: i,
+        anger: Math.random(),
+        disgust: Math.random(),
+        fear: Math.random(),
+        joy: Math.random(),
+        sadness: Math.random()
+
+      });
+    }
+
+    this.state = {
+      tones: [
+        {
+          field: 'anger',
+          name: 'Anger',
+          color: 'firebrick',
+          style: SELECTED_LINE,
+          selected: true
+        },
+        {
+          field: 'disgust',
+          name: 'Disgust',
+          color: 'darkgreen',
+          style: UNSELECTED_LINE,
+          selected: false
+        },
+        {
+          field: 'fear',
+          name: 'Fear',
+          color: 'darkviolet',
+          style: UNSELECTED_LINE,
+          selected: false
+        },
+        {
+          field: 'joy',
+          name: 'Joy',
+          color: 'gold',
+          style: UNSELECTED_LINE,
+          selected: false
+        },
+        {
+          field: 'sadness', //blue
+          name: 'Sadness',
+          color: 'steelblue',
+          style: UNSELECTED_LINE,
+          selected: false
+        }
+      ],
+      dataSet: dataSet
+    }
+  }
+
+  componentDidMount() {
+    let tones = this.state.tones;
+    let legendItems = $(".legend").children();
+
+    for (let i = 0; i < tones.length; i++) {
+      let tone = tones[i];
+      if (tone.selected) {
+        tone.style = SELECTED_LINE;
+        $(legendItems[i]).addClass("selected-legend");
+      } else {
+        tone.style = UNSELECTED_LINE;
+        $(legendItems[i]).addClass("unselected-legend");
+      }
+    }
+
+    $(".legend > .legend").click((e) => {
+      this.updateTones(e);
+    });
+  }
+
+  updateTones(e) {
+    let tones = this.state.tones;
+    let index = $(e.currentTarget).index();
+    for (let i = 0; i < tones.length; i++) {
+      let tone = tones[i];
+      if (index === i) {
+        if (tone.selected) {
+          tone.style = UNSELECTED_LINE;
+          tone.selected = false;
+          $(e.currentTarget).removeClass("selected-legend");
+          $(e.currentTarget).addClass("unselected-legend");
+        } else {
+          tone.style = SELECTED_LINE;
+          tone.selected = true;
+          $(e.currentTarget).removeClass("unselected-legend");
+          $(e.currentTarget).addClass("selected-legend");
+        }
+      }
+    }
+
+    this.setState({tones: tones});
+  }
+
+  render() {
 
     return <div>
       Welcome to our awesome dashboard!
       <LineChart
         margins={{left: 100, right: 100, top: 50, bottom: 50}}
-        data={[{x: 1, y: 1}, {x: 2, y: 4} , {x: 3, y: 9}]}
-        width={500}
-        height={300}
-        chartSeries={chartSeries}
-        x={x}
+        data={this.state.dataSet}
+        width={800}
+        height={500}
+        chartSeries={this.state.tones}
+        x={this.x}
+        showXGrid={false}
+        showYGrid={false}
       />
     </div>;
   }
