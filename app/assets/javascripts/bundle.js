@@ -7273,91 +7273,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
-
-var _reducer = __webpack_require__(127);
-
-Object.defineProperty(exports, 'LOCATION_CHANGE', {
-  enumerable: true,
-  get: function get() {
-    return _reducer.LOCATION_CHANGE;
-  }
-});
-Object.defineProperty(exports, 'routerReducer', {
-  enumerable: true,
-  get: function get() {
-    return _reducer.routerReducer;
-  }
-});
-
-var _actions = __webpack_require__(126);
-
-Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
-  enumerable: true,
-  get: function get() {
-    return _actions.CALL_HISTORY_METHOD;
-  }
-});
-Object.defineProperty(exports, 'push', {
-  enumerable: true,
-  get: function get() {
-    return _actions.push;
-  }
-});
-Object.defineProperty(exports, 'replace', {
-  enumerable: true,
-  get: function get() {
-    return _actions.replace;
-  }
-});
-Object.defineProperty(exports, 'go', {
-  enumerable: true,
-  get: function get() {
-    return _actions.go;
-  }
-});
-Object.defineProperty(exports, 'goBack', {
-  enumerable: true,
-  get: function get() {
-    return _actions.goBack;
-  }
-});
-Object.defineProperty(exports, 'goForward', {
-  enumerable: true,
-  get: function get() {
-    return _actions.goForward;
-  }
-});
-Object.defineProperty(exports, 'routerActions', {
-  enumerable: true,
-  get: function get() {
-    return _actions.routerActions;
-  }
-});
-
-var _sync = __webpack_require__(321);
-
-var _sync2 = _interopRequireDefault(_sync);
-
-var _middleware = __webpack_require__(320);
-
-var _middleware2 = _interopRequireDefault(_middleware);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-exports.syncHistoryWithStore = _sync2['default'];
-exports.routerMiddleware = _middleware2['default'];
-
-/***/ }),
+/* 69 */,
 /* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8157,67 +8073,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
-  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
-};
-
-var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
-  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
-};
-
-var getConfirmation = exports.getConfirmation = function getConfirmation(message, callback) {
-  return callback(window.confirm(message));
-}; // eslint-disable-line no-alert
-
-/**
- * Returns true if the HTML5 history API is supported. Taken from Modernizr.
- *
- * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
- * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
- * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
- */
-var supportsHistory = exports.supportsHistory = function supportsHistory() {
-  var ua = window.navigator.userAgent;
-
-  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
-
-  return window.history && 'pushState' in window.history;
-};
-
-/**
- * Returns true if browser fires popstate on hash change.
- * IE10 and IE11 do not.
- */
-var supportsPopStateOnHashChange = exports.supportsPopStateOnHashChange = function supportsPopStateOnHashChange() {
-  return window.navigator.userAgent.indexOf('Trident') === -1;
-};
-
-/**
- * Returns false if using go(n) with hash history causes a full page reload.
- */
-var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
-  return window.navigator.userAgent.indexOf('Firefox') === -1;
-};
-
-/**
- * Returns true if a given popstate event is an extraneous WebKit event.
- * Accounts for the fact that Chrome on iOS fires real popstate events
- * containing undefined state when pressing the back button.
- */
-var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
-  return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
-};
-
-/***/ }),
+/* 83 */,
 /* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11477,93 +11333,8 @@ function verifyPlainObject(value, displayName, methodName) {
 }
 
 /***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * This action type will be dispatched by the history actions below.
- * If you're writing a middleware to watch for navigation events, be sure to
- * look for actions of this type.
- */
-var CALL_HISTORY_METHOD = exports.CALL_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
-
-function updateLocation(method) {
-  return function () {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return {
-      type: CALL_HISTORY_METHOD,
-      payload: { method: method, args: args }
-    };
-  };
-}
-
-/**
- * These actions correspond to the history API.
- * The associated routerMiddleware will capture these events before they get to
- * your reducer and reissue them as the matching function on your history.
- */
-var push = exports.push = updateLocation('push');
-var replace = exports.replace = updateLocation('replace');
-var go = exports.go = updateLocation('go');
-var goBack = exports.goBack = updateLocation('goBack');
-var goForward = exports.goForward = updateLocation('goForward');
-
-var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.routerReducer = routerReducer;
-/**
- * This action type will be dispatched when your history
- * receives a location change.
- */
-var LOCATION_CHANGE = exports.LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
-
-var initialState = {
-  locationBeforeTransitions: null
-};
-
-/**
- * This reducer will update the state with the most recent location history
- * has transitioned to. This may not be in sync with the router, particularly
- * if you have asynchronously-loaded routes, so reading from and relying on
- * this state is discouraged.
- */
-function routerReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      type = _ref.type,
-      payload = _ref.payload;
-
-  if (type === LOCATION_CHANGE) {
-    return _extends({}, state, { locationBeforeTransitions: payload });
-  }
-
-  return state;
-}
-
-/***/ }),
+/* 126 */,
+/* 127 */,
 /* 128 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12340,8 +12111,6 @@ var _reactRedux = __webpack_require__(317);
 
 var _reactRouter = __webpack_require__(71);
 
-var _reactRouterRedux = __webpack_require__(69);
-
 var _app = __webpack_require__(139);
 
 var _app2 = _interopRequireDefault(_app);
@@ -12356,23 +12125,20 @@ var _hello2 = _interopRequireDefault(_hello);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { Switch, HashRouter } from 'react-router-dom'
 var Root = function Root(_ref) {
-  var store = _ref.store,
-      history = _ref.history;
+  var store = _ref.store;
 
-  console.log(_reactRouterRedux.ConnectedRouter);
   return _react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
     _react2.default.createElement(
-      _reactRouterRedux.ConnectedRouter,
-      { history: history },
+      _reactRouter.Router,
+      { history: _reactRouter.hashHistory },
       _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactRouter.Route, { path: '/', exact: true, component: _home2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: '/test', component: _hello2.default })
+        _reactRouter.Route,
+        { path: '/', component: _app2.default },
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: _hello2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _home2.default })
       )
     )
   );
@@ -12405,8 +12171,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(78);
 
-var _reactRouterRedux = __webpack_require__(69);
-
 var _reduxThunk = __webpack_require__(339);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
@@ -12417,73 +12181,16 @@ var _root_reducer2 = _interopRequireDefault(_root_reducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var configureStore = function configureStore(history) {
-  var preloadedState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+var configureStore = function configureStore() {
+  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reactRouterRedux.routerMiddleware)(history)));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 };
 
 exports.default = configureStore;
 
 /***/ }),
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.createPath = exports.parsePath = exports.locationsAreEqual = exports.createLocation = exports.createMemoryHistory = exports.createHashHistory = exports.createBrowserHistory = undefined;
-
-var _LocationUtils = __webpack_require__(32);
-
-Object.defineProperty(exports, 'createLocation', {
-  enumerable: true,
-  get: function get() {
-    return _LocationUtils.createLocation;
-  }
-});
-Object.defineProperty(exports, 'locationsAreEqual', {
-  enumerable: true,
-  get: function get() {
-    return _LocationUtils.locationsAreEqual;
-  }
-});
-
-var _PathUtils = __webpack_require__(20);
-
-Object.defineProperty(exports, 'parsePath', {
-  enumerable: true,
-  get: function get() {
-    return _PathUtils.parsePath;
-  }
-});
-Object.defineProperty(exports, 'createPath', {
-  enumerable: true,
-  get: function get() {
-    return _PathUtils.createPath;
-  }
-});
-
-var _createBrowserHistory2 = __webpack_require__(159);
-
-var _createBrowserHistory3 = _interopRequireDefault(_createBrowserHistory2);
-
-var _createHashHistory2 = __webpack_require__(160);
-
-var _createHashHistory3 = _interopRequireDefault(_createHashHistory2);
-
-var _createMemoryHistory2 = __webpack_require__(84);
-
-var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.createBrowserHistory = _createBrowserHistory3.default;
-exports.createHashHistory = _createHashHistory3.default;
-exports.createMemoryHistory = _createMemoryHistory3.default;
-
-/***/ }),
+/* 137 */,
 /* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12535,7 +12242,8 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'This is the App component.'
+        'This is the App component.',
+        this.props.children
       );
     }
   }]);
@@ -12664,8 +12372,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(78);
 
-var _reactRouterRedux = __webpack_require__(69);
-
 var _test_reducer = __webpack_require__(143);
 
 var _test_reducer2 = _interopRequireDefault(_test_reducer);
@@ -12673,8 +12379,7 @@ var _test_reducer2 = _interopRequireDefault(_test_reducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rootReducer = (0, _redux.combineReducers)({
-  test: _test_reducer2.default,
-  router: _reactRouterRedux.routerReducer
+  test: _test_reducer2.default
 });
 
 exports.default = rootReducer;
@@ -12732,17 +12437,20 @@ var _root = __webpack_require__(135);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _history = __webpack_require__(137);
-
 var _store = __webpack_require__(136);
 
 var _store2 = _interopRequireDefault(_store);
+
+var _blurb_api_util = __webpack_require__(348);
+
+var APIUtil = _interopRequireWildcard(_blurb_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = {};
-  var history = (0, _history.createBrowserHistory)();
 
   var preloadedState = {
     session: {
@@ -12751,14 +12459,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  if (!!window.currentUser) store = (0, _store2.default)(history, preloadedState);else {
-    store = (0, _store2.default)(history);
+  if (!!window.currentUser) store = (0, _store2.default)(preloadedState);else {
+    store = (0, _store2.default)();
   }
+  window.fetchBlurb = APIUtil.fetchBlurb;
 
   var root = document.getElementById('root');
   window.store = store;
 
-  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store, history: history }), root);
+  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
 
 /***/ }),
@@ -13501,648 +13210,8 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _warning = __webpack_require__(19);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _invariant = __webpack_require__(26);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _LocationUtils = __webpack_require__(32);
-
-var _PathUtils = __webpack_require__(20);
-
-var _createTransitionManager = __webpack_require__(47);
-
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-var _DOMUtils = __webpack_require__(83);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var PopStateEvent = 'popstate';
-var HashChangeEvent = 'hashchange';
-
-var getHistoryState = function getHistoryState() {
-  try {
-    return window.history.state || {};
-  } catch (e) {
-    // IE 11 sometimes throws when accessing window.history.state
-    // See https://github.com/ReactTraining/history/pull/289
-    return {};
-  }
-};
-
-/**
- * Creates a history object that uses the HTML5 history API including
- * pushState, replaceState, and the popstate event.
- */
-var createBrowserHistory = function createBrowserHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  (0, _invariant2.default)(_DOMUtils.canUseDOM, 'Browser history needs a DOM');
-
-  var globalHistory = window.history;
-  var canUseHistory = (0, _DOMUtils.supportsHistory)();
-  var needsHashChangeListener = !(0, _DOMUtils.supportsPopStateOnHashChange)();
-
-  var _props$forceRefresh = props.forceRefresh,
-      forceRefresh = _props$forceRefresh === undefined ? false : _props$forceRefresh,
-      _props$getUserConfirm = props.getUserConfirmation,
-      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
-      _props$keyLength = props.keyLength,
-      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
-
-  var basename = props.basename ? (0, _PathUtils.stripTrailingSlash)((0, _PathUtils.addLeadingSlash)(props.basename)) : '';
-
-  var getDOMLocation = function getDOMLocation(historyState) {
-    var _ref = historyState || {},
-        key = _ref.key,
-        state = _ref.state;
-
-    var _window$location = window.location,
-        pathname = _window$location.pathname,
-        search = _window$location.search,
-        hash = _window$location.hash;
-
-
-    var path = pathname + search + hash;
-
-    if (basename) path = (0, _PathUtils.stripPrefix)(path, basename);
-
-    return _extends({}, (0, _PathUtils.parsePath)(path), {
-      state: state,
-      key: key
-    });
-  };
-
-  var createKey = function createKey() {
-    return Math.random().toString(36).substr(2, keyLength);
-  };
-
-  var transitionManager = (0, _createTransitionManager2.default)();
-
-  var setState = function setState(nextState) {
-    _extends(history, nextState);
-
-    history.length = globalHistory.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var handlePopState = function handlePopState(event) {
-    // Ignore extraneous popstate events in WebKit.
-    if ((0, _DOMUtils.isExtraneousPopstateEvent)(event)) return;
-
-    handlePop(getDOMLocation(event.state));
-  };
-
-  var handleHashChange = function handleHashChange() {
-    handlePop(getDOMLocation(getHistoryState()));
-  };
-
-  var forceNextPop = false;
-
-  var handlePop = function handlePop(location) {
-    if (forceNextPop) {
-      forceNextPop = false;
-      setState();
-    } else {
-      var action = 'POP';
-
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-        if (ok) {
-          setState({ action: action, location: location });
-        } else {
-          revertPop(location);
-        }
-      });
-    }
-  };
-
-  var revertPop = function revertPop(fromLocation) {
-    var toLocation = history.location;
-
-    // TODO: We could probably make this more reliable by
-    // keeping a list of keys we've seen in sessionStorage.
-    // Instead, we just default to 0 for keys we don't know.
-
-    var toIndex = allKeys.indexOf(toLocation.key);
-
-    if (toIndex === -1) toIndex = 0;
-
-    var fromIndex = allKeys.indexOf(fromLocation.key);
-
-    if (fromIndex === -1) fromIndex = 0;
-
-    var delta = toIndex - fromIndex;
-
-    if (delta) {
-      forceNextPop = true;
-      go(delta);
-    }
-  };
-
-  var initialLocation = getDOMLocation(getHistoryState());
-  var allKeys = [initialLocation.key];
-
-  // Public interface
-
-  var createHref = function createHref(location) {
-    return basename + (0, _PathUtils.createPath)(location);
-  };
-
-  var push = function push(path, state) {
-    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'PUSH';
-    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
-
-
-      if (canUseHistory) {
-        globalHistory.pushState({ key: key, state: state }, null, href);
-
-        if (forceRefresh) {
-          window.location.href = href;
-        } else {
-          var prevIndex = allKeys.indexOf(history.location.key);
-          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
-
-          nextKeys.push(location.key);
-          allKeys = nextKeys;
-
-          setState({ action: action, location: location });
-        }
-      } else {
-        (0, _warning2.default)(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
-
-        window.location.href = href;
-      }
-    });
-  };
-
-  var replace = function replace(path, state) {
-    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
-
-
-      if (canUseHistory) {
-        globalHistory.replaceState({ key: key, state: state }, null, href);
-
-        if (forceRefresh) {
-          window.location.replace(href);
-        } else {
-          var prevIndex = allKeys.indexOf(history.location.key);
-
-          if (prevIndex !== -1) allKeys[prevIndex] = location.key;
-
-          setState({ action: action, location: location });
-        }
-      } else {
-        (0, _warning2.default)(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
-
-        window.location.replace(href);
-      }
-    });
-  };
-
-  var go = function go(n) {
-    globalHistory.go(n);
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var listenerCount = 0;
-
-  var checkDOMListeners = function checkDOMListeners(delta) {
-    listenerCount += delta;
-
-    if (listenerCount === 1) {
-      (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
-
-      if (needsHashChangeListener) (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
-    } else if (listenerCount === 0) {
-      (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
-
-      if (needsHashChangeListener) (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
-    }
-  };
-
-  var isBlocked = false;
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-    var unblock = transitionManager.setPrompt(prompt);
-
-    if (!isBlocked) {
-      checkDOMListeners(1);
-      isBlocked = true;
-    }
-
-    return function () {
-      if (isBlocked) {
-        isBlocked = false;
-        checkDOMListeners(-1);
-      }
-
-      return unblock();
-    };
-  };
-
-  var listen = function listen(listener) {
-    var unlisten = transitionManager.appendListener(listener);
-    checkDOMListeners(1);
-
-    return function () {
-      checkDOMListeners(-1);
-      unlisten();
-    };
-  };
-
-  var history = {
-    length: globalHistory.length,
-    action: 'POP',
-    location: initialLocation,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-exports.default = createBrowserHistory;
-
-/***/ }),
-/* 160 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _warning = __webpack_require__(19);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _invariant = __webpack_require__(26);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _LocationUtils = __webpack_require__(32);
-
-var _PathUtils = __webpack_require__(20);
-
-var _createTransitionManager = __webpack_require__(47);
-
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-var _DOMUtils = __webpack_require__(83);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var HashChangeEvent = 'hashchange';
-
-var HashPathCoders = {
-  hashbang: {
-    encodePath: function encodePath(path) {
-      return path.charAt(0) === '!' ? path : '!/' + (0, _PathUtils.stripLeadingSlash)(path);
-    },
-    decodePath: function decodePath(path) {
-      return path.charAt(0) === '!' ? path.substr(1) : path;
-    }
-  },
-  noslash: {
-    encodePath: _PathUtils.stripLeadingSlash,
-    decodePath: _PathUtils.addLeadingSlash
-  },
-  slash: {
-    encodePath: _PathUtils.addLeadingSlash,
-    decodePath: _PathUtils.addLeadingSlash
-  }
-};
-
-var getHashPath = function getHashPath() {
-  // We can't use window.location.hash here because it's not
-  // consistent across browsers - Firefox will pre-decode it!
-  var href = window.location.href;
-  var hashIndex = href.indexOf('#');
-  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
-};
-
-var pushHashPath = function pushHashPath(path) {
-  return window.location.hash = path;
-};
-
-var replaceHashPath = function replaceHashPath(path) {
-  var hashIndex = window.location.href.indexOf('#');
-
-  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
-};
-
-var createHashHistory = function createHashHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  (0, _invariant2.default)(_DOMUtils.canUseDOM, 'Hash history needs a DOM');
-
-  var globalHistory = window.history;
-  var canGoWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
-
-  var _props$getUserConfirm = props.getUserConfirmation,
-      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
-      _props$hashType = props.hashType,
-      hashType = _props$hashType === undefined ? 'slash' : _props$hashType;
-
-  var basename = props.basename ? (0, _PathUtils.stripTrailingSlash)((0, _PathUtils.addLeadingSlash)(props.basename)) : '';
-
-  var _HashPathCoders$hashT = HashPathCoders[hashType],
-      encodePath = _HashPathCoders$hashT.encodePath,
-      decodePath = _HashPathCoders$hashT.decodePath;
-
-
-  var getDOMLocation = function getDOMLocation() {
-    var path = decodePath(getHashPath());
-
-    if (basename) path = (0, _PathUtils.stripPrefix)(path, basename);
-
-    return (0, _PathUtils.parsePath)(path);
-  };
-
-  var transitionManager = (0, _createTransitionManager2.default)();
-
-  var setState = function setState(nextState) {
-    _extends(history, nextState);
-
-    history.length = globalHistory.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var forceNextPop = false;
-  var ignorePath = null;
-
-  var handleHashChange = function handleHashChange() {
-    var path = getHashPath();
-    var encodedPath = encodePath(path);
-
-    if (path !== encodedPath) {
-      // Ensure we always have a properly-encoded hash.
-      replaceHashPath(encodedPath);
-    } else {
-      var location = getDOMLocation();
-      var prevLocation = history.location;
-
-      if (!forceNextPop && (0, _LocationUtils.locationsAreEqual)(prevLocation, location)) return; // A hashchange doesn't always == location change.
-
-      if (ignorePath === (0, _PathUtils.createPath)(location)) return; // Ignore this change; we already setState in push/replace.
-
-      ignorePath = null;
-
-      handlePop(location);
-    }
-  };
-
-  var handlePop = function handlePop(location) {
-    if (forceNextPop) {
-      forceNextPop = false;
-      setState();
-    } else {
-      var action = 'POP';
-
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-        if (ok) {
-          setState({ action: action, location: location });
-        } else {
-          revertPop(location);
-        }
-      });
-    }
-  };
-
-  var revertPop = function revertPop(fromLocation) {
-    var toLocation = history.location;
-
-    // TODO: We could probably make this more reliable by
-    // keeping a list of paths we've seen in sessionStorage.
-    // Instead, we just default to 0 for paths we don't know.
-
-    var toIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(toLocation));
-
-    if (toIndex === -1) toIndex = 0;
-
-    var fromIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(fromLocation));
-
-    if (fromIndex === -1) fromIndex = 0;
-
-    var delta = toIndex - fromIndex;
-
-    if (delta) {
-      forceNextPop = true;
-      go(delta);
-    }
-  };
-
-  // Ensure the hash is encoded properly before doing anything else.
-  var path = getHashPath();
-  var encodedPath = encodePath(path);
-
-  if (path !== encodedPath) replaceHashPath(encodedPath);
-
-  var initialLocation = getDOMLocation();
-  var allPaths = [(0, _PathUtils.createPath)(initialLocation)];
-
-  // Public interface
-
-  var createHref = function createHref(location) {
-    return '#' + encodePath(basename + (0, _PathUtils.createPath)(location));
-  };
-
-  var push = function push(path, state) {
-    (0, _warning2.default)(state === undefined, 'Hash history cannot push state; it is ignored');
-
-    var action = 'PUSH';
-    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var path = (0, _PathUtils.createPath)(location);
-      var encodedPath = encodePath(basename + path);
-      var hashChanged = getHashPath() !== encodedPath;
-
-      if (hashChanged) {
-        // We cannot tell if a hashchange was caused by a PUSH, so we'd
-        // rather setState here and ignore the hashchange. The caveat here
-        // is that other hash histories in the page will consider it a POP.
-        ignorePath = path;
-        pushHashPath(encodedPath);
-
-        var prevIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(history.location));
-        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
-
-        nextPaths.push(path);
-        allPaths = nextPaths;
-
-        setState({ action: action, location: location });
-      } else {
-        (0, _warning2.default)(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
-
-        setState();
-      }
-    });
-  };
-
-  var replace = function replace(path, state) {
-    (0, _warning2.default)(state === undefined, 'Hash history cannot replace state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var path = (0, _PathUtils.createPath)(location);
-      var encodedPath = encodePath(basename + path);
-      var hashChanged = getHashPath() !== encodedPath;
-
-      if (hashChanged) {
-        // We cannot tell if a hashchange was caused by a REPLACE, so we'd
-        // rather setState here and ignore the hashchange. The caveat here
-        // is that other hash histories in the page will consider it a POP.
-        ignorePath = path;
-        replaceHashPath(encodedPath);
-      }
-
-      var prevIndex = allPaths.indexOf((0, _PathUtils.createPath)(history.location));
-
-      if (prevIndex !== -1) allPaths[prevIndex] = path;
-
-      setState({ action: action, location: location });
-    });
-  };
-
-  var go = function go(n) {
-    (0, _warning2.default)(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
-
-    globalHistory.go(n);
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var listenerCount = 0;
-
-  var checkDOMListeners = function checkDOMListeners(delta) {
-    listenerCount += delta;
-
-    if (listenerCount === 1) {
-      (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
-    } else if (listenerCount === 0) {
-      (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
-    }
-  };
-
-  var isBlocked = false;
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-    var unblock = transitionManager.setPrompt(prompt);
-
-    if (!isBlocked) {
-      checkDOMListeners(1);
-      isBlocked = true;
-    }
-
-    return function () {
-      if (isBlocked) {
-        isBlocked = false;
-        checkDOMListeners(-1);
-      }
-
-      return unblock();
-    };
-  };
-
-  var listen = function listen(listener) {
-    var unlisten = transitionManager.appendListener(listener);
-    checkDOMListeners(1);
-
-    return function () {
-      checkDOMListeners(-1);
-      unlisten();
-    };
-  };
-
-  var history = {
-    length: globalHistory.length,
-    action: 'POP',
-    location: initialLocation,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-exports.default = createHashHistory;
-
-/***/ }),
+/* 159 */,
+/* 160 */,
 /* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27002,206 +26071,8 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 320 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports['default'] = routerMiddleware;
-
-var _actions = __webpack_require__(126);
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/**
- * This middleware captures CALL_HISTORY_METHOD actions to redirect to the
- * provided history object. This will prevent these actions from reaching your
- * reducer or any middleware that comes after this one.
- */
-function routerMiddleware(history) {
-  return function () {
-    return function (next) {
-      return function (action) {
-        if (action.type !== _actions.CALL_HISTORY_METHOD) {
-          return next(action);
-        }
-
-        var _action$payload = action.payload,
-            method = _action$payload.method,
-            args = _action$payload.args;
-
-        history[method].apply(history, _toConsumableArray(args));
-      };
-    };
-  };
-}
-
-/***/ }),
-/* 321 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports['default'] = syncHistoryWithStore;
-
-var _reducer = __webpack_require__(127);
-
-var defaultSelectLocationState = function defaultSelectLocationState(state) {
-  return state.routing;
-};
-
-/**
- * This function synchronizes your history state with the Redux store.
- * Location changes flow from history to the store. An enhanced history is
- * returned with a listen method that responds to store updates for location.
- *
- * When this history is provided to the router, this means the location data
- * will flow like this:
- * history.push -> store.dispatch -> enhancedHistory.listen -> router
- * This ensures that when the store state changes due to a replay or other
- * event, the router will be updated appropriately and can transition to the
- * correct router state.
- */
-function syncHistoryWithStore(history, store) {
-  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
-      _ref$selectLocationSt = _ref.selectLocationState,
-      selectLocationState = _ref$selectLocationSt === undefined ? defaultSelectLocationState : _ref$selectLocationSt,
-      _ref$adjustUrlOnRepla = _ref.adjustUrlOnReplay,
-      adjustUrlOnReplay = _ref$adjustUrlOnRepla === undefined ? true : _ref$adjustUrlOnRepla;
-
-  // Ensure that the reducer is mounted on the store and functioning properly.
-  if (typeof selectLocationState(store.getState()) === 'undefined') {
-    throw new Error('Expected the routing state to be available either as `state.routing` ' + 'or as the custom expression you can specify as `selectLocationState` ' + 'in the `syncHistoryWithStore()` options. ' + 'Ensure you have added the `routerReducer` to your store\'s ' + 'reducers via `combineReducers` or whatever method you use to isolate ' + 'your reducers.');
-  }
-
-  var initialLocation = void 0;
-  var isTimeTraveling = void 0;
-  var unsubscribeFromStore = void 0;
-  var unsubscribeFromHistory = void 0;
-  var currentLocation = void 0;
-
-  // What does the store say about current location?
-  var getLocationInStore = function getLocationInStore(useInitialIfEmpty) {
-    var locationState = selectLocationState(store.getState());
-    return locationState.locationBeforeTransitions || (useInitialIfEmpty ? initialLocation : undefined);
-  };
-
-  // Init initialLocation with potential location in store
-  initialLocation = getLocationInStore();
-
-  // If the store is replayed, update the URL in the browser to match.
-  if (adjustUrlOnReplay) {
-    var handleStoreChange = function handleStoreChange() {
-      var locationInStore = getLocationInStore(true);
-      if (currentLocation === locationInStore || initialLocation === locationInStore) {
-        return;
-      }
-
-      // Update address bar to reflect store state
-      isTimeTraveling = true;
-      currentLocation = locationInStore;
-      history.transitionTo(_extends({}, locationInStore, {
-        action: 'PUSH'
-      }));
-      isTimeTraveling = false;
-    };
-
-    unsubscribeFromStore = store.subscribe(handleStoreChange);
-    handleStoreChange();
-  }
-
-  // Whenever location changes, dispatch an action to get it in the store
-  var handleLocationChange = function handleLocationChange(location) {
-    // ... unless we just caused that location change
-    if (isTimeTraveling) {
-      return;
-    }
-
-    // Remember where we are
-    currentLocation = location;
-
-    // Are we being called for the first time?
-    if (!initialLocation) {
-      // Remember as a fallback in case state is reset
-      initialLocation = location;
-
-      // Respect persisted location, if any
-      if (getLocationInStore()) {
-        return;
-      }
-    }
-
-    // Tell the store to update by dispatching an action
-    store.dispatch({
-      type: _reducer.LOCATION_CHANGE,
-      payload: location
-    });
-  };
-  unsubscribeFromHistory = history.listen(handleLocationChange);
-
-  // History 3.x doesn't call listen synchronously, so fire the initial location change ourselves
-  if (history.getCurrentLocation) {
-    handleLocationChange(history.getCurrentLocation());
-  }
-
-  // The enhanced history uses store as source of truth
-  return _extends({}, history, {
-    // The listeners are subscribed to the store instead of history
-    listen: function listen(listener) {
-      // Copy of last location.
-      var lastPublishedLocation = getLocationInStore(true);
-
-      // Keep track of whether we unsubscribed, as Redux store
-      // only applies changes in subscriptions on next dispatch
-      var unsubscribed = false;
-      var unsubscribeFromStore = store.subscribe(function () {
-        var currentLocation = getLocationInStore(true);
-        if (currentLocation === lastPublishedLocation) {
-          return;
-        }
-        lastPublishedLocation = currentLocation;
-        if (!unsubscribed) {
-          listener(lastPublishedLocation);
-        }
-      });
-
-      // History 2.x listeners expect a synchronous call. Make the first call to the
-      // listener after subscribing to the store, in case the listener causes a
-      // location change (e.g. when it redirects)
-      if (!history.getCurrentLocation) {
-        listener(lastPublishedLocation);
-      }
-
-      // Let user unsubscribe later
-      return function () {
-        unsubscribed = true;
-        unsubscribeFromStore();
-      };
-    },
-
-
-    // It also provides a way to destroy internal listeners
-    unsubscribe: function unsubscribe() {
-      if (adjustUrlOnReplay) {
-        unsubscribeFromStore();
-      }
-      unsubscribeFromHistory();
-    }
-  });
-}
-
-/***/ }),
+/* 320 */,
+/* 321 */,
 /* 322 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -30286,6 +29157,33 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var createBlurb = exports.createBlurb = function createBlurb(body) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/blurbs',
+    data: {
+      body: body
+    }
+  });
+};
+
+var fetchBlurb = exports.fetchBlurb = function fetchBlurb(id) {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/blurbs/' + id
+  });
+};
 
 /***/ })
 /******/ ]);

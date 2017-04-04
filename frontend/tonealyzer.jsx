@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
-import { createBrowserHistory } from 'history';
 
 import configureStore from './store/store';
 
-
+import * as APIUtil from './util/blurb_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
-  const history = createBrowserHistory();
+
+
 
   let preloadedState =  {
                             session: {
@@ -19,13 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
                           };
 
   if (!!window.currentUser)
-    store = configureStore(history, preloadedState);
+    store = configureStore(preloadedState);
   else {
-    store = configureStore(history);
+    store = configureStore();
   }
+  window.fetchBlurb = APIUtil.fetchBlurb;
+
 
   const root = document.getElementById('root');
   window.store = store;
 
-  ReactDOM.render(<Root store={ store } history={ history }/>, root);
+
+  ReactDOM.render(<Root store={ store } />, root);
 });

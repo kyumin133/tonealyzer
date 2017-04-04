@@ -1,22 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
-// import { Switch, HashRouter } from 'react-router-dom'
-import { ConnectedRouter } from 'react-router-redux';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from "./app";
 import Home from "./home";
 import Hello from "./hello";
 
-const Root = ({ store, history }) => {
-  console.log(ConnectedRouter);
+const Root = ({ store }) => {
   return <Provider store={ store }>
-    <ConnectedRouter history={history}>
-      <div>
-        <Route path="/" exact component={ Home } />
-        <Route path="/test" component={ Hello } />
-      </div>
-    </ConnectedRouter>
+    <Router history={hashHistory}>
+      <Route path="/" component={ App } >
+        <IndexRoute component={ Hello } />
+        <Route path="/home" component={ Home } />
+      </Route>
+    </Router>
   </Provider>
 };
 
