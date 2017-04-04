@@ -4,6 +4,7 @@ class Blurb < ApplicationRecord
 
   before_validation :ensure_analysis
 
+  belongs_to :user
 
   def new_analysis
     options = {
@@ -21,7 +22,8 @@ class Blurb < ApplicationRecord
 
     full_response = HTTParty.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19", options)
 
-    full_response.body # Parsed body
+    JSON.parse(full_response.body) # Parsed body
+
   end
 
   private
