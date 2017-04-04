@@ -4,10 +4,12 @@ import Root from './components/root';
 
 import configureStore from './store/store';
 
-
+import * as APIUtil from './util/blurb_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
+
+
 
   let preloadedState =  {
                             session: {
@@ -21,9 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
   else {
     store = configureStore();
   }
+  console.log("made it");
+  window.createBlurb = APIUtil.createBlurb;
+
 
   const root = document.getElementById('root');
   window.store = store;
+
 
   ReactDOM.render(<Root store={ store } />, root);
 });

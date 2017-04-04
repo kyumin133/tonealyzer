@@ -1,3 +1,5 @@
+require 'httparty'
+
 class Blurb < ApplicationRecord
   validates :body, :user_id, :analysis,  presence: true
   validates :body, uniqueness: { scope: :user_id }
@@ -21,7 +23,7 @@ class Blurb < ApplicationRecord
     }
 
     full_response = HTTParty.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19", options)
-
+  
     JSON.parse(full_response.body) # Parsed body
 
   end
