@@ -14175,9 +14175,9 @@ var _store = __webpack_require__(153);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _personality_api_util = __webpack_require__(373);
+var _blurb_api_util = __webpack_require__(374);
 
-var APIUtil = _interopRequireWildcard(_personality_api_util);
+var APIUtil = _interopRequireWildcard(_blurb_api_util);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -14196,7 +14196,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!!window.currentUser) store = (0, _store2.default)(preloadedState);else {
     store = (0, _store2.default)();
   }
-  window.fetchPersonality = APIUtil.fetchPersonality;
+  window.fetchBlurbs = APIUtil.fetchBlurbs;
 
   var root = document.getElementById('root');
   window.store = store;
@@ -31938,7 +31938,8 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ }),
-/* 373 */
+/* 373 */,
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31947,10 +31948,27 @@ function symbolObservablePonyfill(root) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var fetchPersonality = exports.fetchPersonality = function fetchPersonality(userId) {
+var createBlurb = exports.createBlurb = function createBlurb(body) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/blurbs',
+    data: {
+      body: body
+    }
+  });
+};
+
+var fetchBlurb = exports.fetchBlurb = function fetchBlurb(id) {
   return $.ajax({
     method: 'GET',
-    url: '/api/personalities/' + userId
+    url: '/api/blurbs/' + id
+  });
+};
+
+var fetchBlurbs = exports.fetchBlurbs = function fetchBlurbs() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/blurbs'
   });
 };
 

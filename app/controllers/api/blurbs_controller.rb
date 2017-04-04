@@ -15,4 +15,10 @@ class Api::BlurbsController < ApplicationController
 		render "api/blurbs/show"
   end
 
+  #DON"T FORGET TO SWAP OUT user_id for current user!
+  def index
+    @blurbs = User.first.blurbs
+    render "api/blurbs/index"
+  end
+
 end
