@@ -29,7 +29,6 @@ class Blurb < ApplicationRecord
         :body => "#{self.body}"
       }
     }
-
     full_response = HTTParty.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19&sentences=true", options)
 
     JSON.parse(full_response.body) # Parsed body
