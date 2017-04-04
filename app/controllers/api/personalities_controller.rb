@@ -1,10 +1,10 @@
 class Api::PersonalitiesController < ApplicationController
   def show
-    #DON"T FORGET TO SWAP OUT user_id for current user!
-		if User.first.id.personality
-      @personality = User.first.id.personality
+    #maybe want to just set this to current_user instead of passing through a userid
+		if User.find(params[:id]).personality
+      @personality = User.find(params[:id]).personality
     else
-      @personality = Personality.new(user_id: User.first.id)
+      @personality = Personality.new(user_id: params[:userId])
       @personality.set_personality_analysis
     end
 

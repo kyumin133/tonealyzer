@@ -11,7 +11,6 @@ class Api::BlurbsController < ApplicationController
   end
 
   def show
-    debugger
     @blurb = Blurb.find(params[:id])
 		render "api/blurbs/show"
   end

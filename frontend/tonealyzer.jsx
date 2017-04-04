@@ -4,7 +4,7 @@ import Root from './components/root';
 
 import configureStore from './store/store';
 
-import * as APIUtil from './util/blurb_api_util';
+import * as APIUtil from './util/personality_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   else {
     store = configureStore();
   }
-  window.fetchBlurb = APIUtil.fetchBlurb;
+  window.fetchPersonality = APIUtil.fetchPersonality;
 
 
   const root = document.getElementById('root');
