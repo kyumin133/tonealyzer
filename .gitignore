@@ -21,13 +21,8 @@ app/assets/javascripts/bundle.js.map
 # Ignore Byebug command history file.
 .byebug_history
 
-<<<<<<< HEAD
-config/initializers/omniauth.rb
-config/initializers/omniauth2.rb
-=======
 
 # Ignore application configuration
 /config/application.yml
 
 client_id.json
->>>>>>> master
