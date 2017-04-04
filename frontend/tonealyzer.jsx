@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
-import { createBrowserHistory } from 'history';
 
 import configureStore from './store/store';
 
@@ -9,7 +8,6 @@ import configureStore from './store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
-  const history = createBrowserHistory();
 
   let preloadedState =  {
                             session: {
@@ -19,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
                           };
 
   if (!!window.currentUser)
-    store = configureStore(history, preloadedState);
+    store = configureStore(preloadedState);
   else {
-    store = configureStore(history);
+    store = configureStore();
   }
 
   const root = document.getElementById('root');
   window.store = store;
 
-  ReactDOM.render(<Root store={ store } history={ history }/>, root);
+  ReactDOM.render(<Root store={ store } />, root);
 });
