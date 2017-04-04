@@ -16,3 +16,11 @@ export const fetchBlurb = (id) => {
   });
 
 };
+
+export const fetchBlurbs = () => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/blurbs`,
+  });
+
+};

@@ -11,9 +11,14 @@ class Api::BlurbsController < ApplicationController
   end
 
   def show
-    debugger
     @blurb = Blurb.find(params[:id])
 		render "api/blurbs/show"
+  end
+
+  #DON"T FORGET TO SWAP OUT user_id for current user!
+  def index
+    @blurbs = User.first.blurbs
+    render "api/blurbs/index"
   end
 
 end
