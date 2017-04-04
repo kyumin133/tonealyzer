@@ -22,6 +22,10 @@ app/assets/javascripts/bundle.js.map
 .byebug_history
 
 
+config/initializers/omniauth.rb
+config/initializers/omniauth2.rb
+=======
+
 # Ignore application configuration
 /config/application.yml
 
