@@ -5,11 +5,21 @@
 
 .legend {
   transition: 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 10px;
 }
 
 .legend > .legend:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.legend > .legend > div:nth-of-type(2) {
+  height: 18px;
+  display: flex;
+  align-items: center;
 }
 
 .selected-legend {
@@ -18,4 +28,18 @@
 
 .unselected-legend {
   opacity: 0.3;
+}
+
+.chart > div {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  background-color: rgb(245, 245, 245);
+  width: 900px;
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

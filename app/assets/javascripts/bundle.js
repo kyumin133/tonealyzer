@@ -30360,8 +30360,10 @@ var Dashboard = function (_React$Component) {
       var tones = this.state.tones;
       var legendItems = $(".legend").children();
 
+      $(".legend").attr("style", "width: 200px; height: 500px");
       for (var i = 0; i < tones.length; i++) {
         var tone = tones[i];
+        $(legendItems[i]).attr("style", "top: " + (166 + i * 40) + "px; right: 20px; width: 100px; height: 40px; display: inline-block;");
         if (tone.selected) {
           tone.style = SELECTED_LINE;
           $(legendItems[i]).addClass("selected-legend");
@@ -30405,7 +30407,7 @@ var Dashboard = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "chart" },
         "Welcome to our awesome dashboard!",
         _react2.default.createElement(_reactD3Basic.LineChart, {
           margins: { left: 100, right: 100, top: 50, bottom: 50 },

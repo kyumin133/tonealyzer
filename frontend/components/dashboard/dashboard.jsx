@@ -77,8 +77,10 @@ class Dashboard extends React.Component {
     let tones = this.state.tones;
     let legendItems = $(".legend").children();
 
+    $(".legend").attr("style", `width: 200px; height: 500px`);
     for (let i = 0; i < tones.length; i++) {
       let tone = tones[i];
+      $(legendItems[i]).attr("style", `top: ${166 + i * 40}px; right: 20px; width: 100px; height: 40px; display: inline-block;`);
       if (tone.selected) {
         tone.style = SELECTED_LINE;
         $(legendItems[i]).addClass("selected-legend");
@@ -118,7 +120,7 @@ class Dashboard extends React.Component {
 
   render() {
 
-    return <div>
+    return <div className="chart">
       Welcome to our awesome dashboard!
       <LineChart
         margins={{left: 100, right: 100, top: 50, bottom: 50}}
