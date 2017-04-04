@@ -1,7 +1,7 @@
 class Api::ToneAnalysesController < ApplicationController
   def show
-    # @tone_analysis = ToneAnalysis.new(params[:recipeId])
-    # render json: @recipe.results
+    # @tone_analysis = ToneAnalysis.new(params[:textSample])
+    # render json: @tone_analysis.results
   end
 
 end

@@ -1,4 +1,3 @@
-require 'unirest'
 
 class ToneAnalysis
   attr_reader :results
@@ -16,7 +15,6 @@ class ToneAnalysis
         :body => body
       }
     }
-
 
     full_response = HTTParty.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19", options)
 
