@@ -8,3 +8,11 @@ export const createBlurb = (body) => {
   });
 
 };
+
+export const fetchBlurb = (id) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/blurbs/${id}`,
+  });
+
+};

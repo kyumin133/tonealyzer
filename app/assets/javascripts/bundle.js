@@ -13944,6 +13944,13 @@ var createBlurb = exports.createBlurb = function createBlurb(body) {
   });
 };
 
+var fetchBlurb = exports.fetchBlurb = function fetchBlurb(id) {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/blurbs/' + id
+  });
+};
+
 /***/ }),
 /* 155 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -14216,8 +14223,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!!window.currentUser) store = (0, _store2.default)(preloadedState);else {
     store = (0, _store2.default)();
   }
-  console.log("made it");
-  window.createBlurb = APIUtil.createBlurb;
+  window.fetchBlurb = APIUtil.fetchBlurb;
 
   var root = document.getElementById('root');
   window.store = store;

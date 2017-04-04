@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   else {
     store = configureStore();
   }
-  console.log("made it");
-  window.createBlurb = APIUtil.createBlurb;
+  window.fetchBlurb = APIUtil.fetchBlurb;
 
 
   const root = document.getElementById('root');
