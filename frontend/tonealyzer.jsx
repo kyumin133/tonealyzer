@@ -4,7 +4,8 @@ import Root from './components/root';
 
 import configureStore from './store/store';
 
-import * as APIUtil from './util/blurb_api_util';
+// import * as APIUtil from './util/blurb_api_util';
+import * as actions from './actions/blurb_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
@@ -23,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
   else {
     store = configureStore();
   }
-  window.fetchBlurbs = APIUtil.fetchBlurbs;
+  window.fetchBlurbs = actions.fetchBlurbs;
+  window.fetchBlurbs = actions.fetchBlurbs;
+  window.createBlurb = actions.createBlurb;
 
 
   const root = document.getElementById('root');
