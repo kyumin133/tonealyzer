@@ -20,4 +20,3 @@ node_modules/
 .byebug_history
 
 config/initializers/omniauth.rb
-config/initializers/omniauth2.rb
