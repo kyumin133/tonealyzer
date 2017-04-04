@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170404031439) do
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["body", "user_id"], name: "index_blurbs_on_body_and_user_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

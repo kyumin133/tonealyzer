@@ -2,13 +2,22 @@ require 'httparty'
 
 class Blurb < ApplicationRecord
   validates :body, :user_id, :analysis,  presence: true
-  validates :body, uniqueness: { scope: :user_id }
 
   before_validation :ensure_analysis
 
   belongs_to :user
 
+  def generate_analysis
+    all_blurb_bodies = Blurb.all.map { |blurb| blurb.body }
+    if all_blurb_bodies.include?(self.body)
+      Blurb.where({body: self.body}).first
+    else
+      new_analysis
+    end
+  end
+
   def new_analysis
+    debugger
     options = {
       basic_auth:{
         :username=>ENV["WATSON_ID"],
@@ -23,14 +32,14 @@ class Blurb < ApplicationRecord
     }
 
     full_response = HTTParty.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19", options)
-  
+
     JSON.parse(full_response.body) # Parsed body
 
   end
 
   private
   def ensure_analysis
-    self.analysis ||= new_analysis
+    self.analysis ||= generate_analysis
   end
 
 

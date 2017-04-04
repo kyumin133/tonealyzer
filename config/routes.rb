@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resource :home, only: [:show]
 
   namespace :api, defaults: {format: :json} do
-    resources :blurbs, only: [:create]
+    resources :blurbs, only: [:create, :show]
   end
 end

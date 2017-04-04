@@ -6,6 +6,6 @@ class CreateBlurbs < ActiveRecord::Migration[5.0]
       t.integer :user_id, null: false
       t.timestamps
     end
-    add_index :blurbs, [:body, :user_id], :unique => true
+    # add_index :blurbs, [:body, :user_id], :unique => true
   end
 end
