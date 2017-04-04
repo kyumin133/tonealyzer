@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-class App extends React.Component {
+class Hello extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return <div>
-      This is the App component.
-      { this.props.children }
+      This is the Hello component.
     </div>;
   }
 };
 
-export default App;
+export default Hello;

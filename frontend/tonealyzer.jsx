@@ -4,6 +4,8 @@ import Root from './components/root';
 
 import configureStore from './store/store';
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
 
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                           };
 
-  if (window.currentUser !== undefined)
+  if (!!window.currentUser)
     store = configureStore(preloadedState);
   else {
     store = configureStore();
@@ -23,11 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   window.store = store;
 
-  document.addEventListener('keydown', (e) => {
-    if (!window.currentUser) {
-      return;
-    }
-  });
-
-  ReactDOM.render(<Root store={ store }/>, root);
+  ReactDOM.render(<Root store={ store } />, root);
 });
