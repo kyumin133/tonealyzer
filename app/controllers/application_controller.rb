@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :exception, prepend: true
-  helper_method :current_user
+  helper_method :current_user, :logged_in?
 
   def current_user
     # session[:user_id] = nil
