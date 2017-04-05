@@ -29,11 +29,13 @@
     "react-d3-basic": "^1.6.11",
     "react-d3-brush": "^1.1.0",
     "react-dom": "^15.4.2",
+    "react-modal-bootstrap": "^1.1.1",
     "react-redux": "^5.0.3",
     "react-router": "3.0.2",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
+    "vex-js": "^3.1.1",
     "webpack": "^2.3.3"
   }
 }
