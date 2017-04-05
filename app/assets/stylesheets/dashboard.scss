@@ -1,3 +1,50 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dashboard-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1050px;
+  // box-sizing: border-box;
+}
+
+.dashboard-tab {
+  padding: 10px 20px;
+  background-color: rgb(245, 245, 245);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  transition: 0.2s ease-in-out;
+  width: 350px;
+  text-align: center;
+  border: 1px solid rgb(130, 130, 130);
+  box-sizing: border-box;
+}
+
+
+.selected-tab {
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.selected-tab:hover {
+  cursor: default;
+}
+
+.unselected-tab {
+  background-color: rgb(180, 180, 180);
+  font-weight: normal;
+}
+
+.unselected-tab:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+}
+
 .line {
   stroke-width: 1px;
   stroke-linejoin: round;
@@ -39,16 +86,54 @@
   opacity: 0.7;
 }
 
-.chart > div {
+.chart-inner {
+  margin-bottom: 20px;
+}
+
+.chart-inner > div {
   display: flex;
   position: relative;
   justify-content: flex-start;
-  background-color: rgb(245, 245, 245);
   width: 900px;
+  background-color: white;
 }
 
 .chart {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background-color: rgb(245, 245, 245);
+  width: 1050px;
+  border: 1px solid rgb(130, 130, 130);
+  border-top: none;
+  box-sizing: border-box;
+  padding: 20px 0;
+}
+
+.dashboard-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-nav {
+  transition: 0.2s ease-in-out;
+  color: rgb(150, 150, 150);
+  margin: 0 20px;
+}
+
+.chart-nav:hover {
+  cursor: pointer;
+  color: rgb(40, 40, 40);
+}
+
+.chart-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
