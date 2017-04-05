@@ -7,6 +7,12 @@ export const receiveCurrentUser = currentUser => ({
   currentUser
 });
 
+export const requestDemoUser = () => dispatch => (
+  APIUtil.loginDemoUser().then(
+    currentUser => dispatch(receiveCurrentUser(currentUser))
+  )
+);
+
 export const requestLogin = user => dispatch => (
   APIUtil.login(user).then(
     currentUser => dispatch(receiveCurrentUser(currentUser))
@@ -16,11 +22,5 @@ export const requestLogin = user => dispatch => (
 export const requestLogout = () => dispatch => (
   APIUtil.logout().then(
     user => dispatch(receiveCurrentUser(null))
-  )
-);
-
-export const requestDemoUser = () => dispatch => (
-  APIUtil.loginDemoUser().then(
-    currentUser => dispatch(receiveCurrentUser(currentUser))
   )
 );
