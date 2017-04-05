@@ -11,8 +11,8 @@ User.delete_all
 Identity.delete_all
 
 demo_user = User.create!(
-  provider: "identity"
-  uid: 1
+  provider: "identity",
+  uid: 1233,
   name: "Cool user"
 )
 
