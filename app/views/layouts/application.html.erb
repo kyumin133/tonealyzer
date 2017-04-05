@@ -15,23 +15,23 @@
     <div>
       <% if current_user %>
         Signed in as <strong><%= current_user.name %></strong>!
-        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <%= link_to "Sign out", api_signout_path, id: "sign_out" %>
       <% else %>
-        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-        <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-        <%= link_to "Create an account", new_identity_path %>
-        <%= form_tag "auth/identity/callback" do %>
-        <div class="field">
-          <%= label_tag :auth_key, "Email" %><br>
-          <%= text_field_tag :auth_key %>
-        </div>
-        <div class="field">
-          <%= label_tag :password %>
-          <%= password_field_tag :password %>
-        </div>
-        <div class="actions">
-          <%= submit_tag "Login" %>
-        </div>
+        <%= link_to "Sign in with Google", "api/auth/google_oauth2", id: "sign_in" %>
+        <%= link_to "Sign in with Facebook", "api/auth/facebook", id: "sign_in" %>
+        <%= link_to "Create an account", new_api_identity_path %>
+        <%= form_tag "api/auth/identity/callback" do %>
+          <div class="field">
+            <%= label_tag :auth_key, "Email" %><br>
+            <%= text_field_tag :auth_key %>
+          </div>
+          <div class="field">
+            <%= label_tag :password %>
+            <%= password_field_tag :password %>
+          </div>
+          <div class="actions">
+            <%= submit_tag "Login" %>
+          </div>
         <% end %>
       <% end %>
 
