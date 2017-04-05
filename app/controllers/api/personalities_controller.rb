@@ -12,4 +12,10 @@ class Api::PersonalitiesController < ApplicationController
 
   end
 
+  def update
+    @personality = User.find(params[:id]).personality.set_personality_analysis
+    @personality.set_personality_analysis
+    render json: @personality.analysis
+  end
+
 end
