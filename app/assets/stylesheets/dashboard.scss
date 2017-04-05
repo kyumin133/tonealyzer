@@ -102,19 +102,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(245, 245, 245);
+
   width: 1050px;
-  border: 1px solid rgb(130, 130, 130);
-  border-top: none;
-  box-sizing: border-box;
   padding: 20px 0;
 }
 
 .dashboard-page {
-  width: 100%;
+  width: 1050px;
+  height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgb(245, 245, 245);
+
+  border: 1px solid rgb(130, 130, 130);
+  border-top: none;
+  box-sizing: border-box;
 }
 
 .chart-nav {
