@@ -3,12 +3,17 @@ import { LineChart } from "react-d3-basic";
 
 const SELECTED_LINE = {
   opacity: 1,
-  strokeWidth: "3px"
+  strokeWidth: "4px",  
 };
+
+const HOVER_LINE = {
+  opacity: 0.7,
+  strokeWidth: "3px",
+}
 
 const UNSELECTED_LINE = {
   opacity: 0.3,
-  strokeWidth: "1px"
+  strokeWidth: "2px",
 };
 
 class Dashboard extends React.Component {
@@ -93,26 +98,70 @@ class Dashboard extends React.Component {
     $(".legend > .legend").click((e) => {
       this.updateTones(e);
     });
+
+    $(".legend > .legend").mouseenter((e) => {
+      let tones = this.state.tones;
+      let index = $(e.currentTarget).index();
+      let tone = tones[index];
+      if (!tone.selected) {
+        tone.style = HOVER_LINE;
+      }
+      this.setState({tones: tones});
+    });
+
+    $(".legend > .legend").mouseleave((e) => {
+      let tones = this.state.tones;
+      let index = $(e.currentTarget).index();
+      let tone = tones[index];
+      if (!tone.selected) {
+        tone.style = UNSELECTED_LINE;
+      }
+      this.setState({tones: tones});
+    });
+
+
+    $(".line").click((e) => {
+      this.updateTones(e);
+    });
+
+    $(".line").mouseenter((e) => {
+      let tones = this.state.tones;
+      let index = $(e.currentTarget).index();
+      let tone = tones[index];
+      if (!tone.selected) {
+        tone.style = HOVER_LINE;
+      }
+      this.setState({tones: tones});
+    });
+
+    $(".line").mouseleave((e) => {
+      let tones = this.state.tones;
+      let index = $(e.currentTarget).index();
+      let tone = tones[index];
+      if (!tone.selected) {
+        tone.style = UNSELECTED_LINE;
+      }
+      this.setState({tones: tones});
+    });
   }
 
   updateTones(e) {
     let tones = this.state.tones;
     let index = $(e.currentTarget).index();
-    for (let i = 0; i < tones.length; i++) {
-      let tone = tones[i];
-      if (index === i) {
-        if (tone.selected) {
-          tone.style = UNSELECTED_LINE;
-          tone.selected = false;
-          $(e.currentTarget).removeClass("selected-legend");
-          $(e.currentTarget).addClass("unselected-legend");
-        } else {
-          tone.style = SELECTED_LINE;
-          tone.selected = true;
-          $(e.currentTarget).removeClass("unselected-legend");
-          $(e.currentTarget).addClass("selected-legend");
-        }
-      }
+    let tone = tones[index];
+
+    let legendItems = $(".legend").children();
+
+    if (tone.selected) {
+      tone.style = UNSELECTED_LINE;
+      tone.selected = false;
+      $(legendItems[index]).removeClass("selected-legend");
+      $(legendItems[index]).addClass("unselected-legend");
+    } else {
+      tone.style = SELECTED_LINE;
+      tone.selected = true;
+      $(legendItems[index]).removeClass("unselected-legend");
+      $(legendItems[index]).addClass("selected-legend");
     }
 
     this.setState({tones: tones});
