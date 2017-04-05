@@ -32,11 +32,11 @@ class SessionLinks extends React.Component {
   }
 
   handleLogin() {
-    // this.props.login();
+    this.props.login();
   }
 
   handleDemo() {
-    // this.props.login({user: {username: "Jane Doe", password: "123456"}});
+    this.props.requestDemoUser();
   }
 
 

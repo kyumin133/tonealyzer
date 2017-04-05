@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter, hashHistory } from 'react-router';
+import { Link } from 'react-router';
 
 
 class SessionForm extends React.Component {
@@ -71,17 +71,6 @@ class SessionForm extends React.Component {
 	// 	}
 	// }
 
-	signUpLink(e) {
-	  e.preventDefault();
-	  const url = `/signup`;
-	  hashHistory.push(url);
-	}
-
-	logInLink(e) {
-	  e.preventDefault();
-	  const url = `/login`;
-	  hashHistory.push(url);
-	}
 
 	renderErrors() {
 		return(
@@ -111,6 +100,7 @@ class SessionForm extends React.Component {
             value={this.state.username}
             onChange={this.update("username")}
           />
+          <h3>Password:</h3>
           <input
             type="password"
             name="password"
@@ -139,4 +129,4 @@ class SessionForm extends React.Component {
 
 }
 
-export default withRouter(SessionForm);
+export default SessionForm;

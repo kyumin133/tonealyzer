@@ -4,7 +4,7 @@ import { hashHistory, Link } from 'react-router';
 import PersonalGreeting from './personal_greeting';
 import SessionLinks from './session_links';
 
-const Header = ({currentUser}) => {
+const Header = ({currentUser, logout, login, requestDemoUser}) => {
 
   return (
     <div className="header-div">
@@ -18,11 +18,12 @@ const Header = ({currentUser}) => {
         {
           currentUser ?
             <PersonalGreeting
-              currentUser={null}
-              logout={null}
+              currentUser={currentUser}
+              logout={logout}
             /> :
             <SessionLinks
-              login={null}
+              login={login}
+              requestDemoUser={requestDemoUser}
             />
         }
       </div>
