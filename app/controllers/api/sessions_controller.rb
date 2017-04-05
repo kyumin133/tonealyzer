@@ -6,15 +6,15 @@ class Api::SessionsController < ApplicationController
       @user = Identity.find_by_credentials(params[:identity][:email],
                                         params[:identity][:password])
     end
+    # debugger
 
     if @user
       login(@user)
     else
-      user = User.from_omniauth(env["omniauth.auth"])
-      login(user)
+      @user = User.from_omniauth(env["omniauth.auth"])
+      login(@user)
     end
-    
-    redirect_to root_path
+    render "api/users/show"
   end
 
   def destroy
