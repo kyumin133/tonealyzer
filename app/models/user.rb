@@ -15,7 +15,7 @@ class User < ApplicationRecord
   # end
 
   def self.from_omniauth(auth)
-    debugger
+    # debugger
     find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
   end
 

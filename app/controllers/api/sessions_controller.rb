@@ -1,6 +1,6 @@
 class Api::SessionsController < ApplicationController
   def create
-    debugger
+    # debugger
     user = User.from_omniauth(env["omniauth.auth"])
     login(user)
     redirect_to root_path
