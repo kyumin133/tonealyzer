@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :blurbs, only: [:create, :show, :index]
-    resources :personalities, only: [:show]
+    resources :personalities, only: [:show, :update]
   end
 end

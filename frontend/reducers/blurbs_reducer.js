@@ -1,15 +1,15 @@
 import {
-  RECIEVE_BLURB,
-  RECIEVE_BLURBS,
+  RECEIVE_BLURB,
+  RECEIVE_BLURBS,
 } from '../actions/blurb_actions';
 import merge from 'lodash/merge';
 
 const blurbsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
-    case RECIEVE_BLURBS:
+    case RECEIVE_BLURBS:
       return merge({}, action.blurbs);
-    case RECIEVE_BLURB:
+    case RECEIVE_BLURB:
       return merge({}, state, {[action.blurb.id]: action.blurb});
     default:
       return state;
