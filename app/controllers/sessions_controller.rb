@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   def create
-    debugger
     user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
+    # debugger
+    login(user)
     redirect_to root_path
   end
 
