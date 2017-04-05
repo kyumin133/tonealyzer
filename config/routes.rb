@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     get 'auth/:provider/callback', to: 'sessions#create'
+    get 'auth/:provider', to: 'sessions#create'
     post '/auth/:provider/callback', to: 'sessions#create'
     get 'auth/failure', to: redirect('/')
     get 'signout', to: 'sessions#destroy', as: 'signout'
