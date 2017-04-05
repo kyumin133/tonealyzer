@@ -6,6 +6,14 @@ import configureStore from './store/store';
 
 // import * as APIUtil from './util/personality_api_util';
 import * as actions from './actions/personality_actions';
+import { login, logout, loginDemoUser } from './util/session_api_util';
+window.login = login;
+window.logout = logout;
+window.loginDemoUser = loginDemoUser;
+import { requestLogin, requestLogout, requestDemoUser } from './actions/session_actions';
+window.requestLogin = requestLogin;
+window.requestLogout = requestLogout;
+window.requestDemoUser = requestDemoUser;
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};

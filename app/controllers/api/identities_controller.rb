@@ -1,6 +1,6 @@
 class Api::IdentitiesController < ApplicationController
   def new
     @identity = env['omniauth.identity']
-    debugger
+    # debugger
   end
 end

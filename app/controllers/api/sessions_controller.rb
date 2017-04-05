@@ -1,8 +1,16 @@
 class Api::SessionsController < ApplicationController
   def create
+    @user = Identity.find_by_credentials(params[:identity][:email],
+                                        params[:identity][:password])
+
+
     # debugger
-    user = User.from_omniauth(env["omniauth.auth"])
-    login(user)
+    if @user
+      login(@user)
+    else
+      user = User.from_omniauth(env["omniauth.auth"])
+      login(user)
+    end
     redirect_to root_path
   end
 
