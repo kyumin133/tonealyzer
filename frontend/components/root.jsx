@@ -4,13 +4,13 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from "./app";
 import Home from "./home";
-import Hello from "./hello";
+import DashboardContainer from "./dashboard/dashboard_container";
 
 const Root = ({ store }) => {
   return <Provider store={ store }>
     <Router history={hashHistory}>
       <Route path="/" component={ App } >
-        <IndexRoute component={ Hello } />
+        <IndexRoute component={ DashboardContainer } />
         <Route path="/home" component={ Home } />
       </Route>
     </Router>
