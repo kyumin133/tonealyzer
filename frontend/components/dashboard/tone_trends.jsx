@@ -237,6 +237,15 @@ class ToneTrends extends React.Component {
       }
       this.forceUpdate();
     });
+
+    $(document).off();
+    $(document).keydown((e) => {
+      if (e.keyCode === 37) {
+        this.changeSelectedIndex(-1);
+      } else if (e.keyCode === 39) {
+        this.changeSelectedIndex(1);
+      }
+    })
   }
 
   componentDidUpdate() {
@@ -246,7 +255,6 @@ class ToneTrends extends React.Component {
 
   componentDidMount() {
     this.updateLegend();
-
     this.updateListeners();
   }
 
