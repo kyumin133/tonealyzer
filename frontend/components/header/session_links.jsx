@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Modal from './modal';
+import SessionFormContainer from './session_form/session_form_container';
 
 class SessionLinks extends React.Component {
 
@@ -61,10 +62,8 @@ class SessionLinks extends React.Component {
         <Modal
           isOpen={this.state.open}
           onClose={this.handleClose}
-          formType={this.state.formType}
         >
-          <h1>Modal title</h1>
-          <p>hello</p>
+          <SessionFormContainer formType={this.state.formType}/>
           <p><button onClick={() => this.handleClose()}>Close</button></p>
 
         </Modal>
