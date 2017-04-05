@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
+  resources :identities
 
   namespace :api, defaults: {format: :json} do
     resources :blurbs, only: [:create, :show, :index]
