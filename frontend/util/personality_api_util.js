@@ -5,3 +5,11 @@ export const fetchPersonality = (userId) => {
   });
 
 };
+
+export const updatePersonality = (userId) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/personalities/${userId}`,
+  });
+
+};
