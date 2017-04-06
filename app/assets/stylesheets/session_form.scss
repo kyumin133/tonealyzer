@@ -1,0 +1,55 @@
+.session-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+
+  .form-inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    input {
+      padding: 0;
+      position: relative;
+      width: 100%;
+      border: none;
+      outline: none;
+      color: $white;
+    }
+
+  }
+
+  .form-submit {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+
+    input {
+      background-color: $secondary;
+    	border-color: $dark-secondary;
+    	color: $lightest-primary;
+    	font-weight: bold;
+    	padding: 7px 9px;
+      margin: 5px;
+    	border-radius: 3px;
+    	transition: background-color 0.3s;
+    	font-family: $sans-serif;
+    	text-transform: uppercase;
+    	font-size: 14px;
+    	text-align: center;
+
+    }
+
+    input:hover {
+    	background-color: $dark-secondary;
+      border-color: $darkest-secondary;
+    }
+
+  }
+
+
+
+}

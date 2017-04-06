@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 User.delete_all
 Identity.delete_all
 
@@ -16,7 +17,7 @@ demo_user_identity = Identity.create!(
 )
 
 demo_user = User.create!(
-provider: "identity",
-uid: demo_user_identity.id,
-name: "Cool user"
+  provider: "identity",
+  uid: demo_user_identity.id,
+  name: "Cool user"
 )

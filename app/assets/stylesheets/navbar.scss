@@ -1,0 +1,23 @@
+.header-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: $light-primary;
+  padding: 20px;
+
+  img {
+    width: auto;
+
+  }
+
+
+  .header-group {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+}
