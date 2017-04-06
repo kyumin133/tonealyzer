@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from "./app";
 import Splash from "./splash";
 import DashboardContainer from "./dashboard/dashboard_container";
+import ResultsContainer from "./results/results_container";
 
 const Root = ({ store }) => {
   return <Provider store={ store }>
@@ -12,6 +13,7 @@ const Root = ({ store }) => {
       <Route path="/" component={ App } >
         <IndexRoute component={ Splash } />
         <Route path="/home" component={ DashboardContainer } />
+        <Route path="/results/:blurbId" component={ ResultsContainer } />
       </Route>
     </Router>
   </Provider>
