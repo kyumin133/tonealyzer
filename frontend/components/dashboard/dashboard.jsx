@@ -17,9 +17,9 @@ class Dashboard extends React.Component {
     };
 
     this.components = [
-      <ToneTrends />,
-      <Personality />,
-      <Documents/>
+      <ToneTrends blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>,
+      <Personality personality={this.props.personality} fetchPersonality={this.props.fetchPersonality} updatePersonality={this.props.updatePersonality}/>,
+      <Documents blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>
     ];
 
     this.clickTab = this.clickTab.bind(this);

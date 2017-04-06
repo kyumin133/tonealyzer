@@ -45,11 +45,10 @@ class Modal extends React.Component {
       // }
 
       return (
-        <div className={this.props.containerClassName}>
-          <div className={this.props.className} style={modalStyle}>
-            {this.props.children}
-          </div>
+        <div className="modal">
+          {this.props.children}
         </div>
+
       );
     }
 
