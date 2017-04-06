@@ -35,7 +35,7 @@ class Modal extends React.Component {
         top: '0px',
         left: '0px',
         zIndex: '9998',
-        background: 'rgba(0, 0, 0, 0.3)'
+        background: 'black'
       };
 
       // if (this.props.backdropStyle) {
@@ -45,10 +45,10 @@ class Modal extends React.Component {
       // }
 
       return (
-        <div className="modal">
-          {this.props.children}
+        <div>
+          <div className='modal' style={modalStyle}>{this.props.children}</div>
+          <div className= 'backdrop' style={backdropStyle} onClick={e => this.close(e)} />}
         </div>
-
       );
     }
 

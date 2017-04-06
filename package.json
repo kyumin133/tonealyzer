@@ -28,6 +28,7 @@
     "javascript-time-ago": "^0.4.9",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.8",
     "react-d3-basic": "^1.6.11",
     "react-d3-brush": "^1.1.0",
     "react-dom": "^15.4.2",
