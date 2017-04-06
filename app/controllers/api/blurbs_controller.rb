@@ -1,7 +1,6 @@
 class Api::BlurbsController < ApplicationController
   def create
-    #DON"T FORGET TO SWAP OUT user_id for current user!
-		@blurb = Blurb.new(user_id: User.first.id, body: params[:body])
+		@blurb = Blurb.new(user_id: current_user.id, body: params[:body])
 
 		if @blurb.save
 			render "api/blurbs/show"
@@ -15,9 +14,9 @@ class Api::BlurbsController < ApplicationController
 		render "api/blurbs/show"
   end
 
-  #DON"T FORGET TO SWAP OUT user_id for current user!
   def index
-    @blurbs = User.first.blurbs
+    @blurbs = current_user.blurbs
+    # debugger
     render "api/blurbs/index"
   end
 

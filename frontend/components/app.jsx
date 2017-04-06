@@ -13,7 +13,6 @@ class App extends React.Component {
     return (
       <div>
         <HeaderContainer />
-        This is the App component.
         { this.props.children }
       </div>
     );
