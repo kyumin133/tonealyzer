@@ -9,14 +9,14 @@
 User.delete_all
 Identity.delete_all
 
-demo_user = User.create!(
-  provider: "identity",
-  uid: 1233,
-  name: "Cool user"
-)
-
 demo_user_identity = Identity.create!(
   name: "Cool user",
   password_digest: BCrypt::Password.create("secretpass123"),
   email: "email@gmail.com"
+)
+
+demo_user = User.create!(
+provider: "identity",
+uid: demo_user_identity.id,
+name: "Cool user"
 )

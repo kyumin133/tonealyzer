@@ -24,3 +24,9 @@ export const requestLogout = () => dispatch => (
     user => dispatch(receiveCurrentUser(null))
   )
 );
+
+export const requestSignup = user => dispatch => (
+  APIUtil.signup(user).then(
+    currentUser => dispatch(receiveCurrentUser(currentUser))
+  )
+);
