@@ -6,13 +6,11 @@ class Api::SessionsController < ApplicationController
       @user = Identity.find_by_credentials(params[:identity][:email],
                                         params[:identity][:password])
     end
-    # debugger
 
     if @user
       login(@user)
     else
       @user = User.from_omniauth(env["omniauth.auth"])
-      # debugger
       login(@user)
     end
     render "api/users/show"
