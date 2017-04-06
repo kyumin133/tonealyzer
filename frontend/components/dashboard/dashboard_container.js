@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { fetchBlurbs } from "../../actions/blurb_actions"
-import { fetchPersonality, updatePersonality } from "../../actions/personality_actions"
+import { fetchBlurbs } from "../../actions/blurb_actions";
+import { fetchPersonality, updatePersonality } from "../../actions/personality_actions";
 import Dashboard from "./dashboard";
 
 const mapStateToProps = (state, ownProps) => {
