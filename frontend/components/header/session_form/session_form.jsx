@@ -92,6 +92,12 @@ class SessionForm extends React.Component {
         <form onSubmit={this.handleSubmit} className='session-form'>
           <h1>{`Please ${this.state.formType}`}</h1>
           <br/>
+						<button type="button" onClick={this.handleSubmit}>
+		          Login with Google
+		        </button>
+						<button type="button" onClick={this.handleSubmit}>
+		          Login with Facebook
+		        </button>
           <h5>{this.renderErrors()}</h5>
           <div className='form-input'>
             <h3>Username:</h3>
