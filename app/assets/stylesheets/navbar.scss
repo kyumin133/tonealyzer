@@ -12,7 +12,12 @@
   }
 
 
-  .header-right-icons {
+  .header-group {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
   }
 
 }
