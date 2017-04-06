@@ -10,8 +10,6 @@
 User.delete_all
 Identity.delete_all
 
-
-
 demo_user_identity = Identity.create!(
   name: "Cool user",
   password_digest: BCrypt::Password.create("secretpass123"),

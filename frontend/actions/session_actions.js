@@ -26,3 +26,9 @@ export const requestLogout = () => dispatch => (
   .then(user => dispatch(receiveCurrentUser(null)))
   .then(() => hashHistory.push('/'))
 );
+
+export const requestSignup = user => dispatch => (
+  APIUtil.signup(user).then(
+    currentUser => dispatch(receiveCurrentUser(currentUser))
+  )
+);
