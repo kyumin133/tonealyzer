@@ -1,1 +1,1 @@
-json.extract! blurb, :id, :user_id, :body, :analysis, :created_at
+json.extract! blurb, :id, :user_id, :title, :body, :analysis, :created_at
