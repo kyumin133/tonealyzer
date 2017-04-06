@@ -63,8 +63,16 @@ class SessionLinks extends React.Component {
           isOpen={this.state.open}
           onClose={this.handleClose}
         >
-          <SessionFormContainer formType={this.state.formType}/>
-          <p><button onClick={() => this.handleClose()}>Close</button></p>
+          <div className='modal-contents'>
+            <div className='close-button-box'>
+              <div></div>
+              <button onClick={() => this.handleClose()}>X</button>
+            </div>
+              <br/>
+              <br/>
+              <br/>
+              <SessionFormContainer formType={this.state.formType}/>
+          </div>
 
         </Modal>
 
