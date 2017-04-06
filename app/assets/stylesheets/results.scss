@@ -1,0 +1,249 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.results-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1050px;
+  // box-sizing: border-box;
+}
+
+.results-tab {
+  padding: 10px 20px;
+  background-color: rgb(245, 245, 245);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  transition: 0.2s ease-in-out;
+  width: 525px;
+  text-align: center;
+  border: 1px solid rgb(130, 130, 130);
+  box-sizing: border-box;
+}
+
+
+
+.selected-results-tab {
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.selected-results-tab:hover {
+  cursor: default;
+}
+
+.unselected-results-tab {
+  background-color: rgb(180, 180, 180);
+  font-weight: normal;
+}
+
+.unselected-results-tab:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+}
+
+
+@keyframes load-bar {
+  0% {
+    width: 0;
+    // opacity: 0;
+  }
+  100% {
+    // width: 100%;
+  }
+}
+
+.results-emotion .bar {
+  animation-name: load-bar;
+  animation-duration: 2s;
+}
+
+.results-emotion .bar:nth-of-type(1) {
+  fill: firebrick;
+}
+
+.results-emotion .bar:nth-of-type(2) {
+  fill: darkgreen;
+}
+
+.results-emotion .bar:nth-of-type(3) {
+  fill: darkviolet;
+}
+
+.results-emotion .bar:nth-of-type(4) {
+  fill: gold;
+}
+
+.results-emotion .bar:nth-of-type(5) {
+  fill: steelblue;
+}
+
+.results-language .bar {
+  animation-name: load-bar;
+  animation-duration: 2s;
+}
+
+.results-language .bar:nth-of-type(1) {
+  fill: darkblue;
+}
+
+.results-language .bar:nth-of-type(2) {
+  fill: crimson;
+}
+
+.results-language .bar:nth-of-type(3) {
+  fill: darkgoldenrod;
+}
+
+
+.results-social .bar {
+  animation-name: load-bar;
+  animation-duration: 2s;
+}
+
+.results-social .bar:nth-of-type(1) {
+  fill: teal;
+}
+
+.results-social .bar:nth-of-type(2) {
+  fill: maroon;
+}
+
+.results-social .bar:nth-of-type(3) {
+  fill: indigo;
+}
+
+.results-social .bar:nth-of-type(4) {
+  fill: navy;
+}
+
+.results-social .bar:nth-of-type(5) {
+  fill: chocolate;
+}
+
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 30px;
+}
+
+.chart-wrapper:last-of-type {
+  margin-right: 30px;
+}
+
+.results-title-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.results-title {
+  width: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  // background-color: honeydew;
+}
+
+.bar {
+  transition: 0.2s ease-in-out;
+}
+
+.bar:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.hover-box {
+  width: 200px;
+  // height: 70px;
+  background-color: white;
+  border: 1px solid black;
+  position: absolute;
+
+  animation-name: fade-in-hover;
+  animation-duration: 0.2s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.hover-box > div {
+  width: 100%;
+  // text-align: center;
+}
+
+.hover-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.hover-name {
+  width: 50%;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hover-value-group {
+  width: 35%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@keyframes fade-in-hover {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.hidden-hover-box {
+  // display: none;
+  animation-name: fade-out-hover;
+  animation-duration: 0.5s;
+}
+
+@keyframes fade-out-hover {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.hover-value {
+
+}
+
+.unlikely {
+  // color: rgb(150, 150, 150);
+}
+
+.likely {
+
+}
+
+.very-likely {
+
+}

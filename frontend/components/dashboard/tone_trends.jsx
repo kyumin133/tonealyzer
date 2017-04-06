@@ -44,7 +44,7 @@ class ToneTrends extends React.Component {
     }
 
     this.state = {
-      tones: {
+      emotion: {
         fields: [
           {
             field: 'anger',
@@ -155,7 +155,7 @@ class ToneTrends extends React.Component {
       dataSet: dataSet
     }
 
-    this.analysisArr = [this.state.tones, this.state.languageStyle, this.state.socialTendencies];
+    this.analysisArr = [this.state.emotion, this.state.languageStyle, this.state.socialTendencies];
     this.analysisIndex = 0;
 
     this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
