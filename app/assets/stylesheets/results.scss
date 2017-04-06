@@ -1,0 +1,47 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.results-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1050px;
+  // box-sizing: border-box;
+}
+
+.results-tab {
+  padding: 10px 20px;
+  background-color: rgb(245, 245, 245);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  transition: 0.2s ease-in-out;
+  width: 525px;
+  text-align: center;
+  border: 1px solid rgb(130, 130, 130);
+  box-sizing: border-box;
+}
+
+
+
+.selected-results-tab {
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.selected-results-tab:hover {
+  cursor: default;
+}
+
+.unselected-results-tab {
+  background-color: rgb(180, 180, 180);
+  font-weight: normal;
+}
+
+.unselected-results-tab:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+}
