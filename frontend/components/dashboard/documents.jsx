@@ -52,7 +52,7 @@ class Documents extends React.Component {
 
     for (let key in this.state.documents) {
       let document = this.state.documents[key];
-      debugger;
+      // debugger;
 
       let li = <li key={key} className="documents-index-item">
         <div className="document-title">{document.title}</div>
