@@ -31,8 +31,6 @@ export const signup = identity => (
 );
 
 
-
-
 /// hopefully can use react-redux-oauth2 package for this. npm install!
 
 // export const loginFacebook = user => (
