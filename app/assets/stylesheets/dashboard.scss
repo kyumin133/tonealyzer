@@ -140,3 +140,36 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
+
+.axis.x {
+  transform: translateY(10px);
+}
+
+.axis.y {
+  transform: translateX(-10px);
+}
+
+.circles {
+  width: 100%;
+  // background-color: rgb(245, 245, 245);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+.selected-circle {
+  background-color: royalblue;
+}
+
+.unselected-circle {
+  background-color: rgb(180, 180, 180);
+
+}
