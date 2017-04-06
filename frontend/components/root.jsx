@@ -6,6 +6,7 @@ import App from "./app";
 import Splash from "./splash";
 import DashboardContainer from "./dashboard/dashboard_container";
 import BlurbInputContainer from "./blurb_input/blurb_input_container";
+import ResultsContainer from "./results/results_container";
 
 const Root = ({ store }) => {
   return <Provider store={ store }>
@@ -14,6 +15,7 @@ const Root = ({ store }) => {
         <IndexRoute component={ Splash } />
         <Route path="/home" component={ DashboardContainer } />
         <Route path="/newBlurb" component={ BlurbInputContainer } />
+        <Route path="/results/:blurbId" component={ ResultsContainer } />
       </Route>
     </Router>
   </Provider>

@@ -18,6 +18,7 @@
       border: none;
       outline: none;
       color: $white;
+      appearance: normal;
     }
 
   }
@@ -25,7 +26,7 @@
   .form-submit {
     display: flex;
     flex-direction: row;
-    align-self: flex-end;
+    align-self: center;
 
     input {
       background-color: $secondary;
