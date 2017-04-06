@@ -4,6 +4,7 @@ import { fetchPersonality, updatePersonality } from "../../actions/personality_a
 import Dashboard from "./dashboard";
 
 const mapStateToProps = (state, ownProps) => {
+  // debugger;
   return {
     blurbs: state.blurbs,
     personality: state.personality
