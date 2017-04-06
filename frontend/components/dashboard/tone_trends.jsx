@@ -283,6 +283,15 @@ class ToneTrends extends React.Component {
   render() {
     let analysis = this.analysisArr[this.analysisIndex];
 
+    let circles = [];
+    for (let i = 0; i < this.analysisArr.length; i++) {
+      if (i === this.analysisIndex) {
+        circles.push(<div key={i} className="circle selected-circle">&nbsp;</div>)
+      } else {
+        circles.push(<div key={i} className="circle unselected-circle">&nbsp;</div>)
+      }
+    }
+
     return <div className="dashboard-page">
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
@@ -292,12 +301,15 @@ class ToneTrends extends React.Component {
             margins={{left: 100, right: 100, top: 50, bottom: 50}}
             data={this.state.dataSet}
             width={750}
-            height={450}
+            height={400}
             chartSeries={analysis.fields}
             x={this.x}
             showXGrid={false}
             showYGrid={false}
           />
+          <span className="circles">
+            {circles}
+          </span>
         </div>
       <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>
