@@ -12,7 +12,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
     else
       @user = User.from_omniauth(env["omniauth.auth"])
-      debugger
+      # debugger
       login(@user)
     end
     render "api/users/show"
