@@ -40,7 +40,4 @@ class Blurb < ApplicationRecord
     self.analysis ||= generate_analysis
   end
 
-
-
-
 end

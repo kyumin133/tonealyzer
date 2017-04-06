@@ -16,13 +16,11 @@ class Dashboard extends React.Component {
       selectedIndex: 0
     };
 
-    this.components = [
-      <ToneTrends blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>,
-      <Personality personality={this.props.personality} fetchPersonality={this.props.fetchPersonality} updatePersonality={this.props.updatePersonality}/>,
-      <Documents blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>
-    ];
-
     this.clickTab = this.clickTab.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.fetchBlurbs();
   }
 
   clickTab(e) {
@@ -47,6 +45,13 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    //moved this here because if it's set in the constructor I can't send down the blurbs to documents
+    this.components = [
+      <ToneTrends blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>,
+      <Personality personality={this.props.personality} fetchPersonality={this.props.fetchPersonality} updatePersonality={this.props.updatePersonality}/>,
+      <Documents blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>
+    ];
+
     return <div className="dashboard">
         <div className="dashboard-tabs">
           <div className={this.state.tabClasses[0]} onClick={this.clickTab}>Tone Trends</div>
