@@ -66,7 +66,7 @@ class SessionLinks extends React.Component {
           <div className='modal-contents'>
             <div className='close-button-box'>
               <div></div>
-              <button onClick={() => this.handleClose()}>X</button>
+              <button className='close' onClick={() => this.handleClose()}>✖</button>
             </div>
               <br/>
               <br/>

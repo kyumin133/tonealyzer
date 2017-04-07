@@ -17,7 +17,7 @@ class PersonalGreeting extends React.Component {
     return (
     	<div className='header-group'>
         <div>
-          {`Hi ${this.props.currentUser.name}!`}
+          <button className='soft-title'>{`👤 ${this.props.currentUser.name}`}</button>
         </div>
         <button type="button" onClick={this.handleLogout}>
           Logout

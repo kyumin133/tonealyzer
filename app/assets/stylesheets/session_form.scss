@@ -11,14 +11,19 @@
     align-items: center;
     justify-content: flex-start;
 
+
+
     input {
       padding: 0;
       position: relative;
       width: 100%;
       border: none;
       outline: none;
-      color: $white;
-      appearance: normal;
+      text-decoration-style: solid;
+      text-decoration: underline;
+      text-decoration-color: $darkest-secondary;
+      height: 100px;
+
     }
 
   }
@@ -29,28 +34,72 @@
     align-self: center;
 
     input {
-      background-color: $secondary;
-    	border-color: $dark-secondary;
-    	color: $lightest-primary;
+      background-color: $primary;
+    	border-color: $dark-primary;
+    	color: $white;
     	font-weight: bold;
     	padding: 7px 9px;
       margin: 5px;
-    	border-radius: 3px;
+    	border-radius: 20%;
     	transition: background-color 0.3s;
     	font-family: $sans-serif;
-    	text-transform: uppercase;
-    	font-size: 14px;
+    	font-size: 20px;
     	text-align: center;
 
     }
 
     input:hover {
-    	background-color: $dark-secondary;
-      border-color: $darkest-secondary;
+    	background-color: $white;
+      color: $darkest-primary;
     }
 
   }
 
 
 
+}
+.f-input {
+  padding: 0;
+  position: relative;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: solid $light-primary;
+  font-size: 20px;
+}
+.f-input:focus {
+  border-bottom: solid $dark-primary;
+
+}
+
+h1 {
+  color: $primary;
+}
+
+.close {
+  border-radius: 100%;
+  background: none;
+  font-family: Symbola;
+  font-size: 12px;
+  color: $darkest-primary;
+}
+
+.soft-button {
+  background: none;
+  color: $primary;
+}
+
+.soft-button:hover {
+  background: $darkest-primary;
+  color: $white;
+}
+.soft-title {
+  background: none;
+  color: $white;
+  font-weight: bolder;
+}
+
+.soft-title:hover {
+  background: none;
+  cursor: auto;
 }
