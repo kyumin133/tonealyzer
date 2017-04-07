@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
     if @user
       login(@user)
     else
-      debugger
+      
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
     end

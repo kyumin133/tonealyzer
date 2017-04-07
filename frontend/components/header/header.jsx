@@ -10,7 +10,6 @@ const Header = ({currentUser, logout, login, requestDemoUser}) => {
     <div className="header-div">
       <img
         className='header-logo'
-
         alt="Tonealyzer"
         onClick={null}
       />

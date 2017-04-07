@@ -9,7 +9,7 @@ class SessionLinks extends React.Component {
     super(props);
     this.state = {
       open: false,
-      formType: 'login'
+      formType: 'Login'
     };
     this.handleLogin= this.handleLogin.bind(this);
     this.handleDemo= this.handleDemo.bind(this);
@@ -20,11 +20,11 @@ class SessionLinks extends React.Component {
 
   handleLoginOpen(e) {
     e.preventDefault();
-    this.setState({open: true, formType: 'login'});
+    this.setState({open: true, formType: 'Login'});
   }
   handleSignUpOpen(e) {
     e.preventDefault();
-    this.setState({open: true, formType: 'signUp'});
+    this.setState({open: true, formType: 'Sign Up'});
   }
 
   handleClose() {
