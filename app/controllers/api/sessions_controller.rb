@@ -2,6 +2,7 @@ class Api::SessionsController < ApplicationController
   before_action :require_logged_in, only: [:destroy]
 
   def create
+
     if params[:identity][:email]
       @user = Identity.find_by_credentials(params[:identity][:email],
                                         params[:identity][:password])
@@ -10,6 +11,7 @@ class Api::SessionsController < ApplicationController
     if @user
       login(@user)
     else
+      
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
     end

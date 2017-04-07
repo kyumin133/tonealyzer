@@ -33,14 +33,14 @@ class SessionForm extends React.Component {
 
 	updateFormType(formType) {
 		return e => this.setState({
-			loginOrSignUp: formType
+			formType: formType
 		});
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
 		const user = this.state;
-		if (this.state.formType === 'login') {
+		if (this.state.formType === 'Login') {
 			this.props.login({user});
 
 		}
@@ -49,27 +49,33 @@ class SessionForm extends React.Component {
 		}
 	}
 
-	// navLink() {
-	// 	if (this.state.loginOrSignUp === "login") {
-	// 		return (
-	// 			<div>
-	// 				<FlatButton
-	// 					onClick={this.updateFormType('signup')}
-	// 					label="Sign Up"
-	// 					/>
-	// 			</div>
-	// 		);
-	// 	} else {
-	// 		return (
-	// 			<div>
-	// 				<FlatButton
-	// 					onClick={this.updateFormType('login')}
-	// 					label="Login"
-	// 					/>
-	// 			</div>
-	// 		);
-	// 	}
-	// }
+	navLink() {
+		if (this.state.formType === "Login") {
+			return (
+				<div>
+					<button
+						type="button"
+						onClick={this.updateFormType('Sign Up')}
+						className="soft-button"
+						>
+						Sign Up
+					</button>
+				</div>
+			);
+		} else {
+			return (
+				<div>
+					<button
+						type="button"
+						onClick={this.updateFormType('Login')}
+						className="soft-button"
+						>
+						Login
+					</button>
+				</div>
+			);
+		}
+	}
 
 
 	renderErrors() {
@@ -100,23 +106,30 @@ class SessionForm extends React.Component {
 		        </button>
           <h5>{this.renderErrors()}</h5>
           <div className='form-input'>
-            <h3>Username:</h3>
             <input
+							className='f-input'
               type="text"
               name="username"
               value={this.state.username}
               onChange={this.update("username")}
+							placeholder="Username..."
             />
           </div>
+					<br/>
           <div className='form-input'>
-            <h3>Password:</h3>
             <input
+							className='f-input'
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.update("password")}
+							placeholder="Password..."
+
             />
+
           </div>
+					<br/>
+
           <div className='form-submit'>
             <input
               type="submit"
@@ -125,7 +138,12 @@ class SessionForm extends React.Component {
             />
           </div>
 
+					<h3>Or</h3>
+					{this.navLink()}
+
         </form>
+
+
 
       </div>
     );
