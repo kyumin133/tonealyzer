@@ -13,6 +13,13 @@ const Header = ({currentUser, logout, login, requestDemoUser}) => {
         alt="Tonealyzer"
         onClick={null}
       />
+      { currentUser ?
+        <div className="header-center">
+          <Link to={"newBlurb/"}>New Analysis</Link>
+        </div>
+        :
+        <div></div>
+      }
       <div className="header-right-icons">
         {
           currentUser ?
