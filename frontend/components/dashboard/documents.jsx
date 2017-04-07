@@ -1,5 +1,6 @@
 import React from "react";
 import javascript_time_ago from 'javascript-time-ago';
+import { Link } from "react-router";
 
 javascript_time_ago.locale(require('javascript-time-ago/locales/en'))
 require('javascript-time-ago/intl-messageformat-global')
@@ -52,12 +53,13 @@ class Documents extends React.Component {
 
     for (let key in this.state.documents) {
       let document = this.state.documents[key];
-      // debugger;
 
       let li = <li key={key} className="documents-index-item">
-        <div className="document-title">{document.title}</div>
-        <div className="document-body">{document.body.slice(0, 50)}...</div>
-        <div className="document-date">{time_ago_english.format(new Date(document.created_at))}</div>
+        <Link onClick={this.forceUpdate} className="document-link" to={`results/${key}`} >
+          <div className="document-title">{document.title}</div>
+          <div className="document-body">{document.body.slice(0, 50)}...</div>
+          <div className="document-date">{time_ago_english.format(new Date(document.created_at))}</div>
+        </Link>
       </li>;
       documentsArr.push(li);
     }

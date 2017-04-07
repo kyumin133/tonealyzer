@@ -1,5 +1,4 @@
 export const login = identity => {
-  // debugger;
   return($.ajax({
     method: 'POST',
     url: '/api/session',

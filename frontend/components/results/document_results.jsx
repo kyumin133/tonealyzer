@@ -13,131 +13,29 @@ const DESCRIPTIONS = {
   conscientiousness_big5: "Likelihood of being perceived as someone who would act in an organized or thoughtful way.",
   extraversion_big5: "Likelihood of being perceived as someone who would seek stimulation in the company of others.",
   agreeableness_big5: "Likelihood of being perceived as compassionate and cooperative towards others.",
-  emotional_range_big5: "Likelihood of being perceived as someone sensitive to the environment."
+  neuroticism_big5: "Likelihood of being perceived as someone sensitive to the environment."
 }
 
 class DocumentResults extends React.Component {
   constructor(props) {
     super(props);
-    this.blurb = {
-      "document_tone": {
-        "tone_categories": [
-          {
-            "tones": [
-              {
-                "score": 0.52071,
-                "tone_id": "anger",
-                "tone_name": "Anger"
-              },
-              {
-                "score": 0.086613,
-                "tone_id": "disgust",
-                "tone_name": "Disgust"
-              },
-              {
-                "score": 0.1711,
-                "tone_id": "fear",
-                "tone_name": "Fear"
-              },
-              {
-                "score": 0.116554,
-                "tone_id": "joy",
-                "tone_name": "Joy"
-              },
-              {
-                "score": 0.636207,
-                "tone_id": "sadness",
-                "tone_name": "Sadness"
-              }
-            ],
-            "category_id": "emotion_tone",
-            "category_name": "Emotion Tone",
-            index: 0
-          },
-          {
-            "tones": [
-              {
-                "score": 0.306013,
-                "tone_id": "analytical",
-                "tone_name": "Analytical"
-              },
-              {
-                "score": 0.138352,
-                "tone_id": "confident",
-                "tone_name": "Confident"
-              },
-              {
-                "score": 0.70327,
-                "tone_id": "tentative",
-                "tone_name": "Tentative"
-              }
-            ],
-            "category_id": "language_tone",
-            "category_name": "Language Tone",
-            index: 1
-          },
-          {
-            "tones": [
-              {
-                "score": 0.195074,
-                "tone_id": "openness_big5",
-                "tone_name": "Openness"
-              },
-              {
-                "score": 0.631838,
-                "tone_id": "conscientiousness_big5",
-                "tone_name": "Conscientiousness"
-              },
-              {
-                "score": 0.977727,
-                "tone_id": "extraversion_big5",
-                "tone_name": "Extraversion"
-              },
-              {
-                "score": 0.939484,
-                "tone_id": "agreeableness_big5",
-                "tone_name": "Agreeableness"
-              },
-              {
-                "score": 0.778736,
-                "tone_id": "emotional_range_big5",
-                "tone_name": "Emotional Range"
-              }
-            ],
-            "category_id": "social_tone",
-            "category_name": "Social Tone",
-            index: 2
-          }
-        ]
-      }
-    };
-
-    let dataSets = [];
-    let results = this.blurb.document_tone.tone_categories;
-    let keys = Object.keys(results);
-
-    for (let i = 0; i < results.length; i++) {
-      let result = results[i];
-      dataSets.push(result.tones);
-    }
-
-    this.state = {
-      dataSets,
-      hoverBox: {
-        class: "hidden"
-      }
-    }
 
     this.y = (d) => {
       return d.tone_name;
-    }
+    };
 
     this.chartSeries = [
       {
         field: "score",
         name: "Score"
       }
-    ]
+    ];
+
+    this.state = {
+      hoverBox: {
+        class: "hidden-hover-box"
+      }
+    };
 
 
   }
@@ -160,61 +58,110 @@ class DocumentResults extends React.Component {
       likelihoodClass = "likely";
     }
 
+    let hoverBox = {
+      name: field.tone_name,
+      value: `${value} ${likelihood}`,
+      likelihoodClass,
+      description: DESCRIPTIONS[field.tone_id],
+      class: "hover-box",
+      style: {
+        left: offset.left,
+        top: offset.top + parseInt($(e.currentTarget).attr("height")) + 5
+      }
+    }
+
 
     this.setState({
-      hoverBox: {
-        name: field.tone_name,
-        value: `${value} ${likelihood}`,
-        likelihoodClass,
-        description: DESCRIPTIONS[field.tone_id],
-        class: "hover-box",
-        style: {
-          left: offset.left,
-          top: offset.top + parseInt($(e.currentTarget).attr("height")) + 5
+      hoverBox
+    });
+
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!!newProps.blurb) {
+      if (!!this.props.blurb) {
+        if (newProps.blurb.id === this.props.blurb.id) {
+          return;
         }
       }
-    });
+
+      this.updateDatasets(newProps.blurb);
+      this.setState({
+        blurb: newProps.blurb
+      });
+    }
+    this.updateListeners();
+  }
+
+  componentDidUpdate() {
+    this.updateListeners();
   }
 
   componentDidMount() {
-    if (!!this.blurb) {
-      $(".results-emotion .bar").off();
-      $(".results-language .bar").off();
-      $(".results-social .bar").off();
-
-      $(".results-emotion .bar").mouseenter((e) => {
-        this.showHover(e, 0);
-      });
-
-      $(".results-language .bar").mouseenter((e) => {
-        this.showHover(e, 1);
-      });
-
-      $(".results-social .bar").mouseenter((e) => {
-        this.showHover(e, 2);
-      });
-
-      $(".bar").mouseleave((e) => {
-        this.setState({
-          hoverBox: {
-            class: "hidden-hover-box"
-          }
-        })
-      });
+    if (!!this.props.blurb) {
+      this.updateDatasets(this.props.blurb);
     }
+    // this.updateListeners();
+  }
+
+  updateDatasets(blurb) {
+    let dataSets = [];
+    let results = blurb.analysis.document_tone.tone_categories;
+    let keys = Object.keys(results);
+
+    for (let i = 0; i < results.length; i++) {
+      let result = results[i];
+      dataSets.push(result.tones);
+    }
+    this.setState({
+      dataSets
+    });
+
+  }
+
+  updateListeners() {
+    if (this.state.hoverBox.class === "hover-box") {
+      // console.log("blocked");
+      return;
+    }
+    // console.log("updating listeners...");
+    // console.log($(".results-emotion .bar").attr("y"));
+    $(".results-emotion .bar").off();
+    $(".results-language .bar").off();
+    $(".results-social .bar").off();
+
+    $(".results-emotion .bar").mouseenter((e) => {
+      // console.log("mouseover!!");
+      this.showHover(e, 0);
+    });
+
+    $(".results-language .bar").mouseenter((e) => {
+      this.showHover(e, 1);
+    });
+
+    $(".results-social .bar").mouseenter((e) => {
+      this.showHover(e, 2);
+    });
+
+    $(".bar").mouseleave((e) => {
+      this.setState({
+        hoverBox: {
+          class: "hidden-hover-box"
+        }
+      })
+    });
+    // this.forceUpdate();
   }
 
   render() {
+    if ((!this.props.blurb) || (!this.state.dataSets)) {
+      return <div></div>;
+    }
+
     let hoverBox = this.state.hoverBox;
+    // console.log(hoverBox);
 
     return <div className="dashboard-page">
-        <div className={hoverBox.class} style={hoverBox.style}>
-          <div className="hover-header">
-            <span className="hover-name">{hoverBox.name}</span>
-            <span className={hoverBox.likelihoodClass}>{hoverBox.value}</span>
-          </div>
-          <div className="hover-description">{hoverBox.description}</div>
-        </div>
         <div className="chart-wrapper">
           <div className="results-title-wrapper">
             <span className="results-title">Emotion</span>
@@ -275,6 +222,13 @@ class DocumentResults extends React.Component {
             showLegend={false}
             svgClassName={"results-social"}
           />
+      </div>
+      <div className={hoverBox.class} style={hoverBox.style}>
+        <div className="hover-header">
+          <span className="hover-name">{hoverBox.name}</span>
+          <span className={hoverBox.likelihoodClass}>{hoverBox.value}</span>
+        </div>
+        <div className="hover-description">{hoverBox.description}</div>
       </div>
     </div>;
   }

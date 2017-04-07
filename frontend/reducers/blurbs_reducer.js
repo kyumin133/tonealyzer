@@ -8,7 +8,6 @@ const blurbsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_BLURBS:
-      // debugger;
       return merge({}, action.blurbs);
     case RECEIVE_BLURB:
       return merge({}, state, {[action.blurb.id]: action.blurb});

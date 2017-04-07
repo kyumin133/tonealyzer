@@ -167,7 +167,6 @@
 
 .hover-box {
   width: 250px;
-  // height: 70px;
   background-color: white;
   border: 1px solid black;
   position: absolute;
@@ -180,6 +179,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
+  z-index: 999;
 }
 
 .hover-box > div {

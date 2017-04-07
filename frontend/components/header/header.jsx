@@ -10,10 +10,16 @@ const Header = ({currentUser, logout, login, requestDemoUser}) => {
     <div className="header-div">
       <img
         className='header-logo'
-
         alt="Tonealyzer"
         onClick={null}
       />
+      { currentUser ?
+        <div className="header-center">
+          <Link to={"newBlurb/"}>New Analysis</Link>
+        </div>
+        :
+        <div></div>
+      }
       <div className="header-right-icons">
         {
           currentUser ?

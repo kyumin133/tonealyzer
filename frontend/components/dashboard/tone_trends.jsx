@@ -23,25 +23,6 @@ class ToneTrends extends React.Component {
       return d.x;
     };
 
-    let dataSet = [];
-    for (let i = 0; i < 10; i++) {
-      dataSet.push({
-        x: i,
-        anger: Math.random(),
-        disgust: Math.random(),
-        fear: Math.random(),
-        joy: Math.random(),
-        sadness: Math.random(),
-        analytical: Math.random(),
-        confident: Math.random(),
-        tentative: Math.random(),
-        openness: Math.random(),
-        conscientiousness: Math.random(),
-        extraversion: Math.random(),
-        agreeableness: Math.random(),
-        emotionalRange: Math.random()
-      });
-    }
 
     this.state = {
       emotion: {
@@ -151,8 +132,7 @@ class ToneTrends extends React.Component {
           },
         ],
         title: "Social Tendencies"
-      },
-      dataSet: dataSet
+      }
     }
 
     this.analysisArr = [this.state.emotion, this.state.languageStyle, this.state.socialTendencies];
@@ -254,8 +234,44 @@ class ToneTrends extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchBlurbs();
     this.updateLegend();
     this.updateListeners();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!!newProps.blurbs) {
+      let dataSet = [];
+      let blurbs = newProps.blurbs;
+      // console.log(blurbs);
+      for (let i in Object.keys(blurbs)) {
+        if (!blurbs[i]) {
+          continue;
+        }
+
+        let results = blurbs[i].analysis.document_tone.tone_categories;
+        // console.log(results[1].tones[0]);
+        dataSet.push({
+          x: i,
+          anger: results[0].tones[0].score,
+          disgust: results[0].tones[1].score,
+          fear: results[0].tones[2].score,
+          joy: results[0].tones[3].score,
+          sadness: results[0].tones[4].score,
+          analytical: results[1].tones[0].score,
+          confident: results[1].tones[1].score,
+          tentative: results[1].tones[2].score,
+          openness: results[2].tones[0].score,
+          conscientiousness: results[2].tones[1].score,
+          extraversion: results[2].tones[2].score,
+          agreeableness: results[2].tones[3].score,
+          emotionalRange: results[2].tones[4].score,
+        });
+      }
+      this.setState({
+        dataSet
+      });
+    }
   }
 
   updateResults(e) {
@@ -281,6 +297,10 @@ class ToneTrends extends React.Component {
   }
 
   render() {
+    if (!this.state.dataSet) {
+      return <div></div>;
+    }
+
     let analysis = this.analysisArr[this.analysisIndex];
 
     let circles = [];

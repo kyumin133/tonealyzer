@@ -1,12 +1,11 @@
 class Api::IdentitiesController < ApplicationController
   # def new
   #   @identity = env['omniauth.identity']
-  #   # debugger
   # end
 
   def create
     if params[:identity][:email]
-      @identity = 
+      @identity =
     else
       @identity = env['omniauth.identity']
 
