@@ -75,7 +75,6 @@
   	padding: 7px 9px;
     margin: 5px;
     margin-top: 30px;
-    width: 30%;
   	border-radius: 2px;
   	transition: background-color 0.3s;
   	font-family: $sans-serif;
@@ -89,4 +88,13 @@
   border: solid thin;
   border-color: $darkest-secondary;
   cursor: pointer;
+}
+
+.load-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  height: 80%;
 }
