@@ -1,12 +1,16 @@
 import * as APIUtil from '../util/blurb_api_util';
+import { hashHistory } from 'react-router';
+
 
 export const RECEIVE_BLURB = "RECEIVE_BLURB";
 export const RECEIVE_BLURBS = "RECEIVE_BLURBS";
 
 
-export const createBlurb = (body) => dispatch => (
-  APIUtil.createBlurb(body)
+export const createBlurb = (title, body) => dispatch => (
+  APIUtil.createBlurb(title, body)
   .then((blurb) => dispatch(receiveBlurb(blurb)))
+  // .then((response) => console.log(response.blurb.id))
+  .then((response) => hashHistory.push(`/results/${response.blurb.id}`))
 );
 
 export const fetchBlurb = (id) => dispatch => (

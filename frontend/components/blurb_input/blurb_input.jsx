@@ -4,22 +4,29 @@ class BlurbInput extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      title: "",
       body: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.updateForm = this.updateForm.bind(this);
+    this.updateBody = this.updateBody.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
   }
 
-  updateForm(e) {
+  updateBody(e) {
     this.setState({
       body: e.target.value
+    });
+  }
+  updateTitle(e) {
+    this.setState({
+      title: e.target.value
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    return this.props.createBlurb(this.state.body);
+    return this.props.createBlurb(this.state.title, this.state.body);
   }
 
   render() {
@@ -27,16 +34,26 @@ class BlurbInput extends React.Component{
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h1>Submit a new sample!</h1>
+        <form onSubmit={this.handleSubmit} className="new-blurb-form">
+          <h1>Submit a new Blurb!</h1>
+          <input
+            type="text"
+            name="title"
+            value={this.state.title}
+            onChange={this.updateTitle}
+            placeholder="Enter Title Here..."
+          />
           <textarea
-            onChange={this.updateForm}
+            onChange={this.updateBody}
+            value={this.state.body}
+            placeholder="Enter Document to be Analyzed Here"
           >
           </textarea>
 
           <input
             type="submit"
-            value="Submit!"
+            value="Analyze!"
+            onClick={this.handleSubmit}
           />
 
         </form>
