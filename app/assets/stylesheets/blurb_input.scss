@@ -18,13 +18,14 @@
 
     position: relative;
     width: 60%;
-    height: 100%;
+    min-height: 300px;
     border: none;
     outline: none;
     // border-left: solid thin $light-primary;
     // border-right: solid thin $light-primary;
     font-size: 20px;
     resize: none;
+
     //remove cursor blink
     // color: transparent;
     // text-shadow: 0 0 0 black;
@@ -35,6 +36,9 @@
 
 .f-input-2:focus {
   outline: none;
+  // outline: solid thin;
+
+
   // border-left: solid thin $dark-primary;
     // border: solid thin $dark-primary;
 
@@ -84,4 +88,5 @@
 	color: $dark-secondary;
   border: solid thin;
   border-color: $darkest-secondary;
+  cursor: pointer;
 }
