@@ -3,14 +3,26 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: $light-primary;
-  padding: 20px;
+  background: $darkest-primary;
+  padding: 15px;
+  // margin-bottom: 5px;
 
   img {
     width: auto;
 
   }
 
+  .header-logo {
+    color: white;
+    margin-left: 30px;
+    transition: 0.2s ease-in-out;
+  }
+
+  .header-logo:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+    text-decoration: none;
+    cursor: pointer;
+  }
 
   .header-group {
     align-self: flex-end;
@@ -27,9 +39,20 @@
   .header-center {
     background-color: $secondary;
   	border-color: $dark-secondary;
-  	color: $lightest-primary;
+  	color: white;
     padding: 10px;
     border-radius: 3px;
+    transition: 0.2s ease-in-out;
+  }
+
+  .header-center:hover {
+    cursor: pointer;
+  	background-color: $dark-secondary;
+    border-color: $darkest-secondary;
+  }
+
+  .analysis-link:hover {
+    text-decoration: none;
   }
 
 }

@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin-top: 30px;
 }
 
 .results-tabs {
@@ -15,20 +16,21 @@
 
 .results-tab {
   padding: 10px 20px;
-  background-color: rgb(245, 245, 245);
+  // background-color: rgb(245, 245, 245);
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   transition: 0.2s ease-in-out;
   width: 525px;
   text-align: center;
-  border: 1px solid rgb(130, 130, 130);
+  font-size: 24px;
+  // border: 1px solid rgb(130, 130, 130);
   box-sizing: border-box;
 }
 
 
 
 .selected-results-tab {
-  font-weight: bold;
+  // font-weight: bold;
   border-bottom: none;
 }
 
@@ -37,7 +39,7 @@
 }
 
 .unselected-results-tab {
-  background-color: rgb(180, 180, 180);
+  color: rgb(180, 180, 180);
   font-weight: normal;
 }
 
@@ -150,8 +152,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 14px;
+  // font-weight: bold;
   margin-bottom: 20px;
   // background-color: honeydew;
 }
@@ -246,4 +248,21 @@
 
 .very-likely {
 
+}
+
+.results-page {
+  width: 1050px;
+  height: 560px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  // background-color: rgb(245, 245, 245);
+
+  // border: 1px solid rgb(130, 130, 130);
+  border-top: none;
+  box-sizing: border-box;
+  animation-name: load-page;
+  animation-duration: 500ms;
+  overflow-y: auto;
+  padding-top: 30px;
 }

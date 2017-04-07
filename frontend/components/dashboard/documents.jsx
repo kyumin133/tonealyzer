@@ -65,9 +65,6 @@ class Documents extends React.Component {
     }
 
     return <div className="documents-page">
-      <div className="documents-title">
-        {documentsArr.length} documents
-      </div>
       <div className="documents-index">
         <ul className="documents-index-ul">{documentsArr}</ul>
       </div>
