@@ -14,14 +14,17 @@ body {
 button {
 	background-color: $secondary;
 	border-color: $dark-secondary;
-	color: $white;
-	font-weight: bold;
-	padding: 7px 9px;
-  margin: 5px;
-	border-radius: 2px;
-	transition: background-color 0.3s;
+
+	color: $lightest-primary;
+	// font-weight: bold;
+	padding: 10px;
+  // margin: 5px;
+	border-radius: 3px;
+	transition: 0.2s ease-in-out;
 	font-family: $sans-serif;
-	font-size: 16px;
+	// text-transform: uppercase;
+	font-size: 11px;
+
 	text-align: center;
 }
 
