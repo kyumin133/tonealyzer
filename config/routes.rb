@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback', to: 'sessions#create'
     get 'auth/:provider', to: 'sessions#create'
     post '/auth/:provider/callback', to: 'sessions#create'
+    get 'facebook', to: 'sessions#requestFacebook'
+    get 'google', to: 'sessions#requestGoogle'
     get 'auth/failure', to: redirect('/')
     get 'signout', to: 'sessions#destroy', as: 'signout'
     resource :session, only: [:create, :destroy]

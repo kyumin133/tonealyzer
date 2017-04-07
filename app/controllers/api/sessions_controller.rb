@@ -10,12 +10,28 @@ class Api::SessionsController < ApplicationController
     if @user
       login(@user)
     else
-
+      debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
     end
     render "api/users/show"
   end
+
+  def requestFacebook
+    redirect_to "/api/auth/facebook"
+  end
+
+  def requestGoogle
+    redirect_to "/api/auth/google_oauth2"
+  end
+
+  # def requestFacebook
+  #   uri = URI.parse("https://www.facebook.com/v3.0/dialog/oauth")
+  #   http = Net::HTTP.new(uri.host, uri.port)
+  #   http.use_ssl = true
+  #
+  #   full_response = http.get("https://www.facebook.com/v3.0/dialog/oauth")
+  # end
 
   def destroy
     session[:user_id] = nil
