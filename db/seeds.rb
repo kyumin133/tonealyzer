@@ -23,102 +23,10 @@ demo_user = User.create!(
   name: "Cool user"
 )
 
-blurb1 = Blurb.create!(
-  body: "Hi Team,
-The times are difficult! Our sales have been disappointing for the past three quarters for our data analytics product suite. We have a competitive data analytics product suite in the industry. However,we are not doing a good job at selling it, and this is really frustrating.
-We are missing critical sales opportunities. We cannot blame the economy for our lack of execution. Our clients are hungry for analytical tools to improve their business outcomes. In fact, it is in times such as this, our clients want to get the insights they need to turn their businesses around. It is disheartening to see that we are failing at closing deals, in such a hungry market. Let's buckle up and execute.
-Jennifer Baker
-Sales Leader, North-East region
-",
-  analysis: {
-  "document_tone": {
-    "tone_categories": [
-      {
-        "tones": [
-          {
-            "score": 0.588902,
-            "tone_id": "anger",
-            "tone_name": "Anger"
-          },
-          {
-            "score": 0.099852,
-            "tone_id": "disgust",
-            "tone_name": "Disgust"
-          },
-          {
-            "score": 0.155578,
-            "tone_id": "fear",
-            "tone_name": "Fear"
-          },
-          {
-            "score": 0.116998,
-            "tone_id": "joy",
-            "tone_name": "Joy"
-          },
-          {
-            "score": 0.635377,
-            "tone_id": "sadness",
-            "tone_name": "Sadness"
-          }
-        ],
-        "category_id": "emotion_tone",
-        "category_name": "Emotion Tone"
-      },
-      {
-        "tones": [
-          {
-            "score": 0.877401,
-            "tone_id": "analytical",
-            "tone_name": "Analytical"
-          },
-          {
-            "score": 0,
-            "tone_id": "confident",
-            "tone_name": "Confident"
-          },
-          {
-            "score": 0.264082,
-            "tone_id": "tentative",
-            "tone_name": "Tentative"
-          }
-        ],
-        "category_id": "language_tone",
-        "category_name": "Language Tone"
-      },
-      {
-        "tones": [
-          {
-            "score": 0.217357,
-            "tone_id": "openness_big5",
-            "tone_name": "Openness"
-          },
-          {
-            "score": 0.483465,
-            "tone_id": "conscientiousness_big5",
-            "tone_name": "Conscientiousness"
-          },
-          {
-            "score": 0.887077,
-            "tone_id": "extraversion_big5",
-            "tone_name": "Extraversion"
-          },
-          {
-            "score": 0.217083,
-            "tone_id": "agreeableness_big5",
-            "tone_name": "Agreeableness"
-          },
-          {
-            "score": 0.565892,
-            "tone_id": "emotional_range_big5",
-            "tone_name": "Emotional Range"
-          }
-        ],
-        "category_id": "social_tone",
-        "category_name": "Social Tone"
-      }
-    ]
-  }
-},
-  user_id: demo_user.id,
-  title: "First blurb"
-)
+for i in 0...10 do
+  Blurb.create!(
+    body: File.read("app/assets/speech/speech#{i}.txt"),
+    user_id: demo_user.id,
+    title: "Blurb #{i + 1}"
+  )
+end
