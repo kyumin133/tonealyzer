@@ -25,6 +25,7 @@ export const signup = identity => (
   $.ajax({
     method: 'POST',
     url: '/api/identities',
+    xhrFields: { withCredentials: true },
     data: { identity }
   })
 );

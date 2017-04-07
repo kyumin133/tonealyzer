@@ -22,6 +22,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def requestGoogle
+    byebug
     redirect_to "/api/auth/google_oauth2"
   end
 

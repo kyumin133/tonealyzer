@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     resources :blurbs, only: [:create, :show, :index]
     resources :personalities, only: [:show, :update]
   end
+
+  match '*path', via: [:options], to: lambda {|_| [204, { 'Content-Type' => 'text/plain' }]}
 end
