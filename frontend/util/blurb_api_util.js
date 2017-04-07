@@ -1,8 +1,9 @@
-export const createBlurb = (body) => {
+export const createBlurb = (title, body) => {
   return $.ajax({
     method: 'POST',
     url: '/api/blurbs',
     data: {
+      title,
       body
     }
   });

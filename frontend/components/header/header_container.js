@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { requestLogout, requestLogin, requestDemoUser } from "../../actions/session_actions";
 import Header from './header';
 
 const mapStateToProps = ({ session }) => ({

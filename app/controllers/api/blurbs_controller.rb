@@ -1,6 +1,6 @@
 class Api::BlurbsController < ApplicationController
   def create
-		@blurb = Blurb.new(user_id: current_user.id, body: params[:body])
+		@blurb = Blurb.new(user_id: current_user.id, title: params[:title], body: params[:body])
 
 		if @blurb.save
 			render "api/blurbs/show"
