@@ -5,7 +5,7 @@ class Api::IdentitiesController < ApplicationController
 
   def create
     if params[:identity][:email]
-      # @identity =
+# 
     else
       @identity = env['omniauth.identity']
 

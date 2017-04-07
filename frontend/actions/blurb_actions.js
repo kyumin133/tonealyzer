@@ -20,8 +20,6 @@ export const fetchBlurbs = () => dispatch => (
 );
 
 
-
-
 export const receiveBlurb = (blurb) => ({
   type: RECEIVE_BLURB,
   blurb

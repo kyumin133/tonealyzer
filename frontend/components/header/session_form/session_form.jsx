@@ -104,8 +104,6 @@ class SessionForm extends React.Component {
 			);
 		}
 	}
->>>>>>> da49a4f341dafb160c87f313301ccfd7ae54f4b2
-
 
 	renderErrors() {
 		return(
