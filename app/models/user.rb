@@ -15,12 +15,10 @@ class User < ApplicationRecord
   # end
 
   def self.from_omniauth(auth)
-    # debugger
     find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
   end
 
   def self.create_with_omniauth(auth)
-    # debugger
     create! do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]

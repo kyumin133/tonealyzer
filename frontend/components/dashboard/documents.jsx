@@ -53,7 +53,6 @@ class Documents extends React.Component {
 
     for (let key in this.state.documents) {
       let document = this.state.documents[key];
-      // debugger;
 
       let li = <li key={key} className="documents-index-item">
         <Link onClick={this.forceUpdate} className="document-link" to={`results/${key}`} >

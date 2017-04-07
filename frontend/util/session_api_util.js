@@ -1,5 +1,4 @@
 export const login = identity => {
-  // debugger;
   return($.ajax({
     method: 'POST',
     url: '/api/session',
@@ -30,21 +29,16 @@ export const signup = identity => (
   })
 );
 
+export const loginFacebook = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/auth/facebook'
+  })
+);
 
-/// hopefully can use react-redux-oauth2 package for this. npm install!
-
-// export const loginFacebook = user => (
-//   $.ajax({
-//     method: 'GET',
-//     url: 'api/auth/facebook',
-//     data: { user }
-//   })
-// );
-//
-// export const loginGoogle = user => (
-//   $.ajax({
-//     method: 'GET',
-//     url: 'api/auth/google_oauth2',
-//     data: { user }
-//   })
-// );
+export const loginGoogle = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/auth/google_oauth2'
+  })
+);
