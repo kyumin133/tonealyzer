@@ -40,6 +40,6 @@ export const loginFacebook = () => (
 export const loginGoogle = () => (
   $.ajax({
     method: 'GET',
-    url: '/api/google'
+    url: "/api/auth/google_oauth2"
   })
 );

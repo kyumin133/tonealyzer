@@ -6,10 +6,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     get 'auth/:provider/callback', to: 'sessions#create'
-    get 'auth/:provider', to: 'sessions#create'
-    post '/auth/:provider/callback', to: 'sessions#create'
-    get 'facebook', to: 'sessions#requestFacebook'
-    get 'google', to: 'sessions#requestGoogle'
+    # get 'auth/:provider', to: 'sessions#prepare'
+    # post '/auth/:provider/callback', to: 'sessions#test'
+    # get 'auth/facebook', to: 'sessions#requestFacebook'
+    # get 'auth/google', to: 'sessions#requestGoogle'
     get 'auth/failure', to: redirect('/')
     get 'signout', to: 'sessions#destroy', as: 'signout'
     resource :session, only: [:create, :destroy]
@@ -18,5 +18,13 @@ Rails.application.routes.draw do
     resources :personalities, only: [:show, :update]
   end
 
-  match '*path', via: [:options], to: lambda {|_| [204, { 'Content-Type' => 'text/plain' }]}
+  match "*path", :to => proc {|env| [200, {
+    'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Credentials' => 'true',
+    'Access-Control-Request-Method' => '*',
+    'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    'Content-Type' => 'text/plain'
+
+   }, ["CORS Preflight"]] }, :via => [:options]
 end
