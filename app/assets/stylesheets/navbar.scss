@@ -39,9 +39,20 @@
   .header-center {
     background-color: $secondary;
   	border-color: $dark-secondary;
-  	color: $lightest-primary;
+  	color: white;
     padding: 10px;
     border-radius: 3px;
+    transition: 0.2s ease-in-out;
+  }
+
+  .header-center:hover {
+    cursor: pointer;
+  	background-color: $dark-secondary;
+    border-color: $darkest-secondary;
+  }
+
+  .analysis-link:hover {
+    text-decoration: none;
   }
 
 }

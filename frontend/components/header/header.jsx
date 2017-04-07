@@ -11,7 +11,7 @@ const Header = ({currentUser, logout, login, requestDemoUser}) => {
       <Link to="home/"><i className="fa fa-lightbulb-o fa-5x header-logo" aria-hidden="true"></i></Link>
       { currentUser ?
         <div className="header-center">
-          <Link to={"newBlurb/"}>New Analysis</Link>
+          <Link to={"newBlurb/"} className="analysis-link">New Analysis</Link>
         </div>
         :
         <div></div>
