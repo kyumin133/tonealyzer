@@ -1,13 +1,36 @@
-.new-blurb-page {
+.new-blurb-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
 
-.new-blurb-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+.f-input-2 {
+    padding: 0;
+    position: relative;
+    width: 80%;
+    border: none;
+    outline: none;
+    border: solid thin $light-primary;
+    font-size: 20px;
+}
+
+.f-input-2:focus {
+    border: solid thin $dark-primary;
+
+}
+
+.f-input-3 {
+    padding: 0;
+    position: relative;
+    width: 40%;
+    border: none;
+    outline: none;
+    border-bottom: solid $light-primary;
+    font-size: 30px;
+}
+
+.f-input-3:focus {
+    border-bottom: solid $dark-primary;
+
 }
