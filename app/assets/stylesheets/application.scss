@@ -25,7 +25,19 @@
 
  @import "./*";
 
+<<<<<<< HEAD
 // body {
 //   font-family: "helvetica";
 //   margin: 0;
 // }
+=======
+body {
+  font-family: $sans-serif;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+text {
+  font-family: $sans-serif;
+}
+>>>>>>> style css

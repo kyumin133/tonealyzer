@@ -331,7 +331,7 @@ class ToneTrends extends React.Component {
             {circles}
           </span>
         </div>
-      <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
+      <i className="fa fa-angle-right fa-3x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>
     </div>;
   }

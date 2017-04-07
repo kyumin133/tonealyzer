@@ -161,7 +161,7 @@ class DocumentResults extends React.Component {
     let hoverBox = this.state.hoverBox;
     // console.log(hoverBox);
 
-    return <div className="dashboard-page">
+    return <div className="results-page">
         <div className="chart-wrapper">
           <div className="results-title-wrapper">
             <span className="results-title">Emotion</span>
