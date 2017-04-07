@@ -9,7 +9,6 @@ export const RECEIVE_BLURBS = "RECEIVE_BLURBS";
 export const createBlurb = (title, body) => dispatch => (
   APIUtil.createBlurb(title, body)
   .then((blurb) => dispatch(receiveBlurb(blurb)))
-  // .then((response) => console.log(response.blurb.id))
   .then((response) => hashHistory.push(`/results/${response.blurb.id}`))
 );
 
