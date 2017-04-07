@@ -32,3 +32,9 @@ export const requestSignup = user => dispatch => (
     currentUser => dispatch(receiveCurrentUser(currentUser))
   )
 );
+
+export const requestGoogleLogin = () => dispatch => (
+  APIUtil.loginGoogle()
+  .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
+  .then(() => hashHistory.push('/home'))
+);

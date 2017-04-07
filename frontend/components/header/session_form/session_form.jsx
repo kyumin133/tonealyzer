@@ -12,6 +12,7 @@ class SessionForm extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
 		this.updateFormType = this.updateFormType.bind(this);
 	}
 
@@ -47,6 +48,11 @@ class SessionForm extends React.Component {
 		else {
 			this.props.signup({user});
 		}
+	}
+
+	handleGoogleSubmit(e) {
+		e.preventDefault();
+		this.props.googleAction();
 	}
 
 	// navLink() {
@@ -92,7 +98,7 @@ class SessionForm extends React.Component {
         <form onSubmit={this.handleSubmit} className='session-form'>
           <h1>{`Please ${this.state.formType}`}</h1>
           <br/>
-						<button type="button" onClick={this.handleSubmit}>
+						<button type="button" onClick={this.handleGoogleSubmit}>
 		          Login with Google
 		        </button>
 						<button type="button" onClick={this.handleSubmit}>
