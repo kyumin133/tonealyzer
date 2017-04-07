@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router";
 
 class PersonalGreeting extends React.Component {
 
@@ -15,7 +16,7 @@ class PersonalGreeting extends React.Component {
   render() {
 
     return (
-    	<div className='header-group'>
+    	<div className='header-group'>        
         <div>
           {`Hi ${this.props.currentUser.name}!`}
         </div>
