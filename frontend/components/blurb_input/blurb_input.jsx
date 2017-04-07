@@ -33,9 +33,9 @@ class BlurbInput extends React.Component{
 
 
     return (
-      <div>
+      <div className="blurb-div">
         <form onSubmit={this.handleSubmit} className="new-blurb-form">
-          <h1>Submit a new Document:</h1>
+          <h1>New Document</h1>
           <br/>
           <input
             className='f-input-3'
@@ -43,17 +43,17 @@ class BlurbInput extends React.Component{
             name="title"
             value={this.state.title}
             onChange={this.updateTitle}
-            placeholder="Enter Title Here..."
+            placeholder="Title..."
           />
           <br/>
           <textarea
             className='f-input-2'
             onChange={this.updateBody}
             value={this.state.body}
-            placeholder="Enter Document to be Analyzed Here"
+            placeholder="Document Body..."
           >
           </textarea>
-          <div className="form-submit">
+          <div className="form-submit-2">
             <input
               type="submit"
               value="Analyze!"
