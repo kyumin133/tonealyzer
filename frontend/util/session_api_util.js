@@ -31,7 +31,6 @@ export const signup = identity => (
   })
 );
 
-
 //not using any of these?? directly changing routes right in session form jsx file
 // export const loginFacebook = () => (
 //   $.ajax({

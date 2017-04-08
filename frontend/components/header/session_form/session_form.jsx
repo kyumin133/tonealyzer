@@ -12,8 +12,8 @@ class SessionForm extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
-		//TODO why google submit but not facebook submit?
+		//TODO i don't think we need to bind these
+		// this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
 		// this.handleFacebookSubmit = this.handleFacebookSubmit.bind(this);
 		// this.handleIdentitySubmit = this.handleIdentitySubmit.bind(this);
 		this.updateFormType = this.updateFormType.bind(this);
