@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                           };
 
-  if (window.currentUser)
+  if (window.currentUser) { 
     store = configureStore(preloadedState);
-  else {
+  } else {
     store = configureStore();
   }
   window.fetchPersonality = actions.fetchPersonality;

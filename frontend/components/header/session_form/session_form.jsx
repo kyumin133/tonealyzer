@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 
 class SessionForm extends React.Component {
@@ -50,9 +50,16 @@ class SessionForm extends React.Component {
 		}
 	}
 
+	handleFacebookSubmit(e) {
+		e.preventDefault();
+		// this.props.googleAction();
+		window.location = "/api/auth/facebook";
+	}
+
 	handleGoogleSubmit(e) {
 		e.preventDefault();
-		this.props.googleAction();
+		// this.props.googleAction();
+		window.location = "/api/auth/google_oauth2";
 	}
 
 	// navLink() {
@@ -105,7 +112,6 @@ class SessionForm extends React.Component {
 		}
 	}
 
-
 	renderErrors() {
 		return(
 			<ul>
@@ -129,7 +135,7 @@ class SessionForm extends React.Component {
 						<button type="button" onClick={this.handleGoogleSubmit}>
 		          Login with Google
 		        </button>
-						<button type="button" onClick={this.handleSubmit}>
+						<button type="button" onClick={this.handleFacebookSubmit}>
 		          Login with Facebook
 		        </button>
           <h5>{this.renderErrors()}</h5>
@@ -161,7 +167,7 @@ class SessionForm extends React.Component {
           <div className='form-submit'>
             <input
               type="submit"
-              value={`${this.state.formType}!`}
+              value={this.state.formType}
               onClick={this.handleSubmit}
             />
           </div>

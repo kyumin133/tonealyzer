@@ -29,6 +29,7 @@ class Blurb < ApplicationRecord
         sentences: "true"
       }
     }
+
     # full_response = HTTParty.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19&sentences=true", options)
     # full_response = HTTParty.post("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone", options)
     uri = URI.parse("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone")
@@ -39,13 +40,10 @@ class Blurb < ApplicationRecord
       "Content-Type" => "text/plain"
     }
 
-
-
     full_response = http.post("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone?version=2016-05-09&sentences=true", self.body, headers)
 
     # full_response = Net::HTTP.post_form("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone", options)
     JSON.parse(full_response.body) # Parsed body
-
   end
 
   private
