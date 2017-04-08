@@ -14,12 +14,12 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      redirect_to "/#/home"
+      redirect_to "#/redirect"
     else
       # debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
-      redirect_to "/#/home"
+      redirect_to "#/redirect"
     end
   end
 
