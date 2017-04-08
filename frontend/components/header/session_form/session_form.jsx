@@ -167,7 +167,7 @@ class SessionForm extends React.Component {
           <div className='form-submit'>
             <input
               type="submit"
-              value={`${this.state.formType}!`}
+              value={this.state.formType}
               onClick={this.handleSubmit}
             />
           </div>

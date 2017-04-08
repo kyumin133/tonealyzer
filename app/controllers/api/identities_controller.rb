@@ -4,8 +4,9 @@ class Api::IdentitiesController < ApplicationController
   # end
 
   def create
-    if params[:identity][:email]
-# 
+    # byebug
+    if params[:identity][:email] # is it username or email???
+      # @identity = Identity.new()
     else
       @identity = env['omniauth.identity']
 

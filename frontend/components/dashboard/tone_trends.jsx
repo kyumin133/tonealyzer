@@ -132,23 +132,30 @@ class ToneTrends extends React.Component {
           },
         ],
         title: "Social Tendencies"
-      }
+      },
+      analysisIndex: 0
     }
 
     this.analysisArr = [this.state.emotion, this.state.languageStyle, this.state.socialTendencies];
-    this.analysisIndex = 0;
 
     this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
+    // this.updateLegend();
+    // this.updateListeners();
   }
 
   changeSelectedIndex(increment) {
-    this.analysisIndex = (this.analysisArr.length + this.analysisIndex + increment) % (this.analysisArr.length);
+    this.setState({
+      analysisIndex: (this.analysisArr.length + this.state.analysisIndex + increment) % (this.analysisArr.length)
+    });
+    this.updateLegend();
+    this.updateListeners();
+    // console.log(this.state.analysisIndex);
     this.forceUpdate();
   }
 
 
   updateLegend() {
-    let results = this.analysisArr[this.analysisIndex].fields;
+    let results = this.analysisArr[this.state.analysisIndex].fields;
     let legendItems = $(".legend").children();
 
     $(".legend").attr("style", `width: 250px; height: 500px`);
@@ -174,7 +181,7 @@ class ToneTrends extends React.Component {
     });
 
     $(".legend > .legend").mouseenter((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
+      let results = this.analysisArr[this.state.analysisIndex].fields;
       let index = $(e.currentTarget).index();
       let result = results[index];
       if (!result.selected) {
@@ -184,7 +191,7 @@ class ToneTrends extends React.Component {
     });
 
     $(".legend > .legend").mouseleave((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
+      let results = this.analysisArr[this.state.analysisIndex].fields;
       let index = $(e.currentTarget).index();
       let result = results[index];
       if (!result.selected) {
@@ -199,7 +206,7 @@ class ToneTrends extends React.Component {
     });
 
     $(".line").mouseenter((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
+      let results = this.analysisArr[this.state.analysisIndex].fields;
       let index = $(e.currentTarget).index();
       let result = results[index];
       if (!result.selected) {
@@ -209,7 +216,7 @@ class ToneTrends extends React.Component {
     });
 
     $(".line").mouseleave((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
+      let results = this.analysisArr[this.state.analysisIndex].fields;
       let index = $(e.currentTarget).index();
       let result = results[index];
       if (!result.selected) {
@@ -218,11 +225,13 @@ class ToneTrends extends React.Component {
       this.forceUpdate();
     });
 
-    $(document).off();
+    $(document).off("keydown");
     $(document).keydown((e) => {
       if (e.keyCode === 37) {
+        // console.log("left");
         this.changeSelectedIndex(-1);
       } else if (e.keyCode === 39) {
+        // console.log("right");
         this.changeSelectedIndex(1);
       }
     })
@@ -275,7 +284,7 @@ class ToneTrends extends React.Component {
   }
 
   updateResults(e) {
-    let results = this.analysisArr[this.analysisIndex].fields;
+    let results = this.analysisArr[this.state.analysisIndex].fields;
     let index = $(e.currentTarget).index();
     let result = results[index];
 
@@ -301,11 +310,11 @@ class ToneTrends extends React.Component {
       return <div></div>;
     }
 
-    let analysis = this.analysisArr[this.analysisIndex];
+    let analysis = this.analysisArr[this.state.analysisIndex];
 
     let circles = [];
     for (let i = 0; i < this.analysisArr.length; i++) {
-      if (i === this.analysisIndex) {
+      if (i === this.state.analysisIndex) {
         circles.push(<div key={i} className="circle selected-circle">&nbsp;</div>)
       } else {
         circles.push(<div key={i} className="circle unselected-circle">&nbsp;</div>)

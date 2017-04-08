@@ -14,7 +14,7 @@ const Header = ({currentUser, logout, login, requestDemoUser}) => {
           <Link to={"newBlurb/"} className="analysis-link">New Analysis</Link>
         </div>
         :
-        <div></div>
+        null
       }
       <div className="header-right-icons">
         {
