@@ -52,7 +52,7 @@ class SessionLinks extends React.Component {
         <button
           onClick={this.handleLoginOpen}
         >
-        Login
+        Log In
         </button>
         <button
           onClick={this.handleSignUpOpen}
