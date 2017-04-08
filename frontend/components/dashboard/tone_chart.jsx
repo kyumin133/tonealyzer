@@ -26,15 +26,27 @@ class ToneChart extends React.Component {
     this.state = {
       dataSet: []
     };
+
+    this.fields = this.props.fields;
   }
 
   componentWillReceiveProps(newProps) {
     // let analysis = newProps.analysis;
+    // console.log(newProps.dataSet);
     this.fields = newProps.fields;
-    // this.updateChart();
     this.setState({
       dataSet: newProps.dataSet
     })
+  }
+
+  componentWillMount() {
+    this.setState({
+      dataSet: this.props.dataSet
+    });
+  }
+
+  componentDidMount() {
+    this.updateChart();
   }
 
   componentDidUpdate() {
@@ -151,7 +163,7 @@ class ToneChart extends React.Component {
 
 
   render() {
-    if (this.state.dataSet.length === 0) {
+    if ((!this.fields) || (this.state.dataSet.length === 0)) {
       return <div className="empty-chart">&nbsp;</div>;
     }
 
