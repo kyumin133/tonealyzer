@@ -4,11 +4,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  background: $lightest-secondary;
+  background: $white;
   padding: 40px;
   padding-top: 10px;
   animation-name: fadeIn;
-  animation-duration: 1s;
+  animation-duration: 1s ease-in-out;
   border-radius: 10px;
   width: 35%;
 
@@ -40,7 +40,8 @@
 .close-button-box {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
+  margin-top: 10px;
 
   // button {
   //   align-self: flex-end;
