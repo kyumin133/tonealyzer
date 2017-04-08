@@ -29,9 +29,9 @@ button {
 }
 
 button:hover {
-	background-color: $white;
-	color: $dark-secondary;
-  border-color: $darkest-secondary;
+	cursor: pointer;
+	background-color: $dark-secondary;
+	border-color: $darkest-secondary;
 }
 
 a:hover {

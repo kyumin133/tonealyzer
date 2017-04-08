@@ -25,6 +25,7 @@ export const signup = identity => (
   $.ajax({
     method: 'POST',
     url: '/api/identities',
+    xhrFields: { withCredentials: true },
     data: { identity }
   })
 );
@@ -32,13 +33,13 @@ export const signup = identity => (
 export const loginFacebook = () => (
   $.ajax({
     method: 'GET',
-    url: 'api/auth/facebook'
+    url: '/api/facebook'
   })
 );
 
 export const loginGoogle = () => (
   $.ajax({
     method: 'GET',
-    url: 'api/auth/google_oauth2'
+    url: "/api/auth/google_oauth2"
   })
 );

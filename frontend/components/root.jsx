@@ -8,28 +8,38 @@ import DashboardContainer from "./dashboard/dashboard_container";
 import BlurbInputContainer from "./blurb_input/blurb_input_container";
 import ResultsContainer from "./results/results_container";
 
-const Root = ({ store }) => {
-  return <Provider store={ store }>
-    <Router history={hashHistory}>
-      <Route path="/" component={ App } >
-        <IndexRoute component={ Splash } />
-        <Route path="/home" component={ DashboardContainer } />
-        <Route path="/newBlurb" component={ BlurbInputContainer } />
-        <Route path="/results/:blurbId" component={ ResultsContainer } />
-      </Route>
-    </Router>
-  </Provider>
-};
-
-const _redirectIfLoggedIn = (nextState, replace) => {
-  if (window.currentUser) {
-    replace({ nextPathName: nextState.location.pathname }, '/home')
+class Root extends React.Component {
+  constructor(props) {
+    super(props);
+    this.redirectIfLoggedIn = this.redirectIfLoggedIn.bind(this);
   }
-}
 
-const _ensureLoggedIn = (nextState, replace) => {
-  if (!window.currentUser) {
-    replace({ nextPathName: nextState.location.pathname }, '/login')
+  redirectIfLoggedIn(nextState, replace) {
+    if (window.currentUser) {
+      hashHistory.push("/home");
+      location.reload();
+    }
+  }
+
+  ensureLoggedIn(nextState, replace) {
+    if (!window.currentUser) {
+      hashHistory.push("/");
+    }
+  }
+
+  render() {
+    let store = this.props.store;
+    return <Provider store={ store }>
+      <Router history={hashHistory}>
+        <Route path="/" component={ App } >
+          <IndexRoute component={ Splash } />
+          <Route path="/home" component={ DashboardContainer } />
+          <Route path="/newBlurb" component={ BlurbInputContainer } />
+          <Route path="/results/:blurbId" component={ ResultsContainer } />
+          <Route path="/redirect" component={Splash} onEnter={this.redirectIfLoggedIn} />
+        </Route>
+      </Router>
+    </Provider>;
   }
 }
 

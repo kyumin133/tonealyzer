@@ -10,8 +10,10 @@ export const receiveCurrentUser = currentUser => ({
 
 export const requestDemoUser = () => dispatch => (
   APIUtil.loginDemoUser()
-  .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-  .then(() => hashHistory.push('/home'))
+  .then((currentUser) => {
+    window.currentUser = currentUser;
+    return dispatch(receiveCurrentUser(currentUser));
+  }).then(() => hashHistory.push('/redirect'))
 );
 
 export const requestLogin = user => dispatch => (
