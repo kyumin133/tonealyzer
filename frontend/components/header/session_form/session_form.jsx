@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 
 class SessionForm extends React.Component {
@@ -50,9 +50,16 @@ class SessionForm extends React.Component {
 		}
 	}
 
+	handleFacebookSubmit(e) {
+		e.preventDefault();
+		// this.props.googleAction();
+		window.location = "/api/auth/facebook";
+	}
+
 	handleGoogleSubmit(e) {
 		e.preventDefault();
-		this.props.googleAction();
+		// this.props.googleAction();
+		window.location = "/api/auth/google_oauth2";
 	}
 
 	// navLink() {
@@ -105,7 +112,6 @@ class SessionForm extends React.Component {
 		}
 	}
 
-
 	renderErrors() {
 		return(
 			<ul>
@@ -125,13 +131,14 @@ class SessionForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit} className='session-form'>
           <h1>{`Please ${this.state.formType}`}</h1>
-          <br/>
-						<button type="button" onClick={this.handleGoogleSubmit}>
-		          Login with Google
+					<div className="third-party-login-wrapper">
+						<button type="button" className="third-party-login" onClick={this.handleGoogleSubmit}>
+		          <img src="assets/google.png"></img>
 		        </button>
-						<button type="button" onClick={this.handleSubmit}>
-		          Login with Facebook
+						<button type="button" className="third-party-login" onClick={this.handleFacebookSubmit}>
+		          <img src="assets/facebook.png"></img>
 		        </button>
+					</div>
           <h5>{this.renderErrors()}</h5>
           <div className='form-input'>
             <input
@@ -161,7 +168,7 @@ class SessionForm extends React.Component {
           <div className='form-submit'>
             <input
               type="submit"
-              value={`${this.state.formType}!`}
+              value={this.state.formType}
               onClick={this.handleSubmit}
             />
           </div>

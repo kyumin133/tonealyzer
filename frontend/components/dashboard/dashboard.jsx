@@ -18,6 +18,9 @@ class Dashboard extends React.Component {
 
     this.clickTab = this.clickTab.bind(this);
   }
+  componentWillReceiveProps(newProps) {
+    this.forceUpdate();
+  }
 
   componentWillMount() {
     this.props.fetchBlurbs();

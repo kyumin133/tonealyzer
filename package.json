@@ -36,6 +36,7 @@
     "react-d3-basic": "^1.6.11",
     "react-d3-brush": "^1.1.0",
     "react-dom": "^15.4.2",
+    "react-loading-indicator": "^1.0.2",
     "react-modal-bootstrap": "^1.1.1",
     "react-redux": "^5.0.3",
     "react-redux-oauth2": "^0.2.7",

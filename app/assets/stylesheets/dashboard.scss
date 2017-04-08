@@ -165,6 +165,10 @@
   transform: translateX(-10px);
 }
 
+.legend {
+  transform: translateX(20px);
+}
+
 .circles {
   width: 100%;
   // background-color: rgb(245, 245, 245);
@@ -290,3 +294,9 @@
 //   height: 100%;
 //   background-color: honeydew;
 // }
+
+.empty-chart {
+  width: 750px;
+  height: 400px;
+  // background-color: mistyrose;
+}

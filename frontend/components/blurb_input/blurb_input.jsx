@@ -1,11 +1,13 @@
 import React from 'react';
+import LoadingIndicator from 'react-loading-indicator';
 
 class BlurbInput extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      body: ""
+      body: "",
+      analysisLoading: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,16 +28,27 @@ class BlurbInput extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    return this.props.createBlurb(this.state.title, this.state.body);
+    this.setState({analysisLoading: true});
+    setTimeout(() => {
+      this.props.createBlurb(this.state.title, this.state.body);
+      this.setState({analysisLoading: true});
+    }, 3000);
   }
 
   render() {
-
+    if (this.state.analysisLoading) {
+      return (
+        <div className='load-message'>
+          <h3>Analyzing your Document</h3>
+          <LoadingIndicator segmentWidth="50"/>
+        </div>
+      );
+    }
 
     return (
-      <div>
+      <div className="blurb-div">
         <form onSubmit={this.handleSubmit} className="new-blurb-form">
-          <h1>Submit a new Document:</h1>
+          <h1>New Document</h1>
           <br/>
           <input
             className='f-input-3'
@@ -43,17 +56,17 @@ class BlurbInput extends React.Component{
             name="title"
             value={this.state.title}
             onChange={this.updateTitle}
-            placeholder="Enter Title Here..."
+            placeholder="Title..."
           />
           <br/>
           <textarea
             className='f-input-2'
             onChange={this.updateBody}
             value={this.state.body}
-            placeholder="Enter Document to be Analyzed Here"
+            placeholder="Document Body..."
           >
           </textarea>
-          <div className="form-submit">
+          <div className="form-submit-2">
             <input
               type="submit"
               value="Analyze!"
