@@ -37,44 +37,55 @@ class DocumentResults extends React.Component {
       }
     };
 
-
+    this.showHover = this.showHover.bind(this);
+    this.hideHover = this.hideHover.bind(this);
   }
 
   showHover(e, chartIndex) {
-    let index = $(e.currentTarget).index();
-    let offset = $(e.currentTarget).offset();
-    let field = this.state.dataSets[chartIndex][index];
+    if (e.target.nodeName === "rect") {
+      let index = $(e.target).index();
+      let offset = $(e.target).offset();
+      let field = this.state.dataSets[chartIndex][index];
 
-    let value = Math.round(1000 * field.score) / 1000;
+      let value = Math.round(1000 * field.score) / 1000;
 
-    let likelihood = " (unlikely)";
-    let likelihoodClass = "unlikely";
+      let likelihood = " (unlikely)";
+      let likelihoodClass = "unlikely";
 
-    if (value >= 0.75) {
-      likelihood = " (very likely)";
-      likelihoodClass = "very-likely";
-    } else if (value >= 0.5) {
-      likelihood = " (likely)";
-      likelihoodClass = "likely";
-    }
-
-    let hoverBox = {
-      name: field.tone_name,
-      value: `${value} ${likelihood}`,
-      likelihoodClass,
-      description: DESCRIPTIONS[field.tone_id],
-      class: "hover-box",
-      style: {
-        left: offset.left,
-        top: offset.top + parseInt($(e.currentTarget).attr("height")) + 5
+      if (value >= 0.75) {
+        likelihood = " (very likely)";
+        likelihoodClass = "very-likely";
+      } else if (value >= 0.5) {
+        likelihood = " (likely)";
+        likelihoodClass = "likely";
       }
+
+      let hoverBox = {
+        name: field.tone_name,
+        value: `${value} ${likelihood}`,
+        likelihoodClass,
+        description: DESCRIPTIONS[field.tone_id],
+        class: "hover-box",
+        style: {
+          left: offset.left,
+          top: offset.top + parseInt($(e.target).attr("height")) + 5
+        }
+      }
+
+
+      this.setState({
+        hoverBox
+      });
     }
 
+  }
 
+  hideHover(e) {
     this.setState({
-      hoverBox
-    });
-
+        hoverBox: {
+          class: "hidden-hover-box"
+        }
+      });
   }
 
   componentWillReceiveProps(newProps) {
@@ -120,36 +131,36 @@ class DocumentResults extends React.Component {
   }
 
   updateListeners() {
-    if (this.state.hoverBox.class === "hover-box") {
-      // console.log("blocked");
-      return;
-    }
-    // console.log("updating listeners...");
-    // console.log($(".results-emotion .bar").attr("y"));
-    $(".results-emotion .bar").off();
-    $(".results-language .bar").off();
-    $(".results-social .bar").off();
-
-    $(".results-emotion .bar").mouseenter((e) => {
-      // console.log("mouseover!!");
-      this.showHover(e, 0);
-    });
-
-    $(".results-language .bar").mouseenter((e) => {
-      this.showHover(e, 1);
-    });
-
-    $(".results-social .bar").mouseenter((e) => {
-      this.showHover(e, 2);
-    });
-
-    $(".bar").mouseleave((e) => {
-      this.setState({
-        hoverBox: {
-          class: "hidden-hover-box"
-        }
-      })
-    });
+    // if (this.state.hoverBox.class === "hover-box") {
+    //   // console.log("blocked");
+    //   return;
+    // }
+    // // console.log("updating listeners...");
+    // // console.log($(".results-emotion .bar").attr("y"));
+    // $(".results-emotion .bar").off();
+    // $(".results-language .bar").off();
+    // $(".results-social .bar").off();
+    //
+    // $(".results-emotion .bar").mouseenter((e) => {
+    //   // console.log("mouseover!!");
+    //   this.showHover(e, 0);
+    // });
+    //
+    // $(".results-language .bar").mouseenter((e) => {
+    //   this.showHover(e, 1);
+    // });
+    //
+    // $(".results-social .bar").mouseenter((e) => {
+    //   this.showHover(e, 2);
+    // });
+    //
+    // $(".bar").mouseleave((e) => {
+    //   this.setState({
+    //     hoverBox: {
+    //       class: "hidden-hover-box"
+    //     }
+    //   })
+    // });
     // this.forceUpdate();
   }
 
@@ -162,7 +173,7 @@ class DocumentResults extends React.Component {
     // console.log(hoverBox);
 
     return <div className="results-page">
-        <div className="chart-wrapper">
+        <div className="chart-wrapper" onMouseOver={(e) => (this.showHover(e, 2))} onMouseLeave={this.hideHover}>
           <div className="results-title-wrapper">
             <span className="results-title">Emotion</span>
           </div>
@@ -182,7 +193,7 @@ class DocumentResults extends React.Component {
             svgClassName={"results-emotion"}
           />
       </div>
-      <div className="chart-wrapper">
+      <div className="chart-wrapper" onMouseOver={(e) => (this.showHover(e, 2))} onMouseLeave={this.hideHover}>
         <div className="results-title-wrapper">
           <span className="results-title">Language Style</span>
         </div>
@@ -203,7 +214,7 @@ class DocumentResults extends React.Component {
             svgClassName={"results-language"}
           />
       </div>
-      <div className="chart-wrapper">
+      <div className="chart-wrapper" onMouseOver={(e) => (this.showHover(e, 2))} onMouseLeave={this.hideHover}>
         <div className="results-title-wrapper">
           <span className="results-title">Social Tendencies</span>
         </div>
