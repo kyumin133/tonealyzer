@@ -26,6 +26,7 @@ class ToneTrends extends React.Component {
     }
 
     this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
+    this.chartComponents = [];
   }
 
   componentWillMount() {
@@ -132,8 +133,6 @@ class ToneTrends extends React.Component {
           },
         ],
       ];
-
-      this.chartComponents = [];
   }
 
   changeSelectedIndex(increment) {
