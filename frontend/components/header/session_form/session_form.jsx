@@ -41,7 +41,7 @@ class SessionForm extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const user = this.state;
-		if (this.state.formType === 'Login') {
+		if (this.state.formType === 'Log In') {
 			this.props.login({user});
 
 		}
@@ -85,7 +85,7 @@ class SessionForm extends React.Component {
 	// }
 
 	navLink() {
-		if (this.state.formType === "Login") {
+		if (this.state.formType === "Log In") {
 			return (
 				<div>
 					<button
@@ -102,10 +102,10 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.updateFormType('Login')}
+						onClick={this.updateFormType('Log In')}
 						className="soft-button"
 						>
-						Login
+						Log In
 					</button>
 				</div>
 			);
@@ -168,7 +168,7 @@ class SessionForm extends React.Component {
           <div className='form-submit'>
             <input
               type="submit"
-              value="Log In"
+              value={this.state.formType}
               onClick={this.handleSubmit}
             />
           </div>
