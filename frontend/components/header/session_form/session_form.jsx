@@ -13,6 +13,9 @@ class SessionForm extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
+		//TODO why google submit but not facebook submit?
+		// this.handleFacebookSubmit = this.handleFacebookSubmit.bind(this);
+		// this.handleIdentitySubmit = this.handleIdentitySubmit.bind(this);
 		this.updateFormType = this.updateFormType.bind(this);
 	}
 
@@ -43,7 +46,6 @@ class SessionForm extends React.Component {
 		const user = this.state;
 		if (this.state.formType === 'Log In') {
 			this.props.login({user});
-
 		}
 		else {
 			this.props.signup({user});
@@ -60,6 +62,11 @@ class SessionForm extends React.Component {
 		e.preventDefault();
 		// this.props.googleAction();
 		window.location = "/api/auth/google_oauth2";
+	}
+
+	handleIdentitySubmit(e) {
+		e.preventDefault();
+		window.location = "/api/auth/identity/callback";
 	}
 
 	// navLink() {

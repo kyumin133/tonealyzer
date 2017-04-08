@@ -42,7 +42,7 @@
   	color: white;
     height: 40px;
     width: 120px;
-    padding: 10px;
+    // padding: 10px;
     border-radius: 3px;
     transition: 0.2s ease-in-out;
     display: flex;
@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
   }
 
   .analysis-link:hover {

@@ -20,7 +20,6 @@ export const requestLogin = user => dispatch => (
   APIUtil.login(user)
   .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
   .then(() => hashHistory.push('/home'))
-
 );
 
 export const requestLogout = () => dispatch => (

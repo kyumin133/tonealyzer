@@ -67,18 +67,18 @@
 }
 
 .form-submit-2 {
-
   	background-color: $secondary;
   	border-color: $dark-secondary;
   	color: $white;
-  	font-weight: bold;
-  	padding: 7px 9px;
+    width: 120px;
+    height: 40px;
+    padding: 10px;
     margin: 5px;
     margin-top: 30px;
   	border-radius: 2px;
   	transition: background-color 0.3s;
   	font-family: $sans-serif;
-  	font-size: 16px;
+  	font-size: 14px;
   	text-align: center;
     box-sizing: border-box;
 }
