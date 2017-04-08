@@ -205,19 +205,11 @@ class ToneTrends extends React.Component {
     if (!this.fields) {
       return null;
     }
-    let circles = [];
-    for (let i = 0; i < 3; i++) {
-      if (i === this.analysisIndex) {
-        circles.push(<div key={i} className="circle selected-circle">&nbsp;</div>)
-      } else {
-        circles.push(<div key={i} className="circle unselected-circle">&nbsp;</div>)
-      }
-    }
 
     let index = this.analysisIndex;
     let chart;
     if (!!this.state.dataSets[index]) {
-      chart = <ToneChart changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
+      chart = <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
     } else {
       chart = <div className="empty-chart">&nbsp;</div>;
     }
@@ -225,13 +217,7 @@ class ToneTrends extends React.Component {
     return <div className="dashboard-page">
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
-        <div className="chart-inner">
-          <span className="chart-title">{this.titles[this.analysisIndex]}</span>
-          {chart}
-          <span className="circles">
-            {circles}
-          </span>
-        </div>
+        {chart}
       <i className="fa fa-angle-right fa-3x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>
     </div>;

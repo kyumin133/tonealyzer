@@ -28,6 +28,50 @@ class ToneChart extends React.Component {
     };
 
     this.fields = this.props.fields;
+    this.title = this.props.title;
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+
+  }
+
+  handleClick(e) {
+    let target = e.target;
+    if (($(target).hasClass("legend")) || ($(target).hasClass("line"))) {
+      this.updateResults(target);
+    } else if ($(target.parentNode).hasClass("legend")) {
+      this.updateResults(target.parentNode);
+    }
+  }
+
+  handleMouseOver(e) {
+    let target = e.target;
+    if ($(target).hasClass("legend")) {
+      this.hoverLine(target);
+    } else if ($(target.parentNode).hasClass("legend")) {
+      this.hoverLine(target.parentNode);
+    } else if ($(target).hasClass("line")) {
+      this.hoverLine(target)
+    } else {
+      this.hideHoverLine();
+    }
+  }
+
+  handleMouseLeave(e) {
+    let target = e.target;
+    if ($(target).hasClass("legend")) {
+      this.hoverLine(target);
+    } else if ($(target.parentNode).hasClass("legend")) {
+      this.hoverLine(target.parentNode);
+    } else if ($(target).hasClass("line")) {
+      this.hideHoverLine(target)
+    }
+  }
+
+  handleKeyDown(e) {
+    console.log("hi!");
   }
 
   componentWillReceiveProps(newProps) {
@@ -78,72 +122,100 @@ class ToneChart extends React.Component {
     }
   }
 
-  updateListeners() {
-    $(".legend > .legend").off();
-    $(".legend > .legend").click((e) => {
-      this.updateResults(e);
-    });
+  hoverLegend(target) {
 
-    $(".legend > .legend").mouseenter((e) => {
-      let results = this.fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = HOVER_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(".legend > .legend").mouseleave((e) => {
-      let results = this.fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = UNSELECTED_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(".line").off();
-    $(".line").click((e) => {
-      this.updateResults(e);
-    });
-
-    $(".line").mouseover((e) => {
-      let results = this.fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = HOVER_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(".line").mouseleave((e) => {
-      let results = this.fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = UNSELECTED_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(document).off("keydown");
-    $(document).keydown((e) => {
-      if (e.keyCode === 37) {
-        this.props.changeSelectedIndex(-1);
-      } else if (e.keyCode === 39) {
-        this.props.changeSelectedIndex(1);
-      }
-    })
   }
 
-  updateResults(e) {
+  hoverLine(target) {
     let results = this.fields;
-    let index = $(e.currentTarget).index();
+    let index = $(target).index();
+    // console.log(index);
     let result = results[index];
+    if (!result.selected) {
+      result.style = HOVER_LINE;
+    }
 
+    this.forceUpdate();
+  }
+
+  hideHoverLine(target) {
+    if (!target) {
+      for (let i = 0; i < this.fields.length; i++) {
+        let result = this.fields[i];
+        if (!result.selected) {
+          result.style = UNSELECTED_LINE;
+        }
+      }
+    } else {
+      let results = this.fields;
+      let index = $(target).index();
+      let result = results[index];
+      if (!result.selected) {
+        result.style = UNSELECTED_LINE;
+      }
+    }
+    this.forceUpdate();
+  }
+
+  updateListeners() {
+    // $(".legend > .legend").off();
+    // $(".legend > .legend").click((e) => {
+    //   this.updateResults(e);
+    // });
+    //
+    // $(".legend > .legend").mouseenter((e) => {
+    //   let results = this.fields;
+    //   let index = $(e.currentTarget).index();
+    //   let result = results[index];
+    //   if (!result.selected) {
+    //     result.style = HOVER_LINE;
+    //   }
+    //   this.forceUpdate();
+    // });
+    //
+    // $(".legend > .legend").mouseleave((e) => {
+    //   let results = this.fields;
+    //   let index = $(e.currentTarget).index();
+    //   let result = results[index];
+    //   if (!result.selected) {
+    //     result.style = UNSELECTED_LINE;
+    //   }
+    //   this.forceUpdate();
+    // });
+    //
+    // $(".line").off();
+    // $(".line").click((e) => {
+    //   this.updateResults(e);
+    // });
+    //
+    // $(".line").mouseover((e) => {
+    //   let results = this.fields;
+    //   let index = $(e.currentTarget).index();
+    //   let result = results[index];
+    //   if (!result.selected) {
+    //     result.style = HOVER_LINE;
+    //   }
+    //   this.forceUpdate();
+    // });
+    //
+    // $(".line").mouseleave((e) => {
+    //   let results = this.fields;
+    //   let index = $(e.currentTarget).index();
+    //   let result = results[index];
+    //   if (!result.selected) {
+    //     result.style = UNSELECTED_LINE;
+    //   }
+    //   this.forceUpdate();
+    // });
+    //
+    // $(document).off("keydown");
+  }
+
+  updateResults(target) {
+    let results = this.fields;
+    let index = $(target).index();
+    let result = results[index];
+    console.log(result);
     let legendItems = $(".legend:first-of-type").children();
 
     if (result.selected) {
@@ -163,11 +235,26 @@ class ToneChart extends React.Component {
 
 
   render() {
-    if ((!this.fields) || (this.state.dataSet.length === 0)) {
+    if ((!this.fields) || (!this.title) || (this.state.dataSet.length === 0) || (this.props.index === undefined)) {
+      console.log(this.title);
+      console.log(this.fields);
+      console.log(this.state.dataSet.length);
+      console.log(this.props.index);
       return <div className="empty-chart">&nbsp;</div>;
     }
 
-    return <LineChart
+    let circles = [];
+    for (let i = 0; i < 3; i++) {
+      if (i === this.props.index) {
+        circles.push(<div key={i} className="circle selected-circle">&nbsp;</div>)
+      } else {
+        circles.push(<div key={i} className="circle unselected-circle">&nbsp;</div>)
+      }
+    }
+
+    return <div className="chart-inner" onClick={this.handleClick} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave} onKeyDown={this.handleKeyDown}>
+      <span className="chart-title">{this.props.title}</span>
+      <LineChart
         margins={{left: 100, right: 100, top: 50, bottom: 50}}
         data={this.state.dataSet}
         width={750}
@@ -176,7 +263,11 @@ class ToneChart extends React.Component {
         x={this.x}
         showXGrid={false}
         showYGrid={false}
-      />;
+      />
+      <span className="circles">
+        {circles}
+      </span>
+    </div>;
   }
 }
 
