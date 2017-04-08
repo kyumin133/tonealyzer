@@ -206,24 +206,29 @@ class ToneTrends extends React.Component {
       return null;
     }
 
-
     let index = this.analysisIndex;
     let chart;
-    if (!!this.state.dataSets[index]) {
-      chart = <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
-    } else if (this.state.dataSets.length == 0) {
-      chart = <h2 className="graph-filler">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
+    debugger
+    if (!!this.state.dataSets[index] && this.state.dataSets[0].length > 0) {
+      // debugger
+      chart = (
+      <div className="chart">
+        <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
+        <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
+        <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
+      </div>)
+    } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
+      // debugger
+      chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
     } else {
+      // debugger
       chart = <div className="empty-chart">&nbsp;</div>;
     }
 
-    return <div className="dashboard-page">
-      <div className="chart">
-        <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
+    return (
+      <div className="dashboard-page">
         {chart}
-        <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
-      </div>
-    </div>;
+      </div>);
   }
 }
 
