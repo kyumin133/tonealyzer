@@ -208,9 +208,7 @@ class ToneTrends extends React.Component {
 
     let index = this.analysisIndex;
     let chart;
-    debugger
     if (!!this.state.dataSets[index] && this.state.dataSets[0].length > 0) {
-      // debugger
       chart = (
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
@@ -218,11 +216,10 @@ class ToneTrends extends React.Component {
         <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>)
     } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
-      // debugger
       chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
     } else {
-      // debugger
-      chart = <div className="empty-chart">&nbsp;</div>;
+      //TODO optimize these else statements
+      // chart = <div className="empty-chart">&nbsp;</div>;
     }
 
     return (
