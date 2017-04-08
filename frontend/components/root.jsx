@@ -17,6 +17,7 @@ class Root extends React.Component {
   redirectIfLoggedIn(nextState, replace) {
     if (window.currentUser) {
       hashHistory.push("/home");
+      location.reload();
     }
   }
 
