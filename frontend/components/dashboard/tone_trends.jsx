@@ -206,10 +206,13 @@ class ToneTrends extends React.Component {
       return null;
     }
 
+
     let index = this.analysisIndex;
     let chart;
     if (!!this.state.dataSets[index]) {
       chart = <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
+    } else if (this.state.dataSets.length == 0) {
+      chart = <h2 className="graph-filler">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
     } else {
       chart = <div className="empty-chart">&nbsp;</div>;
     }
@@ -218,7 +221,7 @@ class ToneTrends extends React.Component {
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
         {chart}
-      <i className="fa fa-angle-right fa-3x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
+        <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>
     </div>;
   }

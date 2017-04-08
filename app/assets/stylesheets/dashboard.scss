@@ -125,6 +125,12 @@
   animation-name: load-page;
   animation-duration: 500ms;
   overflow-y: hidden;
+
+  h2 {
+    text-align: center;
+    position: absolute;
+    font-weight: normal;
+  }
 }
 
 @keyframes load-page {
