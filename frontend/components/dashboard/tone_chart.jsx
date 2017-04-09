@@ -76,7 +76,6 @@ class ToneChart extends React.Component {
 
   componentWillReceiveProps(newProps) {
     // let analysis = newProps.analysis;
-    // console.log(newProps.dataSet);
     this.fields = newProps.fields;
     this.setState({
       dataSet: newProps.dataSet
@@ -129,7 +128,6 @@ class ToneChart extends React.Component {
   hoverLine(target) {
     let results = this.fields;
     let index = $(target).index();
-    // console.log(index);
     let result = results[index];
     if (!result.selected) {
       result.style = HOVER_LINE;
@@ -215,7 +213,6 @@ class ToneChart extends React.Component {
     let results = this.fields;
     let index = $(target).index();
     let result = results[index];
-    // console.log(result);
     let legendItems = $(".legend:first-of-type").children();
 
     if (result.selected) {
@@ -236,10 +233,10 @@ class ToneChart extends React.Component {
 
   render() {
     if ((!this.fields) || (!this.title) || (this.state.dataSet.length === 0) || (this.props.index === undefined)) {
-      // console.log(this.title);
-      // console.log(this.fields);
-      // console.log(this.state.dataSet.length);
-      // console.log(this.props.index);
+      console.log(this.fields);
+      console.log(this.title);
+      console.log(this.state.dataSet.length);
+      console.log(this.props.index);
       return <div className="empty-chart">&nbsp;</div>;
     }
 
@@ -261,6 +258,11 @@ class ToneChart extends React.Component {
         height={400}
         chartSeries={this.fields}
         x={this.x}
+        xTicks={[0]}
+        xLabel={"Submission"}
+        yTicks={[11]}
+        yDomain={[0, 1]}
+        yLabel={"Score"}
         showXGrid={false}
         showYGrid={false}
       />

@@ -132,17 +132,13 @@ class DocumentResults extends React.Component {
 
   updateListeners() {
     // if (this.state.hoverBox.class === "hover-box") {
-    //   // console.log("blocked");
     //   return;
     // }
-    // // console.log("updating listeners...");
-    // // console.log($(".results-emotion .bar").attr("y"));
     // $(".results-emotion .bar").off();
     // $(".results-language .bar").off();
     // $(".results-social .bar").off();
     //
     // $(".results-emotion .bar").mouseenter((e) => {
-    //   // console.log("mouseover!!");
     //   this.showHover(e, 0);
     // });
     //
@@ -170,7 +166,6 @@ class DocumentResults extends React.Component {
     }
 
     let hoverBox = this.state.hoverBox;
-    // console.log(hoverBox);
 
     return <div className="results-page">
         <div className="chart-wrapper" onMouseOver={(e) => (this.showHover(e, 2))} onMouseLeave={this.hideHover}>
