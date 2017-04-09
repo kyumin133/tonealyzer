@@ -5,8 +5,8 @@ class PersonalGreeting extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleLogout= this.handleLogout.bind(this);
 
+    this.handleLogout= this.handleLogout.bind(this);
   }
 
   handleLogout() {
@@ -14,20 +14,21 @@ class PersonalGreeting extends React.Component {
   }
 
   render() {
-
-    return (
-    	<div className='header-group'>
-        <div>
-          <button className='soft-title'>{`👤 ${this.props.currentUser.name}`}</button>
+    if (this.props.currentUser.name) {
+      return (
+        <div className='header-group'>
+          <div>
+            <button className='soft-title'>{`👤 ${this.props.currentUser.name}`}</button>
+          </div>
+          <div  className="analysis-link-wrapper">
+            <Link to={"newBlurb/"} className="analysis-link">New Analysis</Link>
+          </div>
+          <button type="button" onClick={this.handleLogout}>
+            Logout
+          </button>
         </div>
-        <div  className="analysis-link-wrapper">
-          <Link to={"newBlurb/"} className="analysis-link">New Analysis</Link>
-        </div>
-        <button type="button" onClick={this.handleLogout}>
-          Logout
-        </button>
-    	</div>
-    );
+      );
+    }
   }
 }
 

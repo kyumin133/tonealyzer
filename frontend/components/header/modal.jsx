@@ -44,9 +44,21 @@ class Modal extends React.Component {
       //   }
       // }
 
+      // handleClose() {
+      //TODO must close when user clicks x
+      // };
+
       return (
         <div>
-          <div className='modal'>{this.props.children}</div>
+          <div className='modal'>
+            <div className='close-button-box'>
+              <div></div>
+              <button className='close' onClick={() => this.handleClose()}>
+                <i className="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+            {this.props.children}
+          </div>
           <div className= 'backdrop' onClick={e => this.close(e)} />
         </div>
       );

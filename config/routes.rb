@@ -6,12 +6,17 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     get 'auth/:provider/callback', to: 'sessions#create'
+    post 'auth/:provider/callback', to: 'sessions#create'
+    # TODO make sure to test for certain which routes are used
     # get 'auth/:provider', to: 'sessions#prepare'
-    # post '/auth/:provider/callback', to: 'sessions#test'
     # get 'auth/facebook', to: 'sessions#requestFacebook'
     # get 'auth/google', to: 'sessions#requestGoogle'
     get 'auth/failure', to: redirect('/')
     get 'signout', to: 'sessions#destroy', as: 'signout'
+    # get 'auth/identity/register/callback', to: 'identities#new'
+    # post 'auth/identity/register/callback', to: 'identities#new'
+    post 'auth/identity/register/callback', to: 'sessions#create'
+    get 'auth/identity/register/callback', to: 'sessions#create'
     resource :session, only: [:create, :destroy]
     resources :identities, only: [:new, :create]
     resources :blurbs, only: [:create, :show, :index]
