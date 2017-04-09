@@ -211,19 +211,27 @@ class ToneTrends extends React.Component {
 
     let index = this.analysisIndex;
     let chart;
-    if (!!this.state.dataSets[index]) {
-      chart = <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
-    } else {
-      chart = <div className="empty-chart">&nbsp;</div>;
-    }
-
-    return <div className="dashboard-page">
+    let counter = 0;
+    counter += 1;
+    if (!!this.state.dataSets[index] && this.state.dataSets[0].length > 0) {
+      chart = (
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
+        <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
+        <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
+      </div>)
+    // } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
+      // chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
+    } else if (counter > 1) {
+      //TODO can we keep this from showing up before the graph is shown?
+      chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
+      // chart = <div className="empty-chart">&nbsp;</div>;
+    }
+
+    return (
+      <div className="dashboard-page">
         {chart}
-      <i className="fa fa-angle-right fa-3x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
-      </div>
-    </div>;
+      </div>);
   }
 }
 

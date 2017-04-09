@@ -71,7 +71,7 @@ class ToneChart extends React.Component {
   }
 
   handleKeyDown(e) {
-
+    console.log("key down!");
   }
 
   componentWillReceiveProps(newProps) {
@@ -269,7 +269,7 @@ class ToneChart extends React.Component {
       <span className="circles">
         {circles}
       </span>
-    </div>;
+    </div>
   }
 }
 

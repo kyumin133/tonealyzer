@@ -11,8 +11,6 @@
     align-items: center;
     justify-content: flex-start;
 
-
-
     input {
       padding: 0;
       position: relative;
@@ -23,14 +21,8 @@
       text-decoration: underline;
       text-decoration-color: $darkest-secondary;
       height: 100px;
-
     }
-
   }
-
-
-
-
 }
 
 .form-submit {
@@ -41,37 +33,35 @@
   input {
     background-color: $primary;
     border-color: $dark-primary;
-    color: $white;
-    font-weight: bold;
-    padding: 7px 9px;
-    margin: 5px;
-    border-radius: 20%;
-    transition: background-color 0.3s;
+    color: $lightest-primary;
     font-family: $sans-serif;
-    font-size: 20px;
     text-align: center;
-
+    width: 120px;
+    height: 40px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
   }
 
   input:hover {
-    background-color: $white;
-    color: $darkest-primary;
+    background-color: $dark-primary;
+    color: $lightest-primary;
   }
-
 }
 
 .f-input {
   padding: 0;
   position: relative;
-  width: 100%;
+  width: 200px;
   border: none;
   outline: none;
   border-bottom: solid $light-primary;
-  font-size: 20px;
+  font-size: 16px;
 }
+
 .f-input:focus {
   border-bottom: solid $dark-primary;
-
 }
 
 h1 {
@@ -84,8 +74,10 @@ h1 {
   border-radius: 40px;
   background: none;
   font-family: Symbola;
-  font-size: 12px;
+  font-size: 22px;
+  font-weight: lighter;
   color: $dark-primary;
+  padding: 0 0 1px 0;
 }
 
 .close:hover {
@@ -94,14 +86,16 @@ h1 {
 }
 
 .soft-button {
-  background: none;
-  color: $primary;
+  background: $primary;
+  color: $lightest-primary;
+  border-color: $darkest-primary;
 }
 
 .soft-button:hover {
-  background: $darkest-primary;
-  color: $white;
+  background: $dark-primary;
+  color: $lightest-primary;
 }
+
 .soft-title {
   background: none;
   color: $white;
@@ -112,7 +106,6 @@ h1 {
   background: none;
   cursor: auto;
 }
-
 
 .third-party-login {
   background-color: $lightest-primary;
@@ -132,5 +125,4 @@ h1 {
   width: 100%;
   border-bottom: 1px solid rgb(180, 180, 180);
   padding-bottom: 20px;
-
 }

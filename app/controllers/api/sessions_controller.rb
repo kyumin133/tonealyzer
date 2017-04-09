@@ -1,33 +1,50 @@
 class Api::SessionsController < ApplicationController
   before_action :require_logged_in, only: [:destroy]
+  skip_before_filter  :verify_authenticity_token
 
   def create
+    # debugger
+
     if params[:identity]
-      if params[:identity][:email]
+      if params[:identity][:user] && params[:identity][:user][:username]
+        @user = Identity.find_by_credentials(params[:identity][:user][:username],
+                                             params[:identity][:user][:password])
+        unless @user
+          # debugger
+          @user = Identity.create!(email: params[:identity][:user][:username],
+                           password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
+          User.create!(
+            provider: "identity",
+            uid: @user.id,
+            name: params[:identity][:user][:username])
+        end
+      elsif params[:identity][:email]
         @user = Identity.find_by_credentials(params[:identity][:email],
-                                          params[:identity][:password])
-        login(@user)
+                                             params[:identity][:password])
       end
+
+      # debugger
+      login(@user)
       render "/api/users/show"
       return
     end
 
-    if @user
-      login(@user)
-      redirect_to "#/redirect"
-    else
+    # if @user
+    #   login(@user)
+    #   redirect_to "#/redirect"
+    # else
       # debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
       redirect_to "#/redirect"
-    end
+    # end
   end
 
-  def requestFacebook
+  # def requestFacebook
     # redirect_to "/api/auth/facebook"
-  end
+  # end
 
-  def requestGoogle
+  # def requestGoogle
     # headers["Access-Control-Allow-Origin"] = "*"
     # response.headers["Access-Control-Allow-Origin"] = "*"
     # url = 'api/auth/google_oauth2'
@@ -43,7 +60,7 @@ class Api::SessionsController < ApplicationController
     # }
     # res = http.request(req)
     # byebug
-  end
+  # end
 
   # def requestFacebook
   #   uri = URI.parse("https://www.facebook.com/v3.0/dialog/oauth")
