@@ -158,15 +158,16 @@ class ToneTrends extends React.Component {
     if (!!newProps.blurbs) {
       let dataSets = [[], [], []];
       let blurbs = newProps.blurbs;
-      for (let i in Object.keys(blurbs)) {
-        if (!blurbs[i]) {
+      for (let i = 0; i < Object.keys(blurbs).length; i++) {
+        let key = Object.keys(blurbs)[i];
+        if (!blurbs[key]) {
           continue;
         }
-
-        let results = blurbs[i].analysis.document_tone.tone_categories;
+        console.log(blurbs[key]);
+        let results = blurbs[key].analysis.document_tone.tone_categories;
 
         dataSets[0].push({
-          x: i,
+          x: key,
           anger: results[0].tones[0].score,
           disgust: results[0].tones[1].score,
           fear: results[0].tones[2].score,
@@ -175,14 +176,14 @@ class ToneTrends extends React.Component {
         });
 
         dataSets[1].push({
-          x: i,
+          x: key,
           analytical: results[1].tones[0].score,
           confident: results[1].tones[1].score,
           tentative: results[1].tones[2].score,
         });
 
         dataSets[2].push({
-          x: i,
+          x: key,
           openness: results[2].tones[0].score,
           conscientiousness: results[2].tones[1].score,
           extraversion: results[2].tones[2].score,
@@ -191,8 +192,10 @@ class ToneTrends extends React.Component {
         });
 
       }
+      console.log(dataSets);
       this.setState({
-        dataSets
+        dataSets,
+        blurbs
       });
       // this.setSteat
       // for (let i = 0; i < this.fields.length; i++) {
