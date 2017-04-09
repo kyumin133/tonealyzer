@@ -217,7 +217,8 @@ class ToneTrends extends React.Component {
       </div>)
     } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
       chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
-    } else {
+    // } else {
+      // chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
       //TODO optimize these else statements
       // chart = <div className="empty-chart">&nbsp;</div>;
     }

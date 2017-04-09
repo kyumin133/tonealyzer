@@ -53,11 +53,11 @@
 .f-input {
   padding: 0;
   position: relative;
-  width: 100%;
+  width: 200px;
   border: none;
   outline: none;
   border-bottom: solid $light-primary;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .f-input:focus {
@@ -74,8 +74,10 @@ h1 {
   border-radius: 40px;
   background: none;
   font-family: Symbola;
-  font-size: 12px;
+  font-size: 18px;
+  font-weight: lighter;
   color: $dark-primary;
+  padding: 0 0 1px 0;
 }
 
 .close:hover {
