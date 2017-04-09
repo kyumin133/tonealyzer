@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     # get 'auth/google', to: 'sessions#requestGoogle'
     get 'auth/failure', to: redirect('/')
     get 'signout', to: 'sessions#destroy', as: 'signout'
+    get 'auth/identity/register', to: 'sessions#create'
     resource :session, only: [:create, :destroy]
     resources :identities, only: [:new, :create]
     resources :blurbs, only: [:create, :show, :index]

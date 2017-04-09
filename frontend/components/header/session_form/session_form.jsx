@@ -66,7 +66,14 @@ class SessionForm extends React.Component {
 
 	handleIdentitySubmit(e) {
 		e.preventDefault();
+		this.updateFormType('Log In')
 		window.location = "/api/auth/identity/callback";
+	}
+
+	handleIdentitySignUp(e) {
+		e.preventDefault();
+		this.updateFormType('Sign Up');
+		window.location = "api/auth/"
 	}
 
 	// navLink() {
@@ -97,7 +104,7 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.updateFormType('Sign Up')}
+						onClick={this.handleIdentitySignUp}
 						className="soft-button"
 						>
 						Sign Up
@@ -109,7 +116,7 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.updateFormType('Log In')}
+						onClick={this.handleIdentitySubmit}
 						className="soft-button"
 						>
 						Log In

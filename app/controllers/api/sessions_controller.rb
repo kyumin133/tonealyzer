@@ -2,10 +2,11 @@ class Api::SessionsController < ApplicationController
   before_action :require_logged_in, only: [:destroy]
 
   def create
+    # debugger
     if params[:identity]
-      if params[:identity][:email]
-        @user = Identity.find_by_credentials(params[:identity][:email],
-                                          params[:identity][:password])
+      if params[:identity][:user][:username]
+        @user = Identity.find_by_credentials(params[:identity][:user][:username],
+                                          params[:identity][:user][:password])
         login(@user)
       end
       render "/api/users/show"
@@ -23,11 +24,11 @@ class Api::SessionsController < ApplicationController
     end
   end
 
-  def requestFacebook
+  # def requestFacebook
     # redirect_to "/api/auth/facebook"
-  end
+  # end
 
-  def requestGoogle
+  # def requestGoogle
     # headers["Access-Control-Allow-Origin"] = "*"
     # response.headers["Access-Control-Allow-Origin"] = "*"
     # url = 'api/auth/google_oauth2'
@@ -43,7 +44,7 @@ class Api::SessionsController < ApplicationController
     # }
     # res = http.request(req)
     # byebug
-  end
+  # end
 
   # def requestFacebook
   #   uri = URI.parse("https://www.facebook.com/v3.0/dialog/oauth")

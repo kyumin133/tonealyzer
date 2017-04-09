@@ -34,8 +34,8 @@ export const requestSignup = user => dispatch => (
   )
 );
 
-export const requestGoogleLogin = () => dispatch => (
-  APIUtil.loginGoogle()
-  .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-  .then(() => hashHistory.push('/home'))
-);
+// export const requestGoogleLogin = () => dispatch => (
+//   APIUtil.loginGoogle()
+//   .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
+//   .then(() => hashHistory.push('/home'))
+// );
