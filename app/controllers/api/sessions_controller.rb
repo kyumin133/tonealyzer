@@ -3,12 +3,17 @@ class Api::SessionsController < ApplicationController
 
   def create
     # debugger
+
     if params[:identity]
-      if params[:identity][:user][:username]
+      if params[:identity][:user] && params[:identity][:user][:username]
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
-                                          params[:identity][:user][:password])
-        login(@user)
+                                             params[:identity][:user][:password])
+      elsif params[:identity][:email]
+        @user = Identity.find_by_credentials(params[:identity][:email],
+                                             params[:identity][:password])
       end
+
+      login(@user)
       render "/api/users/show"
       return
     end

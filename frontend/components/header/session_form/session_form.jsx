@@ -45,10 +45,14 @@ class SessionForm extends React.Component {
 		e.preventDefault();
 		const user = this.state;
 		if (this.state.formType === 'Log In') {
+			// debugger;
 			this.props.login({user});
+			this.handleIdentitySubmit();
 		}
 		else {
+			debugger;
 			this.props.signup({user});
+			this.handleIdentitySignUp();
 		}
 	}
 
@@ -64,16 +68,18 @@ class SessionForm extends React.Component {
 		window.location = "/api/auth/google_oauth2";
 	}
 
-	handleIdentitySubmit(e) {
-		e.preventDefault();
-		this.updateFormType('Log In')
+	handleIdentitySubmit() {
+		// e.preventDefault();
+		// this.updateFormType('Log In');
+		// debugger;
 		window.location = "/api/auth/identity/callback";
 	}
 
-	handleIdentitySignUp(e) {
-		e.preventDefault();
-		this.updateFormType('Sign Up');
-		window.location = "api/auth/"
+	handleIdentitySignUp() {
+		// e.preventDefault();
+		// this.updateFormType('Sign Up');
+		// window.location = "api/auth/identity/register";
+		window.location = "api/identities/new";
 	}
 
 	// navLink() {
@@ -104,9 +110,8 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.handleIdentitySignUp}
-						className="soft-button"
-						>
+						onClick={this.updateFormType('Sign Up')}
+						className="soft-button">
 						Sign Up
 					</button>
 				</div>
@@ -116,9 +121,8 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.handleIdentitySubmit}
-						className="soft-button"
-						>
+						onClick={this.updateFormType('Login')}
+						className="soft-button">
 						Log In
 					</button>
 				</div>
@@ -164,7 +168,6 @@ class SessionForm extends React.Component {
 							placeholder="Username..."
             />
           </div>
-					<br/>
           <div className='form-input'>
             <input
 							className='f-input'
@@ -172,19 +175,13 @@ class SessionForm extends React.Component {
               name="password"
               value={this.state.password}
               onChange={this.update("password")}
-							placeholder="Password..."
-
-            />
-
+							placeholder="Password..." />
           </div>
-					<br/>
-
           <div className='form-submit'>
             <input
               type="submit"
               value={this.state.formType}
-              onClick={this.handleSubmit}
-            />
+              onClick={this.handleSubmit} />
           </div>
 
 					<h3>Or</h3>
