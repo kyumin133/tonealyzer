@@ -78,7 +78,7 @@ class SessionForm extends React.Component {
 		// e.preventDefault();
 		// window.location = "api/auth/identity/register";
 		// debugger;
-		window.location = "api/auth/identity/callback";
+		window.location = "api/auth/identity/register";
 	}
 
 	// navLink() {
