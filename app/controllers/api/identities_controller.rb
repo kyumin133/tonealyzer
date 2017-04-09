@@ -10,7 +10,7 @@ class Api::IdentitiesController < ApplicationController
 
     # if @identity.save
     debugger
-    @user = Identity.create!(name: params[:identity][:user][:username], password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
+    @user = Identity.create!(email: params[:identity][:user][:username], name: params[:identity][:user][:username], password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
     u = User.create!(provider: "identity", uid: @user.id, name: params[:identity][:user][:username])
 
     login(@user)
@@ -28,7 +28,7 @@ class Api::IdentitiesController < ApplicationController
     # if @identity.save
 
     debugger
-    @user = Identity.create!(name: params[:identity][:user][:username], password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
+    @user = Identity.create!(email: params[:identity][:user][:username], name: params[:identity][:user][:username], password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
     u = User.create!(provider: "identity", uid: @user.id, name: params[:identity][:user][:username])
 
     login(@user)
