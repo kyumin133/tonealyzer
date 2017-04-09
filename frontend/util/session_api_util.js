@@ -1,10 +1,20 @@
-export const login = identity => {
-  return($.ajax({
+export const login = identity => (
+  $.ajax({
     method: 'POST',
     url: '/api/session',
     data: { identity }
-  }))
-};
+  })
+);
+
+  // TODO changed this url, take note, added callback
+export const signup = identity => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/session',
+    // xhrFields: { withCredentials: true },
+    data: { identity }
+  })
+);
 
 export const logout = () => (
   $.ajax({
@@ -18,16 +28,6 @@ export const loginDemoUser = () => (
     method: 'POST',
     url: '/api/session',
     data: {identity: {email: "email@gmail.com", password: "secretpass123"}}
-  })
-);
-
-// TODO changed this url, take note, added callback
-export const signup = identity => (
-  $.ajax({
-    method: 'POST',
-    url: '/api/identities/callback',
-    xhrFields: { withCredentials: true },
-    data: { identity }
   })
 );
 

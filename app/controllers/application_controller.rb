@@ -4,18 +4,22 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   def current_user
-
     # byebug
     @current_user ||= User.find_by_uid(session[:user_id]) if session[:user_id]
   end
 
   def logged_in?
-
     !!current_user
   end
 
   def login(user)
-    session[:user_id] = user.uid
+    # debugger
+    # current_user
+    if user.uid
+      session[:user_id] = user.uid
+    else
+      session[:user_id] = user.id
+    end
     @current_user = user
   end
 

@@ -1,5 +1,6 @@
 class Api::SessionsController < ApplicationController
   before_action :require_logged_in, only: [:destroy]
+  skip_before_filter  :verify_authenticity_token
 
   def create
     # debugger
@@ -8,25 +9,35 @@ class Api::SessionsController < ApplicationController
       if params[:identity][:user] && params[:identity][:user][:username]
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
                                              params[:identity][:user][:password])
+        unless @user
+          # debugger
+          @user = Identity.create!(email: params[:identity][:user][:username],
+                           password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
+          User.create!(
+            provider: "identity",
+            uid: @user.id,
+            name: params[:identity][:user][:username])
+        end
       elsif params[:identity][:email]
         @user = Identity.find_by_credentials(params[:identity][:email],
                                              params[:identity][:password])
       end
 
+      # debugger
       login(@user)
       render "/api/users/show"
       return
     end
 
-    if @user
-      login(@user)
-      redirect_to "#/redirect"
-    else
+    # if @user
+    #   login(@user)
+    #   redirect_to "#/redirect"
+    # else
       # debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
       redirect_to "#/redirect"
-    end
+    # end
   end
 
   # def requestFacebook

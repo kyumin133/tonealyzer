@@ -1,10 +1,11 @@
 class Api::IdentitiesController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+
   def new
-    debugger
-    # byebug
-    if params[:identity][:email] # is it username or email???
-      # @identity = Identity.new()
-    else
+    # debugger
+    # TODO is it username or email???
+
+    unless params[:identity][:email]
       @identity = env['omniauth.identity']
     end
 
@@ -17,11 +18,8 @@ class Api::IdentitiesController < ApplicationController
   end
 
   def create
-    debugger
-    # byebug
-    if params[:identity][:email] # is it username or email???
-      # @identity = Identity.new()
-    else
+    # debugger
+    unless params[:identity][:email] # is it username or email???
       @identity = env['omniauth.identity']
     end
 

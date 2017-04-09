@@ -5,8 +5,8 @@ class PersonalGreeting extends React.Component {
 
   constructor(props) {
     super(props);
+    
     this.handleLogout= this.handleLogout.bind(this);
-
   }
 
   handleLogout() {
@@ -14,7 +14,6 @@ class PersonalGreeting extends React.Component {
   }
 
   render() {
-
     return (
     	<div className='header-group'>
         <div>
