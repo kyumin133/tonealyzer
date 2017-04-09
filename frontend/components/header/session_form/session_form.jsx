@@ -62,7 +62,6 @@ class SessionForm extends React.Component {
 
 	handleGoogleSubmit(e) {
 		e.preventDefault();
-		// this.props.googleAction();
 		window.location = "/api/auth/google_oauth2";
 	}
 
@@ -73,7 +72,6 @@ class SessionForm extends React.Component {
 
 	handleIdentitySignUp() {
 		// e.preventDefault();
-		// window.location = "api/auth/identity/register";
 		window.location = "api/auth/identity/register";
 	}
 
