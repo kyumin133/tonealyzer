@@ -163,7 +163,7 @@ class ToneTrends extends React.Component {
         if (!blurbs[key]) {
           continue;
         }
-        console.log(blurbs[key]);
+
         let results = blurbs[key].analysis.document_tone.tone_categories;
 
         dataSets[0].push({
@@ -192,7 +192,7 @@ class ToneTrends extends React.Component {
         });
 
       }
-      console.log(dataSets);
+      // console.log(dataSets);
       this.setState({
         dataSets,
         blurbs
@@ -217,7 +217,7 @@ class ToneTrends extends React.Component {
       chart = (
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
-        <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
+        <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />
         <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>)
     // } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {

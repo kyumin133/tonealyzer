@@ -3,14 +3,11 @@ class Api::SessionsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def create
-    # debugger
-
     if params[:identity]
       if params[:identity][:user] && params[:identity][:user][:username]
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
                                              params[:identity][:user][:password])
         unless @user
-          # debugger
           @user = Identity.create!(email: params[:identity][:user][:username],
                            password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
           User.create!(
@@ -23,7 +20,6 @@ class Api::SessionsController < ApplicationController
                                              params[:identity][:password])
       end
 
-      # debugger
       login(@user)
       render "/api/users/show"
       return
@@ -33,7 +29,6 @@ class Api::SessionsController < ApplicationController
     #   login(@user)
     #   redirect_to "#/redirect"
     # else
-      # debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
       redirect_to "#/redirect"
@@ -54,12 +49,10 @@ class Api::SessionsController < ApplicationController
     # req["Access-Control-Allow-Origin"] = "*"
     # # req.add_field("Access-Control-Allow-Origin", "*")
     #
-    # byebug
     # res = Net::HTTP.start(url.host, url.port) {|http|
     #   http.request(req)
     # }
     # res = http.request(req)
-    # byebug
   # end
 
   # def requestFacebook

@@ -45,12 +45,10 @@ class SessionForm extends React.Component {
 		e.preventDefault();
 		const user = this.state;
 		if (this.state.formType === 'Log In') {
-			// debugger;
 			this.props.login({user});
 			this.handleIdentitySubmit();
 		}
 		else {
-			// debugger;
 			this.props.signup({user});
 			this.handleIdentitySignUp();
 		}
@@ -70,14 +68,12 @@ class SessionForm extends React.Component {
 
 	handleIdentitySubmit() {
 		// e.preventDefault();
-		// debugger;
 		window.location = "/api/auth/identity/callback";
 	}
 
 	handleIdentitySignUp() {
 		// e.preventDefault();
 		// window.location = "api/auth/identity/register";
-		// debugger;
 		window.location = "api/auth/identity/register";
 	}
 

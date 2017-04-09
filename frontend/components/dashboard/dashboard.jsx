@@ -65,7 +65,7 @@ class Dashboard extends React.Component {
           <div className={this.state.tabClasses[2]} onClick={this.clickTab}>Documents</div>
         </div>
         {this.components[this.state.selectedIndex]}
-      </div>;
+      </div>
   }
 }
 
