@@ -267,7 +267,7 @@ class ToneChart extends React.Component {
       <span className="circles">
         {circles}
       </span>
-    </div>;
+    </div>
   }
 }
 

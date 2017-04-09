@@ -8,16 +8,22 @@
   align-items: center;
   justify-content: space-around;
   padding: 20px;
-  height: 80%;
+  height: 70%;
+  
+  h1 {
+    color: $darkest-primary;
+  }
 
+  .new-blurb-input-area {
+    width: 60%;
+  }
 }
 
 .f-input-2 {
     padding: 10px;
     padding-left: 30px;
-
     position: relative;
-    width: 60%;
+    width: 100%;
     min-height: 300px;
     border: none;
     outline: none;
@@ -25,13 +31,10 @@
     // border-right: solid thin $light-primary;
     font-size: 20px;
     resize: none;
-
     //remove cursor blink
     // color: transparent;
     // text-shadow: 0 0 0 black;
     // border-left: solid thin $dark-primary;
-
-
 }
 
 .f-input-2:focus {
