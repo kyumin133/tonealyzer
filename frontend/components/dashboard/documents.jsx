@@ -64,6 +64,11 @@ class Documents extends React.Component {
       documentsArr.push(li);
     }
 
+    if (documentsArr.length === 0) {
+      let placeholder = <div className="documents-placeholder" key="docs-placeholder-1">Click the new 'New Analysis' button in the navigation bar and then access your previous documents here.</div>
+      documentsArr.push(placeholder)
+    }
+
     return <div className="documents-page">
       <div className="documents-index">
         <ul className="documents-index-ul">{documentsArr}</ul>
