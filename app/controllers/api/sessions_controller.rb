@@ -3,36 +3,62 @@ class Api::SessionsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def create
+    # debugger
     if params[:identity]
       if params[:identity][:user] && params[:identity][:user][:username]
+        # debugger
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
                                              params[:identity][:user][:password])
-        unless @user
-          @user = Identity.create!(email: params[:identity][:user][:username],
-                           password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
-          User.create!(
-            provider: "identity",
-            uid: @user.id,
-            name: params[:identity][:user][:username])
-        end
+        # unless @user
+        #   debugger
+        #   @user = Identity.new(name: params[:identity][:user][:username],
+        #                    password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
+        #   @user.save
+        #   debugger
+        #   u = User.new(
+        #     provider: "identity",
+        #     uid: @user.id,
+        #     name: params[:identity][:user][:username])
+        #   u.save
+        #   debugger
+        #   login(@user)
+        #   debugger
+        #   render "/api/users/show"
+        #   debugger
+        #   return
+        # end
       elsif params[:identity][:email]
+        debugger
         @user = Identity.find_by_credentials(params[:identity][:email],
                                              params[:identity][:password])
+        login(@user)
+        render "/api/users/show"
+        return
       end
-
-      login(@user)
-      render "/api/users/show"
-      return
+      # debugger
+      # if @user
+      #   debugger
+      #   login(@user)
+      #   render "/api/users/show"
+      #   return
+      # end
     end
 
-    # if @user
-    #   login(@user)
-    #   redirect_to "#/redirect"
-    # else
+    if @user
+      debugger
+      login(@user)
+      render "/api/users/show"
+      # redirect_to "#/redirect"
+      return
+    elsif env["omniauth.auth"]
+      debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
       redirect_to "#/redirect"
-    # end
+    else
+      debugger
+      redirect_to "#/redirect"
+    end
   end
 
   # def requestFacebook
