@@ -72,6 +72,9 @@ class SessionForm extends React.Component {
 
 	handleIdentitySignUp() {
 		// e.preventDefault();
+
+
+		
 		window.location = "api/auth/identity/register";
 	}
 
