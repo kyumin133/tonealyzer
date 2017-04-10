@@ -26,7 +26,29 @@ elsif env["omniauth.auth"]
 
 ### IBM Watson API
 
+```ruby
+def generate_analysis
+  all_blurb_bodies = Blurb.all.map { |blurb| blurb.body }
+  if all_blurb_bodies.include?(self.body)
+    Blurb.where({body: self.body}).first
+  else
+    new_analysis
+  end
+end
+```
+
 ### insert here
+
+```javascript
+dataSets[0].push({
+  x: key,
+  anger: results[0].tones[0].score,
+  disgust: results[0].tones[1].score,
+  fear: results[0].tones[2].score,
+  joy: results[0].tones[3].score,
+  sadness: results[0].tones[4].score
+});
+```
 
 ## Future Directions
 
