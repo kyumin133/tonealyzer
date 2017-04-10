@@ -6,7 +6,6 @@ export const login = identity => (
   })
 );
 
-  // TODO changed this url, take note, added callback
 export const signup = identity => (
   $.ajax({
     method: 'POST',
@@ -30,18 +29,3 @@ export const loginDemoUser = () => (
     data: {identity: {email: "email@gmail.com", password: "secretpass123"}}
   })
 );
-
-//not using any of these?? directly changing routes right in session form jsx file
-// export const loginFacebook = () => (
-//   $.ajax({
-//     method: 'GET',
-//     url: '/api/facebook'
-//   })
-// );
-//
-// export const loginGoogle = () => (
-//   $.ajax({
-//     method: 'GET',
-//     url: "/api/auth/google_oauth2"
-//   })
-// );
