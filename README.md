@@ -75,7 +75,7 @@ Currently, our website requires users to either copy and paste text or type text
 
 The IBM Watson Speech to Text API could be utilized to allow users to have their spoken word analyzed.
 
-### Spelling/grammar check
+### Spelling/Grammar Check
 
 Adding a spelling/grammar check for users to use as they type up content to be analyzed could be additionally useful, especially for users who are utilizing Tonealyzer for professional purposes (such as analyzing their cover letters, etc.).
 
