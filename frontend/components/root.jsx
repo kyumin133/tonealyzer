@@ -16,7 +16,7 @@ class Root extends React.Component {
 
   redirectIfLoggedIn(nextState, replace) {
     if (window.currentUser) {
-      hashHistory.push("/home");      
+      hashHistory.push("/home");
     }
   }
 
@@ -31,11 +31,12 @@ class Root extends React.Component {
     return <Provider store={ store }>
       <Router history={hashHistory}>
         <Route path="/" component={ App } >
-          <IndexRoute component={ Splash } />
-          <Route path="/home" component={ DashboardContainer } />
-          <Route path="/newBlurb" component={ BlurbInputContainer } />
-          <Route path="/results/:blurbId" component={ ResultsContainer } />
+          <IndexRoute component={ Splash } onEnter={this.redirectIfLoggedIn} />
+          <Route path="/home" component={ DashboardContainer } onEnter={this.ensureLoggedIn} />
+          <Route path="/newBlurb" component={ BlurbInputContainer } onEnter={this.ensureLoggedIn} />
+          <Route path="/results/:blurbId" component={ ResultsContainer }  onEnter={this.ensureLoggedIn} />
           <Route path="/redirect" component={Splash} onEnter={this.redirectIfLoggedIn} />
+          <Route path="/logout" component={Splash} onEnter={this.ensureLoggedIn} />
         </Route>
       </Router>
     </Provider>;

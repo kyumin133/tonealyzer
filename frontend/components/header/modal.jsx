@@ -1,76 +1,38 @@
 import React from 'react';
 
 class Modal extends React.Component {
-    render() {
-      if (this.props.isOpen === false) {
-        return null;
-      }
-      // let modalStyle = {
-      //   position: 'absolute',
-      //   top: '50%',
-      //   left: '50%',
-      //   transform: 'translate(-50%, -50%)',
-      //   zIndex: '9999',
-      //   background: '#fff'
-      // };
+  constructor(props) {
+    super(props);
+    this.close = this.close.bind(this);
+  }
+  render() {
+    if (this.props.isOpen === false) {
+      return null;
+    }
 
-      // if (this.props.width && this.props.height) {
-      //   modalStyle.width = this.props.width + 'px';
-      //   modalStyle.height = this.props.height + 'px';
-      //   modalStyle.marginLeft = '-' + (this.props.width/2) + 'px';
-      //   modalStyle.marginTop = '-' + (this.props.height/2) + 'px';
-      //   modalStyle.transform = null;
-      // }
-
-      // if (this.props.style) {
-      //   for (let key in this.props.style) {
-      //     modalStyle[key] = this.props.style[key];
-      //   }
-      // }
-
-      // let backdropStyle = {
-      //   position: 'absolute',
-      //   width: '100%',
-      //   height: '100%',
-      //   top: '0px',
-      //   left: '0px',
-      //   zIndex: '9998',
-      //   background: 'rgba(0, 0, 0, 0.3)'
-      // };
-
-      // if (this.props.backdropStyle) {
-      //   for (let key in this.props.backdropStyle) {
-      //     backdropStyle[key] = this.props.backdropStyle[key];
-      //   }
-      // }
-
-      // handleClose() {
-      //TODO must close when user clicks x
-      // };
-
-      return (
-        <div>
-          <div className='modal'>
-            <div className='close-button-box'>
-              <div></div>
-              <button className='close' onClick={() => this.handleClose()}>
-                <i className="fa fa-times" aria-hidden="true"></i>
-              </button>
-            </div>
-            {this.props.children}
+    return (
+      <div>
+        <div className='modal'>
+          <div className='close-button-box'>
+            <div></div>
+            <button className='close' onClick={this.close}>
+              <i className="fa fa-times" aria-hidden="true"></i>
+            </button>
           </div>
-          <div className= 'backdrop' onClick={e => this.close(e)} />
+          {this.props.children}
         </div>
-      );
-    }
-
-    close(e) {
-      e.preventDefault();
-
-      if (this.props.onClose) {
-        this.props.onClose();
-      }
-    }
+        <div className= 'backdrop' onClick={this.close} />
+      </div>
+    );
   }
 
-  export default Modal;
+  close(e) {
+    e.preventDefault();
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
+  }
+}
+
+export default Modal;
