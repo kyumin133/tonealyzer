@@ -4,7 +4,6 @@ import { hashHistory } from 'react-router';
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 
 export const receiveCurrentUser = currentUser => {
-  // debugger;
   return({
   type: RECEIVE_CURRENT_USER,
   currentUser
@@ -26,7 +25,6 @@ export const requestLogin = user => dispatch => (
 );
 
 export const requestSignup = user => dispatch => {
-  // debugger;
   return(
   APIUtil.signup(user)
   .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
@@ -36,5 +34,8 @@ export const requestSignup = user => dispatch => {
 export const requestLogout = () => dispatch => (
   APIUtil.logout()
   .then(user => dispatch(receiveCurrentUser(null)))
-  .then(() => hashHistory.push('/'))
+  .then(() => {
+    window.currentUser = null;
+    hashHistory.push('/logout');
+  })
 );

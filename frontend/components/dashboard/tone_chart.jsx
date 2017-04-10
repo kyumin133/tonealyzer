@@ -33,7 +33,7 @@ class ToneChart extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    // this.handleKeyDown = this.handleKeyDown.bind(this);
 
   }
 
@@ -70,9 +70,9 @@ class ToneChart extends React.Component {
     }
   }
 
-  handleKeyDown(e) {
-    console.log("key down!");
-  }
+  // handleKeyDown(e) {
+  //   console.log("key down!");
+  // }
 
   componentWillReceiveProps(newProps) {
     // let analysis = newProps.analysis;
@@ -108,7 +108,7 @@ class ToneChart extends React.Component {
     $(".legend:first-of-type").attr("style", `width: 250px; height: 500px`);
     for (let i = 0; i < results.length; i++) {
       let result = results[i];
-      $(legendItems[i]).attr("style", `top: ${101 + i * 40}px; right: 20px; width: 150px; height: 40px; display: inline-block;`);
+      $(legendItems[i]).attr("style", `top: ${101 + i * 40}px; right: 20px; width: 250px; height: 40px; display: inline-block;`);
       if (result.selected) {
         result.style = SELECTED_LINE;
         $(legendItems[i]).removeClass("unselected-legend");
@@ -121,9 +121,9 @@ class ToneChart extends React.Component {
     }
   }
 
-  hoverLegend(target) {
-
-  }
+  // hoverLegend(target) {
+  //
+  // }
 
   hoverLine(target) {
     let results = this.fields;
@@ -233,11 +233,11 @@ class ToneChart extends React.Component {
 
   render() {
     if ((!this.fields) || (!this.title) || (this.state.dataSet.length === 0) || (this.props.index === undefined)) {
-      console.log(this.fields);
-      console.log(this.title);
-      console.log(this.state.dataSet.length);
-      console.log(this.props.index);
-      return <div className="empty-chart">&nbsp;</div>;
+      // console.log(this.fields);
+      // console.log(this.title);
+      // console.log(this.state.dataSet.length);
+      // console.log(this.props.index);
+      return (<div className="empty-chart">&nbsp;</div>);
     }
 
     let circles = [];
@@ -249,7 +249,7 @@ class ToneChart extends React.Component {
       }
     }
 
-    return <div className="chart-inner" onClick={this.handleClick} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave} onKeyDown={this.handleKeyDown}>
+    return <div className="chart-inner" onClick={this.handleClick} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>
       <span className="chart-title">{this.props.title}</span>
       <LineChart
         margins={{left: 100, right: 100, top: 50, bottom: 50}}

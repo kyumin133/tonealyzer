@@ -9,7 +9,7 @@
   justify-content: space-around;
   padding: 20px;
   height: 70%;
-  
+
   h1 {
     color: $darkest-primary;
   }
@@ -27,24 +27,13 @@
     min-height: 300px;
     border: none;
     outline: none;
-    // border-left: solid thin $light-primary;
-    // border-right: solid thin $light-primary;
     font-size: 20px;
     resize: none;
-    //remove cursor blink
     // color: transparent;
-    // text-shadow: 0 0 0 black;
-    // border-left: solid thin $dark-primary;
 }
 
 .f-input-2:focus {
   outline: none;
-  // outline: solid thin;
-
-
-  // border-left: solid thin $dark-primary;
-    // border: solid thin $dark-primary;
-
 }
 
 .f-input-3 {
@@ -54,19 +43,7 @@
     width: 60%;
     border: none;
     outline: none;
-    // border-left: solid thin $light-primary;
     font-size: 30px;
-    //remove cursor blink
-
-    // color: transparent;
-    // text-shadow: 0 0 0 black;
-    // border-left: solid thin $dark-primary;
-
-}
-
-.f-input-3:focus {
-  // border-left: solid thin $dark-primary;
-
 }
 
 .form-submit-2 {
@@ -88,8 +65,6 @@
 
 .form-submit-2:hover {
 	background-color: $dark-secondary;
-	// color: $dark-secondary;
-  // border: solid thin;
   border-color: $darkest-secondary;
   cursor: pointer;
 }

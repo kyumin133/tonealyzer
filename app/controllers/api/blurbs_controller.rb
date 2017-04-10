@@ -18,5 +18,4 @@ class Api::BlurbsController < ApplicationController
     @blurbs = current_user.blurbs
     render "api/blurbs/index"
   end
-
 end

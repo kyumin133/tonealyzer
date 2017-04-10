@@ -9,11 +9,8 @@ class Blurb < ApplicationRecord
 
   def generate_analysis
     all_blurb_bodies = Blurb.all.map { |blurb| blurb.body }
-    if all_blurb_bodies.include?(self.body)
-      Blurb.where({body: self.body}).first
-    else
-      new_analysis
-    end
+
+    new_analysis
   end
 
   def new_analysis
