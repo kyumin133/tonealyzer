@@ -24,6 +24,15 @@ elsif env["omniauth.auth"]
   @user = User.from_omniauth(env["omniauth.auth"])
 ```
 
+When users click on the button to log in with Google, they are directed to the proper route. At this point the OmniAuth middleware for the Google provider allows them to move to Google to log in, and then return to Tonealyzer.
+
+```javascript
+handleGoogleSubmit(e) {
+  e.preventDefault();
+  window.location = "/api/auth/google_oauth2";
+}
+```
+
 ### IBM Watson API
 
 ```ruby
