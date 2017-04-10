@@ -6,17 +6,18 @@
   // position: relative;
   // height: calc(100% - 200px);
   position: fixed;
-  height: calc(100% - 400px);
+  // height: calc(100% - 200px);
   width: 100%;
 
   h1 {
     position: absolute;
     font-size: 25px;
     width: 300px;
-    top: 30%;
+    top: 20%;
     left: 10%;
     color: white;
     font-weight: normal;
+    z-index: 10;
   }
 
   .image-container {

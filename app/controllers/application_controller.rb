@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def login(user)
-    # current_user
-    debugger
     if user.uid && user.class.name != "Identity"
       session[:user_id] = user.uid
     else

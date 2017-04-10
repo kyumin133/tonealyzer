@@ -9,35 +9,15 @@ class Api::SessionsController < ApplicationController
         # debugger
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
                                              params[:identity][:user][:password])
-        # unless @user
-        #   debugger
-        #   @user = Identity.new(name: params[:identity][:user][:username],
-        #                    password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
-        #   @user.save
-        #   debugger
-        #   u = User.new(
-        #     provider: "identity",
-        #     uid: @user.id,
-        #     name: params[:identity][:user][:username])
-        #   u.save
-        #   debugger
-        #   login(@user)
-        #   debugger
-        #   render "/api/users/show"
-        #   debugger
-        #   return
-        # end
+
       elsif params[:identity][:email]
-        debugger
         @user = Identity.find_by_credentials(params[:identity][:email],
                                              params[:identity][:password])
         login(@user)
         render "/api/users/show"
         return
       end
-      # debugger
       # if @user
-      #   debugger
       #   login(@user)
       #   render "/api/users/show"
       #   return
@@ -45,18 +25,15 @@ class Api::SessionsController < ApplicationController
     end
 
     if @user
-      debugger
       login(@user)
       render "/api/users/show"
       # redirect_to "#/redirect"
       return
     elsif env["omniauth.auth"]
-      debugger
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
       redirect_to "#/redirect"
     else
-      debugger
       redirect_to "#/redirect"
     end
   end
