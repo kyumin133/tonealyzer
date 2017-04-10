@@ -66,11 +66,11 @@
   width: 100%;
   border: none;
   outline: none;
-  border-bottom: solid $light-primary;
+  border-bottom: solid thin $light-primary;
   font-size: 20px;
 }
 .f-input:focus {
-  border-bottom: solid $dark-primary;
+  border-bottom: solid thin $dark-primary;
 
 }
 
