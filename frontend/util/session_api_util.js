@@ -10,7 +10,7 @@ export const login = identity => (
 export const signup = identity => (
   $.ajax({
     method: 'POST',
-    url: '/api/session',
+    url: '/api/identities',
     xhrFields: { withCredentials: true },
     data: { identity }
   })

@@ -4,40 +4,38 @@ class Api::SessionsController < ApplicationController
 
   def create
     # debugger
-
     if params[:identity]
       if params[:identity][:user] && params[:identity][:user][:username]
+        # debugger
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
                                              params[:identity][:user][:password])
-        unless @user
-          # debugger
-          @user = Identity.create!(email: params[:identity][:user][:username],
-                           password_digest: BCrypt::Password.create(params[:identity][:user][:password]))
-          User.create!(
-            provider: "identity",
-            uid: @user.id,
-            name: params[:identity][:user][:username])
-        end
+
       elsif params[:identity][:email]
         @user = Identity.find_by_credentials(params[:identity][:email],
                                              params[:identity][:password])
+        login(@user)
+        render "/api/users/show"
+        return
       end
-
-      # debugger
-      login(@user)
-      render "/api/users/show"
-      return
+      # if @user
+      #   login(@user)
+      #   render "/api/users/show"
+      #   return
+      # end
     end
 
-    # if @user
-    #   login(@user)
-    #   redirect_to "#/redirect"
-    # else
-      # debugger
+    if @user
+      login(@user)
+      render "/api/users/show"
+      # redirect_to "#/redirect"
+      return
+    elsif env["omniauth.auth"]
       @user = User.from_omniauth(env["omniauth.auth"])
       login(@user)
       redirect_to "#/redirect"
-    # end
+    else
+      redirect_to "#/redirect"
+    end
   end
 
   # def requestFacebook
@@ -54,12 +52,10 @@ class Api::SessionsController < ApplicationController
     # req["Access-Control-Allow-Origin"] = "*"
     # # req.add_field("Access-Control-Allow-Origin", "*")
     #
-    # byebug
     # res = Net::HTTP.start(url.host, url.port) {|http|
     #   http.request(req)
     # }
     # res = http.request(req)
-    # byebug
   # end
 
   # def requestFacebook

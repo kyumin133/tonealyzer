@@ -162,7 +162,7 @@ class DocumentResults extends React.Component {
 
   render() {
     if ((!this.props.blurb) || (!this.state.dataSets)) {
-      return <div></div>;
+      return (<div></div>);
     }
 
     let hoverBox = this.state.hoverBox;

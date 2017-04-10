@@ -43,24 +43,18 @@ class Documents extends React.Component {
   render() {
 
     let documentsArr = [];
-    // for (let i = 0; i < this.state.documents.length; i++) {
-    //   let document = this.state.documents[i];
-    //   let li = <li key={i} className="documents-index-item">
-    //     <div className="document-title">{document[3].title}</div>
-    //     <div className="document-date">{time_ago_english.format(new Date(document[3].date))}</div>
-    //   </li>;
-    //   documentsArr.push(li);
 
     for (let key in this.state.documents) {
       let document = this.state.documents[key];
 
-      let li = <li key={key} className="documents-index-item">
+      let li = (
+      <li key={key} className="documents-index-item">
         <Link onClick={this.forceUpdate} className="document-link" to={`results/${key}`} >
           <div className="document-title">{document.title}</div>
           <div className="document-body">{document.body.slice(0, 50)}...</div>
           <div className="document-date">{time_ago_english.format(new Date(document.created_at))}</div>
         </Link>
-      </li>;
+      </li>)
       documentsArr.push(li);
     }
 

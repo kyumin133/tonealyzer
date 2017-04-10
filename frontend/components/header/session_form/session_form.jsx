@@ -45,12 +45,10 @@ class SessionForm extends React.Component {
 		e.preventDefault();
 		const user = this.state;
 		if (this.state.formType === 'Log In') {
-			// debugger;
 			this.props.login({user});
 			this.handleIdentitySubmit();
 		}
 		else {
-			// debugger;
 			this.props.signup({user});
 			this.handleIdentitySignUp();
 		}
@@ -64,21 +62,17 @@ class SessionForm extends React.Component {
 
 	handleGoogleSubmit(e) {
 		e.preventDefault();
-		// this.props.googleAction();
 		window.location = "/api/auth/google_oauth2";
 	}
 
 	handleIdentitySubmit() {
 		// e.preventDefault();
-		// debugger;
 		window.location = "/api/auth/identity/callback";
 	}
 
 	handleIdentitySignUp() {
 		// e.preventDefault();
-		// window.location = "api/auth/identity/register";
-		// debugger;
-		window.location = "api/auth/identity/register";
+		window.location = "api/auth/identity/register/callback";
 	}
 
 	// navLink() {
