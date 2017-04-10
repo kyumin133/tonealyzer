@@ -29,7 +29,6 @@ class BlurbInput extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    // debugger;
     if (this.state.title.length > 0 && this.state.body.length > 0) {
       this.setState({analysisLoading: true});
       setTimeout(() => {

@@ -163,7 +163,7 @@ class ToneTrends extends React.Component {
         if (!blurbs[key]) {
           continue;
         }
-        
+
         if (!blurbs[key].analysis.document_tone) {
           continue;
         }
@@ -196,7 +196,7 @@ class ToneTrends extends React.Component {
         });
 
       }
-      // console.log(dataSets);
+      
       this.setState({
         dataSets,
         blurbs
