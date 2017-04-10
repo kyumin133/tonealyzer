@@ -20,6 +20,7 @@ class BlurbInput extends React.Component{
       body: e.target.value
     });
   }
+
   updateTitle(e) {
     this.setState({
       title: e.target.value
@@ -28,11 +29,16 @@ class BlurbInput extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({analysisLoading: true});
-    setTimeout(() => {
-      this.props.createBlurb(this.state.title, this.state.body);
+    // debugger;
+    if (this.state.title.length > 0 && this.state.body.length > 0) {
       this.setState({analysisLoading: true});
-    }, 3000);
+      setTimeout(() => {
+        this.props.createBlurb(this.state.title, this.state.body);
+        this.setState({analysisLoading: true});
+      }, 3000);
+    } else {
+      this.errors = "Please create a title and enter text for the document body."
+    }
   }
 
   render() {
