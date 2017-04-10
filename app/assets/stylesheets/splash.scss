@@ -7,6 +7,7 @@
   // height: calc(100% - 200px);
   position: fixed;
   height: calc(100% - 400px);
+  width: 100%;
 
   h1 {
     position: absolute;
@@ -19,12 +20,11 @@
   }
 
   .image-container {
+    width: 100%;
+    height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
+    background-image: url("/assets/splash.jpg");
     overflow: hidden;
-
-    img {
-      width: 100%;
-    }
   }
 }

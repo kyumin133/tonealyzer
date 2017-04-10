@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 
 class SessionForm extends React.Component {
@@ -12,7 +12,10 @@ class SessionForm extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
+		//TODO i don't think we need to bind these
+		// this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
+		// this.handleFacebookSubmit = this.handleFacebookSubmit.bind(this);
+		// this.handleIdentitySubmit = this.handleIdentitySubmit.bind(this);
 		this.updateFormType = this.updateFormType.bind(this);
 	}
 
@@ -41,18 +44,41 @@ class SessionForm extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const user = this.state;
-		if (this.state.formType === 'Login') {
+		if (this.state.formType === 'Log In') {
+			// debugger;
 			this.props.login({user});
-
+			this.handleIdentitySubmit();
 		}
 		else {
+			// debugger;
 			this.props.signup({user});
+			this.handleIdentitySignUp();
 		}
+	}
+
+	handleFacebookSubmit(e) {
+		e.preventDefault();
+		// this.props.googleAction();
+		window.location = "/api/auth/facebook";
 	}
 
 	handleGoogleSubmit(e) {
 		e.preventDefault();
-		this.props.googleAction();
+		// this.props.googleAction();
+		window.location = "/api/auth/google_oauth2";
+	}
+
+	handleIdentitySubmit() {
+		// e.preventDefault();
+		// debugger;
+		window.location = "/api/auth/identity/callback";
+	}
+
+	handleIdentitySignUp() {
+		// e.preventDefault();
+		// window.location = "api/auth/identity/register";
+		// debugger;
+		window.location = "api/auth/identity/register";
 	}
 
 	// navLink() {
@@ -78,14 +104,13 @@ class SessionForm extends React.Component {
 	// }
 
 	navLink() {
-		if (this.state.formType === "Login") {
+		if (this.state.formType === "Log In") {
 			return (
 				<div>
 					<button
 						type="button"
 						onClick={this.updateFormType('Sign Up')}
-						className="soft-button"
-						>
+						className="soft-button">
 						Sign Up
 					</button>
 				</div>
@@ -96,15 +121,13 @@ class SessionForm extends React.Component {
 					<button
 						type="button"
 						onClick={this.updateFormType('Login')}
-						className="soft-button"
-						>
-						Login
+						className="soft-button">
+						Log In
 					</button>
 				</div>
 			);
 		}
 	}
-
 
 	renderErrors() {
 		return(
@@ -125,13 +148,14 @@ class SessionForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit} className='session-form'>
           <h1>{`Please ${this.state.formType}`}</h1>
-          <br/>
-						<button type="button" onClick={this.handleGoogleSubmit}>
-		          Login with Google
+					<div className="third-party-login-wrapper">
+						<button type="button" className="third-party-login" onClick={this.handleGoogleSubmit}>
+		          <img src="assets/google.png"></img>
 		        </button>
-						<button type="button" onClick={this.handleSubmit}>
-		          Login with Facebook
+						<button type="button" className="third-party-login" onClick={this.handleFacebookSubmit}>
+		          <img src="assets/facebook.png"></img>
 		        </button>
+					</div>
           <h5>{this.renderErrors()}</h5>
           <div className='form-input'>
             <input
@@ -143,7 +167,6 @@ class SessionForm extends React.Component {
 							placeholder="Username..."
             />
           </div>
-					<br/>
           <div className='form-input'>
             <input
 							className='f-input'
@@ -151,19 +174,13 @@ class SessionForm extends React.Component {
               name="password"
               value={this.state.password}
               onChange={this.update("password")}
-							placeholder="Password..."
-
-            />
-
+							placeholder="Password..." />
           </div>
-					<br/>
-
           <div className='form-submit'>
             <input
               type="submit"
-              value={`${this.state.formType}!`}
-              onClick={this.handleSubmit}
-            />
+              value={this.state.formType}
+              onClick={this.handleSubmit} />
           </div>
 
 					<h3>Or</h3>

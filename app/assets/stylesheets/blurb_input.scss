@@ -8,16 +8,22 @@
   align-items: center;
   justify-content: space-around;
   padding: 20px;
-  height: 80%;
+  height: 70%;
+  
+  h1 {
+    color: $darkest-primary;
+  }
 
+  .new-blurb-input-area {
+    width: 60%;
+  }
 }
 
 .f-input-2 {
     padding: 10px;
     padding-left: 30px;
-
     position: relative;
-    width: 60%;
+    width: 100%;
     min-height: 300px;
     border: none;
     outline: none;
@@ -25,13 +31,10 @@
     // border-right: solid thin $light-primary;
     font-size: 20px;
     resize: none;
-
     //remove cursor blink
     // color: transparent;
     // text-shadow: 0 0 0 black;
     // border-left: solid thin $dark-primary;
-
-
 }
 
 .f-input-2:focus {
@@ -67,25 +70,26 @@
 }
 
 .form-submit-2 {
-
   	background-color: $secondary;
   	border-color: $dark-secondary;
   	color: $white;
-  	font-weight: bold;
-  	padding: 7px 9px;
+    width: 120px;
+    height: 40px;
+    padding: 10px;
     margin: 5px;
     margin-top: 30px;
   	border-radius: 2px;
   	transition: background-color 0.3s;
   	font-family: $sans-serif;
-  	font-size: 16px;
+  	font-size: 14px;
   	text-align: center;
+    box-sizing: border-box;
 }
 
 .form-submit-2:hover {
-	background-color: $white;
-	color: $dark-secondary;
-  border: solid thin;
+	background-color: $dark-secondary;
+	// color: $dark-secondary;
+  // border: solid thin;
   border-color: $darkest-secondary;
   cursor: pointer;
 }

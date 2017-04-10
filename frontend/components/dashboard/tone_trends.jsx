@@ -1,5 +1,5 @@
 import React from "react";
-import { LineChart } from "react-d3-basic";
+import ToneChart from "./tone_chart";
 
 const SELECTED_LINE = {
   opacity: 1,
@@ -16,17 +16,25 @@ const UNSELECTED_LINE = {
   strokeWidth: "2px",
 };
 
+
 class ToneTrends extends React.Component {
   constructor(props) {
     super(props);
-    this.x = (d) => {
-      return d.x;
-    };
-
 
     this.state = {
-      emotion: {
-        fields: [
+      dataSets: []
+    }
+
+    this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
+    this.chartComponents = [];
+  }
+
+  componentWillMount() {
+      this.analysisIndex = 0;
+
+      this.titles = ["Emotion", "Language Style", "Social Tendencies"];
+      this.fields = [
+        [
           {
             field: 'anger',
             name: 'Anger',
@@ -63,11 +71,8 @@ class ToneTrends extends React.Component {
             selected: false
           }
         ],
-        title: "Emotion"
-      },
 
-      languageStyle: {
-        fields: [
+        [
           {
             field: 'analytical',
             name: 'Analytical',
@@ -90,11 +95,7 @@ class ToneTrends extends React.Component {
             selected: false
           },
         ],
-        title: "Language Style"
-      },
-
-      socialTendencies: {
-        fields: [
+        [
           {
             field: 'openness',
             name: 'Openness',
@@ -131,209 +132,106 @@ class ToneTrends extends React.Component {
             selected: false
           },
         ],
-        title: "Social Tendencies"
-      }
-    }
-
-    this.analysisArr = [this.state.emotion, this.state.languageStyle, this.state.socialTendencies];
-    this.analysisIndex = 0;
-
-    this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
+      ];
   }
 
   changeSelectedIndex(increment) {
-    this.analysisIndex = (this.analysisArr.length + this.analysisIndex + increment) % (this.analysisArr.length);
+    this.analysisIndex = (3 + this.analysisIndex + increment) % (3)
+
+    // this.analysisIndex = analysisIndex;
+    // this.currentAnalysis = this.analysisArr[analysisIndex];
+    // this.updateChart();
+
     this.forceUpdate();
   }
-
-
-  updateLegend() {
-    let results = this.analysisArr[this.analysisIndex].fields;
-    let legendItems = $(".legend").children();
-
-    $(".legend").attr("style", `width: 250px; height: 500px`);
-    for (let i = 0; i < results.length; i++) {
-      let result = results[i];
-      $(legendItems[i]).attr("style", `top: ${141 + i * 40}px; right: 20px; width: 150px; height: 40px; display: inline-block;`);
-      if (result.selected) {
-        result.style = SELECTED_LINE;
-        $(legendItems[i]).removeClass("unselected-legend");
-        $(legendItems[i]).addClass("selected-legend");
-      } else {
-        result.style = UNSELECTED_LINE;
-        $(legendItems[i]).removeClass("selected-legend");
-        $(legendItems[i]).addClass("unselected-legend");
-      }
-    }
-  }
-
-  updateListeners() {
-    $(".legend > .legend").off();
-    $(".legend > .legend").click((e) => {
-      this.updateResults(e);
-    });
-
-    $(".legend > .legend").mouseenter((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = HOVER_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(".legend > .legend").mouseleave((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = UNSELECTED_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(".line").off();
-    $(".line").click((e) => {
-      this.updateResults(e);
-    });
-
-    $(".line").mouseenter((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = HOVER_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(".line").mouseleave((e) => {
-      let results = this.analysisArr[this.analysisIndex].fields;
-      let index = $(e.currentTarget).index();
-      let result = results[index];
-      if (!result.selected) {
-        result.style = UNSELECTED_LINE;
-      }
-      this.forceUpdate();
-    });
-
-    $(document).off();
-    $(document).keydown((e) => {
-      if (e.keyCode === 37) {
-        this.changeSelectedIndex(-1);
-      } else if (e.keyCode === 39) {
-        this.changeSelectedIndex(1);
-      }
-    })
-  }
-
-  componentDidUpdate() {
-    this.updateLegend();
-    this.updateListeners();
-  }
+  //
+  // componentDidUpdate() {
+  //   this.updateChart();
+  // }
 
   componentDidMount() {
     this.props.fetchBlurbs();
-    this.updateLegend();
-    this.updateListeners();
+    // this.updateChart();
   }
 
   componentWillReceiveProps(newProps) {
     if (!!newProps.blurbs) {
-      let dataSet = [];
+      let dataSets = [[], [], []];
       let blurbs = newProps.blurbs;
-      // console.log(blurbs);
-      for (let i in Object.keys(blurbs)) {
-        if (!blurbs[i]) {
+      for (let i = 0; i < Object.keys(blurbs).length; i++) {
+        let key = Object.keys(blurbs)[i];
+        if (!blurbs[key]) {
           continue;
         }
+        console.log(blurbs[key]);
+        let results = blurbs[key].analysis.document_tone.tone_categories;
 
-        let results = blurbs[i].analysis.document_tone.tone_categories;
-        // console.log(results[1].tones[0]);
-        dataSet.push({
-          x: i,
+        dataSets[0].push({
+          x: key,
           anger: results[0].tones[0].score,
           disgust: results[0].tones[1].score,
           fear: results[0].tones[2].score,
           joy: results[0].tones[3].score,
-          sadness: results[0].tones[4].score,
+          sadness: results[0].tones[4].score
+        });
+
+        dataSets[1].push({
+          x: key,
           analytical: results[1].tones[0].score,
           confident: results[1].tones[1].score,
           tentative: results[1].tones[2].score,
+        });
+
+        dataSets[2].push({
+          x: key,
           openness: results[2].tones[0].score,
           conscientiousness: results[2].tones[1].score,
           extraversion: results[2].tones[2].score,
           agreeableness: results[2].tones[3].score,
           emotionalRange: results[2].tones[4].score,
         });
+
       }
+      console.log(dataSets);
       this.setState({
-        dataSet
+        dataSets,
+        blurbs
       });
+      // this.setSteat
+      // for (let i = 0; i < this.fields.length; i++) {
+      //   this.chartComponents[i] =
+      // }
     }
-  }
-
-  updateResults(e) {
-    let results = this.analysisArr[this.analysisIndex].fields;
-    let index = $(e.currentTarget).index();
-    let result = results[index];
-
-    let legendItems = $(".legend").children();
-
-    if (result.selected) {
-      result.style = UNSELECTED_LINE;
-      result.selected = false;
-      $(legendItems[index]).removeClass("selected-legend");
-      $(legendItems[index]).addClass("unselected-legend");
-    } else {
-      result.style = SELECTED_LINE;
-      result.selected = true;
-      $(legendItems[index]).removeClass("unselected-legend");
-      $(legendItems[index]).addClass("selected-legend");
-    }
-
-    this.forceUpdate();
   }
 
   render() {
-    if (!this.state.dataSet) {
-      return <div></div>;
+    if (!this.fields) {
+      return null;
     }
 
-    let analysis = this.analysisArr[this.analysisIndex];
-
-    let circles = [];
-    for (let i = 0; i < this.analysisArr.length; i++) {
-      if (i === this.analysisIndex) {
-        circles.push(<div key={i} className="circle selected-circle">&nbsp;</div>)
-      } else {
-        circles.push(<div key={i} className="circle unselected-circle">&nbsp;</div>)
-      }
-    }
-
-    return <div className="dashboard-page">
+    let index = this.analysisIndex;
+    let chart;
+    let counter = 0;
+    counter += 1;
+    if (!!this.state.dataSets[index] && this.state.dataSets[0].length > 0) {
+      chart = (
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
-        <div className="chart-inner">
-          <span className="chart-title">{analysis.title}</span>
-          <LineChart
-            margins={{left: 100, right: 100, top: 50, bottom: 50}}
-            data={this.state.dataSet}
-            width={750}
-            height={400}
-            chartSeries={analysis.fields}
-            x={this.x}
-            showXGrid={false}
-            showYGrid={false}
-          />
-          <span className="circles">
-            {circles}
-          </span>
-        </div>
-      <i className="fa fa-angle-right fa-3x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
-      </div>
-    </div>;
+        <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />;
+        <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
+      </div>)
+    // } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
+      // chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
+    } else if (counter > 1) {
+      //TODO can we keep this from showing up before the graph is shown?
+      chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
+      // chart = <div className="empty-chart">&nbsp;</div>;
+    }
+
+    return (
+      <div className="dashboard-page">
+        {chart}
+      </div>);
   }
 }
 

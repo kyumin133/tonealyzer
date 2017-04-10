@@ -8,14 +8,7 @@ const Header = ({currentUser, logout, login, requestDemoUser}) => {
 
   return (
     <div className="header-div">
-      <Link to="home/"><i className="fa fa-lightbulb-o fa-5x header-logo" aria-hidden="true"></i></Link>
-      { currentUser ?
-        <div className="header-center">
-          <Link to={"newBlurb/"} className="analysis-link">New Analysis</Link>
-        </div>
-        :
-        <div></div>
-      }
+      <Link onClick={null} to={currentUser ? "home/" : "/"}><i className="fa fa-lightbulb-o fa-5x header-logo" aria-hidden="true"></i></Link>
       <div className="header-right-icons">
         {
           currentUser ?

@@ -9,7 +9,7 @@ class SessionLinks extends React.Component {
     super(props);
     this.state = {
       open: false,
-      formType: 'Login'
+      formType: 'Log In'
     };
     this.handleLogin= this.handleLogin.bind(this);
     this.handleDemo= this.handleDemo.bind(this);
@@ -20,7 +20,7 @@ class SessionLinks extends React.Component {
 
   handleLoginOpen(e) {
     e.preventDefault();
-    this.setState({open: true, formType: 'Login'});
+    this.setState({open: true, formType: 'Log In'});
   }
   handleSignUpOpen(e) {
     e.preventDefault();
@@ -52,26 +52,19 @@ class SessionLinks extends React.Component {
         <button
           onClick={this.handleLoginOpen}
         >
-        Login!
+        Log In
         </button>
         <button
           onClick={this.handleSignUpOpen}
         >
-        Sign Up!
+        Sign Up
         </button>
         <Modal
           isOpen={this.state.open}
           onClose={this.handleClose}
         >
           <div className='modal-contents'>
-            <div className='close-button-box'>
-              <div></div>
-              <button className='close' onClick={() => this.handleClose()}>✖</button>
-            </div>
-              <br/>
-              <br/>
-              <br/>
-              <SessionFormContainer formType={this.state.formType}/>
+            <SessionFormContainer formType={this.state.formType}/>
           </div>
 
         </Modal>

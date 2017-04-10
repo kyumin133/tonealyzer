@@ -13,10 +13,16 @@ class Dashboard extends React.Component {
         "dashboard-tab unselected-tab",
         "dashboard-tab unselected-tab"
       ],
-      selectedIndex: 0
+      selectedIndex: 0,
+      blurbs: []
     };
 
     this.clickTab = this.clickTab.bind(this);
+  }
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      blurbs: newProps.blurbs
+    })
   }
 
   componentWillMount() {
@@ -47,9 +53,9 @@ class Dashboard extends React.Component {
   render() {
     //moved this here because if it's set in the constructor I can't send down the blurbs to documents
     this.components = [
-      <ToneTrends blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>,
-      <Personality personality={this.props.personality} fetchPersonality={this.props.fetchPersonality} updatePersonality={this.props.updatePersonality}/>,
-      <Documents blurbs={this.props.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>
+      <ToneTrends blurbs={this.state.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>,
+      <Personality personality={this.state.personality} fetchPersonality={this.props.fetchPersonality} updatePersonality={this.props.updatePersonality}/>,
+      <Documents blurbs={this.state.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>
     ];
 
     return <div className="dashboard">
