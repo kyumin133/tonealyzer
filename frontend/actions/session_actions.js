@@ -34,5 +34,8 @@ export const requestSignup = user => dispatch => {
 export const requestLogout = () => dispatch => (
   APIUtil.logout()
   .then(user => dispatch(receiveCurrentUser(null)))
-  .then(() => hashHistory.push('/'))
+  .then(() => {
+    window.currentUser = null;
+    hashHistory.push('/logout');
+  })
 );

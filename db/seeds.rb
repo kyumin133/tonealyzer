@@ -20,4 +20,7 @@ for i in 0...10 do
     user_id: demo_user.id,
     title: "Blurb #{i + 1}"
   )
+  if i == 5
+    sleep(60) # per-minute quota
+  end
 end

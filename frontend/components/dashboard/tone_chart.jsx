@@ -108,7 +108,7 @@ class ToneChart extends React.Component {
     $(".legend:first-of-type").attr("style", `width: 250px; height: 500px`);
     for (let i = 0; i < results.length; i++) {
       let result = results[i];
-      $(legendItems[i]).attr("style", `top: ${101 + i * 40}px; right: 20px; width: 150px; height: 40px; display: inline-block;`);
+      $(legendItems[i]).attr("style", `top: ${101 + i * 40}px; right: 20px; width: 250px; height: 40px; display: inline-block;`);
       if (result.selected) {
         result.style = SELECTED_LINE;
         $(legendItems[i]).removeClass("unselected-legend");

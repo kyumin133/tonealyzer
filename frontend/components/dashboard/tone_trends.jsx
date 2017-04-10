@@ -163,6 +163,10 @@ class ToneTrends extends React.Component {
         if (!blurbs[key]) {
           continue;
         }
+        
+        if (!blurbs[key].analysis.document_tone) {
+          continue;
+        }
 
         let results = blurbs[key].analysis.document_tone.tone_categories;
 
