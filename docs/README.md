@@ -1,4 +1,4 @@
-## Tonealyzer is cool
+## Tonealyzer
 ### Background
 
 Mapping the tone of your writing to what you are trying to convey is both vitally important, and challenging to get right. Who hasn’t sent an email and had the message misunderstood as being overly aggressive or inappropriately cheery? This app leverages powerful natural language processing algorithms developed by IBM Watson to provide feedback to users on the tone of their content, so that their writing gets across its intended message.

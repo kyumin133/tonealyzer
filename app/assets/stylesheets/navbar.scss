@@ -5,11 +5,9 @@
   width: 100%;
   background: $darkest-primary;
   padding: 15px;
-  // margin-bottom: 5px;
 
   img {
     width: auto;
-
   }
 
   .header-logo {
@@ -29,11 +27,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-  }
-
-  .header-right-icons {
-
   }
 
   .analysis-link-wrapper {
@@ -42,7 +35,6 @@
   	color: white;
     height: 40px;
     width: 120px;
-    // padding: 10px;
     border-radius: 3px;
     transition: 0.2s ease-in-out;
     display: flex;
@@ -69,7 +61,6 @@
   .analysis-link:hover {
     text-decoration: none;
   }
-
 }
 
 .session-links > button {

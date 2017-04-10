@@ -17,12 +17,11 @@ class ApplicationController < ActionController::Base
     else
       session[:user_id] = user.id
     end
+
     @current_user = user
   end
 
   def require_logged_in
-    unless logged_in?
-      redirect_to root_url
-    end
+    redirect_to root_url unless logged_in?
   end
 end

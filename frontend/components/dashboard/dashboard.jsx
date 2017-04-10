@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
 
     this.clickTab = this.clickTab.bind(this);
   }
+  
   componentWillReceiveProps(newProps) {
     this.setState({
       blurbs: newProps.blurbs
@@ -51,7 +52,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    //moved this here because if it's set in the constructor I can't send down the blurbs to documents
     this.components = [
       <ToneTrends blurbs={this.state.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>,
       <Personality personality={this.state.personality} fetchPersonality={this.props.fetchPersonality} updatePersonality={this.props.updatePersonality}/>,

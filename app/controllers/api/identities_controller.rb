@@ -1,6 +1,7 @@
 class Api::IdentitiesController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
+# TODO refactor this. what is going on?
   def new
     @user = Identity.create!(email: params[:identity][:user][:username],
                              name: params[:identity][:user][:username],

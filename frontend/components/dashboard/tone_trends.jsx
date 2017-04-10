@@ -197,7 +197,7 @@ class ToneTrends extends React.Component {
         dataSets,
         blurbs
       });
-      // this.setSteat
+      // this.setState
       // for (let i = 0; i < this.fields.length; i++) {
       //   this.chartComponents[i] =
       // }

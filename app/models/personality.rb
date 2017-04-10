@@ -1,5 +1,4 @@
 class Personality < ApplicationRecord
-
   validates :user_id, presence: true
 
   belongs_to :user
@@ -24,8 +23,5 @@ class Personality < ApplicationRecord
     full_response = HTTParty.post("https://gateway.watsonplatform.net/personality-insights/api/v3/profile?version=2016-10-20", options)
 
     self.update(analysis: JSON.parse(full_response.body))
-    
   end
-
-
 end

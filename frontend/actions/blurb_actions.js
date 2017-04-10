@@ -22,7 +22,6 @@ export const fetchBlurbs = () => dispatch => (
   .then((blurbs) => dispatch(receiveBlurbs(blurbs)))
 );
 
-
 export const receiveBlurb = (blurb) => ({
   type: RECEIVE_BLURB,
   blurb
