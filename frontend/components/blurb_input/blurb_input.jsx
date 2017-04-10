@@ -64,12 +64,11 @@ class BlurbInput extends React.Component{
               placeholder="Document Body...">
             </textarea>
           </div>
-          <div className="form-submit-2">
+          <div className="form-submit-2"
+               onClick={this.handleSubmit}>
             <input
               type="submit"
-              value="Analyze!"
-              onClick={this.handleSubmit}
-            />
+              value="Analyze!"/>
           </div>
         </form>
       </div>
