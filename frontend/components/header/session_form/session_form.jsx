@@ -66,12 +66,14 @@ class SessionForm extends React.Component {
 	}
 
 	handleIdentitySubmit() {
-		// e.preventDefault();
+		//TODO make sure this still works after add line 70
+		e.preventDefault();
 		window.location = "/api/auth/identity/callback";
 	}
 
 	handleIdentitySignUp() {
-		// e.preventDefault();
+		//TODO make sure this still works too
+		e.preventDefault();
 		window.location = "api/auth/identity/register/callback";
 	}
 

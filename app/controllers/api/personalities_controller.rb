@@ -1,6 +1,6 @@
 class Api::PersonalitiesController < ApplicationController
   def show
-    #maybe want to just set this to current_user instead of passing through a userid
+    # TODO maybe want to just set this to current_user instead of passing through a userid
 		if User.find(params[:id]).personality
       @personality = User.find(params[:id]).personality
     else
@@ -9,7 +9,6 @@ class Api::PersonalitiesController < ApplicationController
     end
 
 		render json: @personality.analysis
-
   end
 
   def update
@@ -17,5 +16,4 @@ class Api::PersonalitiesController < ApplicationController
     @personality.set_personality_analysis
     render json: @personality.analysis
   end
-
 end
