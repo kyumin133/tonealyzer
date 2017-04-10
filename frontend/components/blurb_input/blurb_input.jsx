@@ -36,8 +36,6 @@ class BlurbInput extends React.Component{
         this.props.createBlurb(this.state.title, this.state.body);
         this.setState({analysisLoading: true});
       }, 3000);
-    } else {
-      this.errors = "Please create a title and enter text for the document body."
     }
   }
 
