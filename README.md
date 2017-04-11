@@ -67,8 +67,7 @@ class Api::BlurbsController < ApplicationController
 
 From there, the store is able to use the JSON object to graphically show the tone of the given text.
 
-
-### insert here
+### Parsing API results for display in react-d3
 
 ```javascript
 dataSets[0].push({
@@ -79,6 +78,22 @@ dataSets[0].push({
   joy: results[0].tones[3].score,
   sadness: results[0].tones[4].score
 });
+
+<LineChart
+  margins={{left: 100, right: 100, top: 50, bottom: 50}}
+  data={dataSet}
+  width={750}
+  height={400}
+  chartSeries={fields}
+  x={this.x}
+  xTicks={[0]}
+  xLabel={"Submission"}
+  yTicks={[11]}
+  yDomain={[0, 1]}
+  yLabel={"Score"}
+  showXGrid={false}
+  showYGrid={false}
+/>
 ```
 
 ## Future Directions
