@@ -70,10 +70,6 @@ class ToneChart extends React.Component {
     }
   }
 
-  // handleKeyDown(e) {
-  //   console.log("key down!");
-  // }
-
   componentWillReceiveProps(newProps) {
     // let analysis = newProps.analysis;
     this.fields = newProps.fields;
@@ -233,10 +229,6 @@ class ToneChart extends React.Component {
 
   render() {
     if ((!this.fields) || (!this.title) || (this.state.dataSet.length === 0) || (this.props.index === undefined)) {
-      // console.log(this.fields);
-      // console.log(this.title);
-      // console.log(this.state.dataSet.length);
-      // console.log(this.props.index);
       return (<div className="empty-chart">&nbsp;</div>);
     }
 
