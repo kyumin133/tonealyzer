@@ -35,16 +35,37 @@ handleGoogleSubmit(e) {
 
 ### IBM Watson API
 
+Using the Watson API allows users to receive a comprehensive analysis of their text, which persists across their sessions so that they can see how the tonality of their writing has improved. Once fetched from Watson , each result is stored within a `blurb` object. Through storing the results of each API call, fewer external API calls are needed, leading to faster results served to the app's frontend.
+
+The API is queried through use of the ruby `Net:HTTP` library. Using this library, the rails backend makes a request to the Watson API for the tone analysis of a given blurb of text:
+
 ```ruby
-def generate_analysis
-  all_blurb_bodies = Blurb.all.map { |blurb| blurb.body }
-  if all_blurb_bodies.include?(self.body)
-    Blurb.where({body: self.body}).first
-  else
-    new_analysis
-  end
-end
+uri = URI.parse("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone")
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+
+headers = {
+  "Content-Type" => "text/plain"
+}
+
+full_response = http.post("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone?version=2016-05-09&sentences=true", self.body, headers)
 ```
+
+This call returns a JSON object that is then returned to the controller which delivers the Object to the frontend store:
+```ruby
+class Api::BlurbsController < ApplicationController
+  def create
+		@blurb = Blurb.new(user_id: current_user.id, title: params[:title], body: params[:body])
+
+		if @blurb.save
+			render "api/blurbs/show"
+		else
+			render json: @blurb.errors.full_messages, status: 422
+		end
+  end
+```
+
+From there, the store is able to use the JSON object to graphically show the tone of the given text.
 
 ### Parsing API results for display in react-d3
 
