@@ -6,15 +6,31 @@
   position: fixed;
   width: 100%;
 
+  h1, h2 {
+    left: 5%;
+  }
+
   h1 {
     position: absolute;
-    font-size: 25px;
+    font-size: 40px;
     width: 300px;
-    top: 20%;
-    left: 10%;
+    top: 15%;
+    // left: 10%;
     color: white;
     font-weight: normal;
     z-index: 10;
+  }
+
+  h2 {
+    position: absolute;
+    font-size: 30px;
+    // width: 1000px;
+    top: 25%;
+    // left: 10%;
+    color: white;
+    font-weight: normal;
+    z-index: 10;
+    text-align: left;
   }
 
   .image-container {
