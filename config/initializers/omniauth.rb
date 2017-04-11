@@ -1,5 +1,5 @@
 OmniAuth.config.logger = Rails.logger
-OmniAuth.config.full_host = Rails.env.production? ? 'https://domain.com' : 'http://localhost:3000'
+OmniAuth.config.full_host = Rails.env.production? ? 'https://tonealyzer.herokuapp.com' : 'http://localhost:3000'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   configure do |config|
