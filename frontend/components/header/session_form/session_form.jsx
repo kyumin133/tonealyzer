@@ -67,7 +67,7 @@ class SessionForm extends React.Component {
 
 	handleLinkedinSubmit(e) {
 		e.preventDefault();
-		window.location = "/api/auth/linkedin_oauth2";
+		window.location = "/api/auth/linkedin";
 	}
 
 	handleIdentitySubmit() {
