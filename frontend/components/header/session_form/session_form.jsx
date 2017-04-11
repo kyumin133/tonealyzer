@@ -65,6 +65,11 @@ class SessionForm extends React.Component {
 		window.location = "/api/auth/google_oauth2";
 	}
 
+	handleLinkedinSubmit(e) {
+		e.preventDefault();
+		window.location = "/api/auth/linkedin_oauth2";
+	}
+
 	handleIdentitySubmit() {
 		//TODO make sure this still works after add line 70
 		window.location = "/api/auth/identity/callback";
@@ -147,6 +152,9 @@ class SessionForm extends React.Component {
 		          <img src="assets/google.png"></img>
 		        </button>
 						<button type="button" className="third-party-login" onClick={this.handleFacebookSubmit}>
+		          <img src="assets/facebook.png"></img>
+		        </button>
+						<button type="button" className="third-party-login" onClick={this.handleLinkedinSubmit}>
 		          <img src="assets/facebook.png"></img>
 		        </button>
 					</div>
