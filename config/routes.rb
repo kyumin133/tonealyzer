@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     # get 'auth/google', to: 'sessions#requestGoogle'
     get 'auth/failure', to: redirect('/')
     get 'signout', to: 'sessions#destroy', as: 'signout'
-    get 'auth/identity/register/callback', to: 'identities#new'
-    post 'auth/identity/register/callback', to: 'identities#new'
+    get 'auth/identity/register/callback', to: 'identities#create'
+    post 'auth/identity/register/callback', to: 'identities#create'
     # post 'auth/identity/register/callback', to: 'sessions#create'
     # get 'auth/identity/register/callback', to: 'sessions#create'
     resource :session, only: [:create, :destroy]
