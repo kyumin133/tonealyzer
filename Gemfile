@@ -7,8 +7,10 @@ end
 
 gem 'rack-cors'
 gem 'omniauth'
+gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-identity'
 
 gem 'figaro'
