@@ -155,7 +155,7 @@ class SessionForm extends React.Component {
 		          <img src="assets/facebook.png"></img>
 		        </button>
 						<button type="button" className="third-party-login" onClick={this.handleLinkedinSubmit}>
-		          <img src="assets/linkedin.png"></img>
+		          <img src="assets/linkedin1.png"></img>
 		        </button>
 					</div>
           <h5>{this.renderErrors()}</h5>
