@@ -196,7 +196,7 @@ class ToneTrends extends React.Component {
         });
 
       }
-      
+
       this.setState({
         dataSets,
         blurbs

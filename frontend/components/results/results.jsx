@@ -49,6 +49,7 @@ class Results extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.components[0] = <DocumentResults blurb={newProps.blurb}/>;
+    this.components[1] = <SentenceResults blurb={newProps.blurb}/>;
     this.setState({
       blurb: newProps.blurb
     });

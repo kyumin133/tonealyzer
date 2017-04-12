@@ -3,9 +3,13 @@ require 'httparty'
 class Blurb < ApplicationRecord
   validates :body, :user_id, :analysis,  presence: true
 
-  before_validation :ensure_analysis
+  before_validation :ensure_analysis, :replace_newlines
 
   belongs_to :user
+
+  def replace_newlines
+    self.body = self.body.gsub(/\n/, "\\n")
+  end
 
   def generate_analysis
     all_blurb_bodies = Blurb.all.map { |blurb| blurb.body }
