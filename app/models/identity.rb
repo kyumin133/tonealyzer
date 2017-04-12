@@ -2,7 +2,7 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
   validates :email, :password_digest, presence: true
   validates :email, uniqueness: true
   # validates :password, length: {minimum: 6, allow_nil: true}
-  #
+  
   # attr_reader :password
 
   def self.find_by_credentials(email, password)
