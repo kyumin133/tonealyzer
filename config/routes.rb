@@ -7,18 +7,12 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     get 'auth/:provider/callback', to: 'sessions#create'
     post 'auth/:provider/callback', to: 'sessions#create'
-    # TODO make sure to test for certain which routes are used
-    # get 'auth/:provider', to: 'sessions#prepare'
-    # get 'auth/facebook', to: 'sessions#requestFacebook'
-    # get 'auth/google', to: 'sessions#requestGoogle'
-    get 'auth/failure', to: redirect('/')
-    get 'signout', to: 'sessions#destroy', as: 'signout'
     get 'auth/identity/register/callback', to: 'identities#create'
     post 'auth/identity/register/callback', to: 'identities#create'
-    # post 'auth/identity/register/callback', to: 'sessions#create'
-    # get 'auth/identity/register/callback', to: 'sessions#create'
+    get 'auth/failure', to: redirect('/')
+    get 'signout', to: 'sessions#destroy', as: 'signout'
     resource :session, only: [:create, :destroy]
-    resources :identities, only: [:new, :create]
+    resources :identities, only: [:create]
     resources :blurbs, only: [:create, :show, :index]
     resources :personalities, only: [:show, :update]
   end
@@ -33,3 +27,9 @@ Rails.application.routes.draw do
 
    }, ["CORS Preflight"]] }, :via => [:options]
 end
+
+# get 'auth/:provider', to: 'sessions#prepare'
+# get 'auth/facebook', to: 'sessions#requestFacebook'
+# get 'auth/google', to: 'sessions#requestGoogle'
+# post 'auth/identity/register/callback', to: 'sessions#create'
+# get 'auth/identity/register/callback', to: 'sessions#create'

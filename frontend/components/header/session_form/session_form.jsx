@@ -12,10 +12,6 @@ class SessionForm extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		//TODO i don't think we need to bind these
-		// this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
-		// this.handleFacebookSubmit = this.handleFacebookSubmit.bind(this);
-		// this.handleIdentitySubmit = this.handleIdentitySubmit.bind(this);
 		this.updateFormType = this.updateFormType.bind(this);
 	}
 
@@ -71,36 +67,12 @@ class SessionForm extends React.Component {
 	}
 
 	handleIdentitySubmit() {
-		//TODO make sure this still works after add line 70
 		window.location = "/api/auth/identity/callback";
 	}
 
 	handleIdentitySignUp() {
-		//TODO make sure this still works too
 		window.location = "api/auth/identity/register/callback";
 	}
-
-	// navLink() {
-	// 	if (this.state.loginOrSignUp === "login") {
-	// 		return (
-	// 			<div>
-	// 				<FlatButton
-	// 					onClick={this.updateFormType('signup')}
-	// 					label="Sign Up"
-	// 					/>
-	// 			</div>
-	// 		);
-	// 	} else {
-	// 		return (
-	// 			<div>
-	// 				<FlatButton
-	// 					onClick={this.updateFormType('login')}
-	// 					label="Login"
-	// 					/>
-	// 			</div>
-	// 		);
-	// 	}
-	// }
 
 	navLink() {
 		if (this.state.formType === "Log In") {
