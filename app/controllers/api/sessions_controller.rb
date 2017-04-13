@@ -26,6 +26,8 @@ class Api::SessionsController < ApplicationController
       login(@user)
       redirect_to "#/redirect"
     else
+      debugger
+      # render json: ["Invalid username and password combination."]
       redirect_to "#/redirect"
     end
   end

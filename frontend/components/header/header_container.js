@@ -2,9 +2,12 @@ import { connect } from 'react-redux';
 import { requestLogout, requestLogin, requestDemoUser } from "../../actions/session_actions";
 import Header from './header';
 
-const mapStateToProps = ({ session }) => ({
-  currentUser: session.currentUser
-});
+const mapStateToProps = ({ session }) => {
+  // debugger
+  return({
+    currentUser: session.currentUser
+  })
+};
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(requestLogout()),
