@@ -255,3 +255,41 @@
   // background-color: rgb(245, 245, 245);
   // border: 1px solid rgb(130, 130, 130);
 }
+
+.text-body {
+  overflow-y: auto;
+  height: 80%;
+  width: 80%;
+}
+
+.sentence-results {
+  // background-color: mistyrose;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.sentence-categories {
+  width: 20%;
+  height: 80%;
+  // background-color: honeydew;
+}
+
+
+.selected-category {
+
+}
+
+.selected-category > ul {
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.unselected-category {
+  color: rgb(180, 180, 180);
+}
+
+.unselected-category > ul {
+  display: none;
+}
