@@ -120,7 +120,7 @@ class ToneTrends extends React.Component {
           {
             field: 'agreeableness',
             name: 'Agreeableness',
-            color: 'navy',
+            color: 'rgb(0, 128, 0)',
             style: UNSELECTED_LINE,
             selected: false
           },

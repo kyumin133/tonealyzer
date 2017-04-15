@@ -27,7 +27,7 @@ const COLORS = {
   openness_big5: [0, 128, 128],
   conscientiousness_big5: [128, 0, 0],
   extraversion_big5: [75, 0, 130],
-  agreeableness_big5: [0, 0, 128],
+  agreeableness_big5: [0, 128, 0],
   neuroticism_big5: [210, 105, 30]
 };
 

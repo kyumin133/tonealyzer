@@ -17,7 +17,7 @@
   padding: 10px 20px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
   width: 525px;
   text-align: center;
   font-size: 24px;
@@ -114,7 +114,7 @@
 }
 
 .results-social .bar:nth-of-type(4) {
-  fill: navy;
+  fill: rgb(0, 128, 0);
 }
 
 .results-social .bar:nth-of-type(5) {
@@ -151,7 +151,7 @@
 }
 
 .bar {
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .bar:hover {
@@ -166,7 +166,7 @@
   position: absolute;
 
   animation-name: fade-in-hover;
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
 
   display: flex;
   flex-direction: column;
@@ -212,7 +212,7 @@
 
 .hidden-hover-box {
   animation-name: fade-out-hover;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
 }
 
 @keyframes fade-out-hover {
@@ -263,7 +263,7 @@
 }
 
 .text-body > span {
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .sentence-results {
@@ -282,7 +282,7 @@
 
 
 .selected-category > span {
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .selected-category > span:hover {
@@ -293,10 +293,12 @@
 .selected-category > ul {
   margin-left: 20px;
   margin-right: 40px;
+  animation-name: fade-in-hover;
+  animation-duration: 0.3s;
 }
 
 .selected-category > ul > li {
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .selected-category > ul > li:hover {
@@ -306,7 +308,7 @@
 
 .unselected-category {
   color: rgb(180, 180, 180);
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .unselected-category > span:hover {
@@ -326,7 +328,7 @@
   border: 1px solid black;
   padding: 20px;
   animation-name: fade-in-hover;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   // width: 300px;
 }
 
@@ -349,7 +351,7 @@
 }
 
 .sentence {
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .sentence:hover {
@@ -358,6 +360,7 @@
 }
 
 .highlight {
+  transition: 0.3s ease-in-out;
   background-color: rgba(150, 150, 150, 0.3);
 }
 
