@@ -16,7 +16,7 @@ class Api::SessionsController < ApplicationController
         return
       end
     end
-
+    debugger
     if @user
       login(@user)
       render "/api/users/show"
@@ -28,7 +28,7 @@ class Api::SessionsController < ApplicationController
     else
       debugger
       # render json: ["Invalid username and password combination."]
-      redirect_to "#/redirect"
+      redirect_to "/auth/failure"
     end
   end
 
@@ -38,6 +38,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def failure
+    debugger
     redirect_to root_path, alert: "Authentication failed!"
   end
 end

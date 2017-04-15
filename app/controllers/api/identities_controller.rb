@@ -3,6 +3,7 @@ class Api::IdentitiesController < ApplicationController
 
   def create
     if params[:identity]
+      # debugger
       @user = Identity.create!(email: params[:identity][:user][:username],
                                name: params[:identity][:user][:username],
                                password_digest: BCrypt::Password.create(
@@ -15,6 +16,7 @@ class Api::IdentitiesController < ApplicationController
       render "api/users/show"
     else
       redirect_to "#/redirect"
+      # debugger
     end
   end
 end
