@@ -21,7 +21,7 @@ class Root extends React.Component {
   }
 
   ensureLoggedIn(nextState, replace) {
-    debugger;
+    // debugger;
     if (!window.currentUser) {
       hashHistory.push("/");
     }
