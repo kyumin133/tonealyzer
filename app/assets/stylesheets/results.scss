@@ -325,6 +325,8 @@
   background-color: white;
   border: 1px solid black;
   padding: 20px;
+  animation-name: fade-in-hover;
+  animation-duration: 0.5s;
   // width: 300px;
 }
 
@@ -352,5 +354,13 @@
 
 .sentence:hover {
   cursor: pointer;
-  opacity: 0.7;
+  filter: grayscale(0.5);
+}
+
+.highlight {
+  background-color: rgba(150, 150, 150, 0.3);
+}
+
+.highlight:hover {
+  cursor: pointer;
 }
