@@ -1,5 +1,20 @@
 import React from "react";
 
+const CATEGORIES = ["emotion_tone", "writing_tone", "social_tone"];
+const CATEGORY_NAMES = ["Emotion", "Writing Style", "Social Tendencies"];
+
+const TONES = [
+                "anger", "disgust", "fear", "joy", "sadness",
+                "analytical", "confident", "tentative",
+                "openness_big5", "conscientiousness_big5", "extraversion_big5", "agreeableness_big5", "neuroticism_big5"
+              ];
+const TONE_NAMES =  [
+                      "Anger", "Disgust", "Fear", "Joy", "Sadness",
+                      "Analytical", "Confident", "Tentative",
+                      "Openness", "Conscientiousness", "Extraversion", "Agreeableness", "Emotional Range"
+                    ];
+
+
 const COLORS = {
   anger: [178, 34, 34],
   disgust: [0, 100, 0],
@@ -19,13 +34,82 @@ const COLORS = {
 class SentenceResults extends React.Component {
   constructor(props) {
     super(props);
-    this.showHover = this.showHover.bind(this);
-    this.updateBlurb(props.blurb);
 
+    this.initializeCategories(props);
+
+    this.updateBlurb(props.blurb);
+    this.handleToneClick = this.handleToneClick.bind(this);
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+
+
+    this.showHover = this.showHover.bind(this);
+  }
+
+  handleToneClick(tone) {
+    let selectedTones = this.state.selectedTones;
+    selectedTones[tone] = !selectedTones[tone];
+
+    // this.updateBlurb(this.props.blurb)
+    this.setState({
+      selectedTones
+    });
+  }
+
+  handleCategoryClick(category) {
+    let selectedCategories = this.state.selectedCategories;
+    // selectedCategories[category] = true;
+    for (let i = 0; i < CATEGORIES.length; i++) {
+      selectedCategories[CATEGORIES[i]] = (CATEGORIES[i] === category);
+    }
+
+    let start = 0;
+    let end = 4;
+
+    if (category === "writing_tone") {
+      start = 5;
+      end = 7;
+    } else if (category === "social_tone") {
+      start = 8;
+      end = 12;
+    }
+
+    let selectedTones = this.state.selectedTones;
+    for (let i = 0; i <= TONES.length; i++) {
+      if ((i >= start) && (i <= end)) {
+        selectedTones[TONES[i]] = true;
+      } else {
+        selectedTones[TONES[i]] = false;
+      }
+    }
+
+    this.setState({
+      selectedCategories,
+      selectedTones
+    });
+  }
+
+  initializeCategories(props) {
+    let selectedCategories = {};
+    for (let i = 0; i < CATEGORIES.length; i++) {
+      selectedCategories[CATEGORIES[i]] = (i === 0);
+    }
+
+    let selectedTones = {};
+    for (let i = 0; i < TONES.length; i++) {
+      selectedTones[TONES[i]] = (i < 5);
+    }
+
+    this.state = {
+      selectedCategories,
+      selectedTones
+    };
   }
 
   showHover(e) {
-    // console.log(this.state.analyses[0][$(e.currentTarget).index()]);
+
+  }
+
+  componentWillUpdate() {
   }
 
   componentWillReceiveProps(newProps) {
@@ -33,17 +117,18 @@ class SentenceResults extends React.Component {
   }
 
   updateBlurb(newBlurb) {
-    let i = -1;
-
     let bodyRaw = newBlurb.body.split("\\n");
 
     let body = [];
+
     for (let i = 0; i < bodyRaw.length; i++) {
       if (bodyRaw[i].length === 0) {
         continue;
       }
       body.push(bodyRaw[i]);
     }
+
+    let lineBreak = [];
 
     let sentences = newBlurb.analysis.sentences_tone;
     let blurb = [];
@@ -53,52 +138,136 @@ class SentenceResults extends React.Component {
 
     for (let i = 0; i < sentences.length; i++) {
       let sentence = sentences[i];
-
-      let highestScore = 0;
-      let highestCategory = "emotion_tone";
+      blurb.push(sentence.text);
 
       for (let j = 0; j < analyses.length; j++) {
         let category = sentence.tone_categories[j];
         let tones = category.tones;
-
-        for (let k = 0; k < tones.length; k++) {
-          let score = tones[k].score;
-          if (score > highestScore) {
-            highestScore = score;
-            highestCategory = tones[k].tone_id;
-          }
-        }
         analyses[j].push(tones);
       }
 
-
       body[bodyIndex] = body[bodyIndex].replace(sentence.text, "");
       body[bodyIndex] = body[bodyIndex].replace(/^\s+/, "");
-      console.log(highestScore);
-      let color;
-      if (highestScore >= 0.5) {
-        color = `rgba(${100 + COLORS[highestCategory][0]}, ${100 + COLORS[highestCategory][1]}, ${100 + COLORS[highestCategory][2]}, ${highestScore * 0.5})`
-      } else {
-        color = "none";
-      }
-
 
       if (body[bodyIndex] === "") {
+        lineBreak.push(true);
         bodyIndex++;
-        blurb.push(<span style={{backgroundColor: color}} onClick={this.showHover} key={i}>{sentence.text}<br/><br/></span>);
       } else {
-        blurb.push(<span style={{backgroundColor: color}} onClick={this.showHover} key={i}>{sentence.text + " "}</span>);
+        lineBreak.push(false);
       }
     }
 
-    this.state = {
-      blurb,
-      analyses
-    };
+    if (!this.state.blurb) {
+      this.state = {
+        selectedCategories: this.state.selectedCategories,
+        selectedTones: this.state.selectedTones,
+        blurb,
+        analyses,
+        lineBreak
+      };
+    } else {
+      this.setState({
+        blurb,
+        analyses,
+        lineBreak
+      });
+    }
+
+
   }
+
+  getColor(index) {
+    let highestScore = 0;
+    let highestTone = "";
+
+    for (let i = 0; i < TONES.length; i++) {
+      if (!this.state.selectedTones[TONES[i]]) {
+        continue;
+      }
+
+      let toneIndex = i;
+      let catIndex = 0;
+
+      if ((5 <= toneIndex) && (toneIndex < 8)) {
+        toneIndex -= 5;
+        catIndex = 1;
+      } else if ((8 <= toneIndex) && (toneIndex < 13)) {
+        toneIndex -= 8;
+        catIndex = 2;
+      }
+
+      let score = this.state.analyses[catIndex][index][toneIndex]["score"];
+      if ((score > highestScore) && (score >= 0.5)) {
+        highestScore = score;
+        highestTone = TONES[i];
+      }
+    }
+
+
+    if ((highestTone === "") || (!this.state.selectedTones[highestTone])) {
+      return "rgba(255, 255, 255, 0)";
+    }
+
+    return `rgba(${100 + COLORS[highestTone][0]}, ${100 + COLORS[highestTone][1]}, ${100 + COLORS[highestTone][2]}, ${highestScore})`;
+  }
+
   render() {
+    if (!this.state.blurb) {
+      return null;
+    }
+
+
+    let categoriesArr = [];
+    for (let i = 0; i < CATEGORIES.length; i++) {
+      let category = CATEGORIES[i];
+      if (this.state.selectedCategories[category]) {
+        let tonesArr = [];
+        let start, end;
+
+        if (i === 0) {
+          start = 0;
+          end = 4;
+        } else if (i === 1) {
+          start = 5;
+          end = 7;
+        } else {
+          start = 8;
+          end = 12;
+        }
+
+        for (let j = start; j <= end; j++) {
+          let tone = TONES[j];
+
+          if (this.state.selectedTones[tone]) {
+            let colors = COLORS[tone];
+            tonesArr.push(<li onClick={() => {this.handleToneClick(tone)}} style={{backgroundColor: `rgb(${100 + colors[0]}, ${100 + colors[1]}, ${100 + colors[2]})`}} key={j}>{TONE_NAMES[j]}</li>)
+          } else {
+            tonesArr.push(<li onClick={() => {this.handleToneClick(tone)}} className="unselected-tone" key={j}>{TONE_NAMES[j]}</li>)
+          }
+
+        }
+        categoriesArr.push(<li className="selected-category" key={i}><span onClick={() => {this.handleCategoryClick(category)}} >{CATEGORY_NAMES[i]}</span><ul>{tonesArr}</ul></li>)
+      } else {
+        categoriesArr.push(<li className="unselected-category" key={i}><span onClick={() => {this.handleCategoryClick(category)}}>{CATEGORY_NAMES[i]}</span></li>)
+      }
+    }
+    let categories = <ul>{categoriesArr}</ul>;
+
+    let blurb = [];
+    for (let i = 0; i < this.state.blurb.length; i++) {
+      let backgroundColor = this.getColor(i);
+      if (this.state.lineBreak[i]) {
+        blurb.push(<span key={i} style={{backgroundColor}}>{this.state.blurb[i]}<br></br><br></br></span>);
+      } else {
+        blurb.push(<span key={i} style={{backgroundColor}}>{this.state.blurb[i]} </span>);
+      }
+    }
+
     return <div className="dashboard-page">
-      <div className="text-body">{this.state.blurb}</div>
+      <div className="sentence-results">
+        <div className="sentence-categories">{categories}</div>
+        <div className="text-body">{blurb}</div>
+      </div>
     </div>;
   }
 }
