@@ -17,7 +17,7 @@
   padding: 10px 20px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
   width: 525px;
   text-align: center;
   font-size: 24px;
@@ -114,7 +114,7 @@
 }
 
 .results-social .bar:nth-of-type(4) {
-  fill: navy;
+  fill: rgb(0, 128, 0);
 }
 
 .results-social .bar:nth-of-type(5) {
@@ -151,7 +151,7 @@
 }
 
 .bar {
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .bar:hover {
@@ -166,7 +166,7 @@
   position: absolute;
 
   animation-name: fade-in-hover;
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
 
   display: flex;
   flex-direction: column;
@@ -212,7 +212,7 @@
 
 .hidden-hover-box {
   animation-name: fade-out-hover;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
 }
 
 @keyframes fade-out-hover {
@@ -260,6 +260,11 @@
   overflow-y: auto;
   height: 80%;
   width: 80%;
+  padding-right: 20px;
+}
+
+.text-body > span {
+  transition: 0.3s ease-in-out;
 }
 
 .sentence-results {
@@ -268,28 +273,98 @@
   align-items: flex-start;
   justify-content: space-between;
   margin-top: 20px;
+  position: relative;
 }
 
 .sentence-categories {
   width: 20%;
   height: 80%;
-  // background-color: honeydew;
 }
 
 
-.selected-category {
+.selected-category > span {
+  transition: 0.3s ease-in-out;
+}
 
+.selected-category > span:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .selected-category > ul {
   margin-left: 20px;
   margin-right: 40px;
+  animation-name: fade-in-hover;
+  animation-duration: 0.3s;
+}
+
+.selected-category > ul > li {
+  transition: 0.3s ease-in-out;
+}
+
+.selected-category > ul > li:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .unselected-category {
   color: rgb(180, 180, 180);
+  transition: 0.3s ease-in-out;
+}
+
+.unselected-category > span:hover {
+  cursor: pointer;
+  filter: brightness(0.5);
 }
 
 .unselected-category > ul {
   display: none;
+}
+
+
+.sentence-hover {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  animation-name: fade-in-hover;
+  animation-duration: 0.3s;
+  // width: 300px;
+}
+
+.hover-tone-ul {
+}
+
+.hover-tone-li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hover-tone-name {
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.hover-tone-score {
+
+}
+
+.sentence {
+  transition: 0.3s ease-in-out;
+}
+
+.sentence:hover {
+  cursor: pointer;
+  filter: grayscale(0.5);
+}
+
+.highlight {
+  transition: 0.3s ease-in-out;
+  background-color: rgba(150, 150, 150, 0.3);
+}
+
+.highlight:hover {
+  cursor: pointer;
 }

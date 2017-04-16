@@ -27,7 +27,7 @@ const COLORS = {
   openness_big5: [0, 128, 128],
   conscientiousness_big5: [128, 0, 0],
   extraversion_big5: [75, 0, 130],
-  agreeableness_big5: [0, 0, 128],
+  agreeableness_big5: [0, 128, 0],
   neuroticism_big5: [210, 105, 30]
 };
 
@@ -35,7 +35,7 @@ class SentenceResults extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initializeCategories(props);
+    this.initializeState(props);
 
     this.updateBlurb(props.blurb);
     this.handleToneClick = this.handleToneClick.bind(this);
@@ -43,6 +43,7 @@ class SentenceResults extends React.Component {
 
 
     this.showHover = this.showHover.bind(this);
+    this.hideHover = this.hideHover.bind(this);
   }
 
   handleToneClick(tone) {
@@ -88,7 +89,7 @@ class SentenceResults extends React.Component {
     });
   }
 
-  initializeCategories(props) {
+  initializeState(props) {
     let selectedCategories = {};
     for (let i = 0; i < CATEGORIES.length; i++) {
       selectedCategories[CATEGORIES[i]] = (i === 0);
@@ -100,13 +101,64 @@ class SentenceResults extends React.Component {
     }
 
     this.state = {
+      showHover: false,
       selectedCategories,
       selectedTones
     };
   }
 
-  showHover(e) {
+  showHover(e, idx) {
+    let category;
+    let categoryIndex;
+    for (let i = 0; i < CATEGORIES.length; i++) {
+      if (this.state.selectedCategories[CATEGORIES[i]]) {
+        category = CATEGORIES[i];
+        categoryIndex = i;
+        break;
+      }
+    }
 
+    let analysis = this.state.analyses[categoryIndex];
+    let start = 0;
+    let end = 4;
+
+    if (categoryIndex === 1) {
+      start = 5;
+      end = 7;
+    } else if (categoryIndex === 2) {
+      start = 8;
+      end = 12;
+    }
+
+    let hoverArr = [];
+
+    for (let i = start; i <= end; i++) {
+      hoverArr.push(<li key={i} className="hover-tone-li"><span className="hover-tone-name">{TONE_NAMES[i]}:</span><span className="hover-tone-score">{Math.round(1000 * analysis[idx][i - start].score) / 1000}</span></li>)
+    }
+
+    let bodyOffset = $(".sentence-results").offset();
+    let left = e.clientX - bodyOffset.left;
+    let top = e.clientY - bodyOffset.top + 30;
+
+    if (top > 300) {
+      top -= 210;
+    }
+    if (left > 850) {
+      left -= 200;
+    }
+    let hover = <div className="sentence-hover" style={{left, top}}><ul className="hover-tone-ul">{hoverArr}</ul></div>;
+
+    this.setState({
+      showHover: true,
+      hoverSentence: idx,
+      hover
+    })
+  }
+
+  hideHover(e) {
+    this.setState({
+      showHover: false
+    })
   }
 
   componentWillUpdate() {
@@ -158,13 +210,10 @@ class SentenceResults extends React.Component {
     }
 
     if (!this.state.blurb) {
-      this.state = {
-        selectedCategories: this.state.selectedCategories,
-        selectedTones: this.state.selectedTones,
-        blurb,
-        analyses,
-        lineBreak
-      };
+      this.state.blurb = blurb;
+      this.state.analyses = analyses;
+      this.state.lineBreak = lineBreak;
+
     } else {
       this.setState({
         blurb,
@@ -253,13 +302,28 @@ class SentenceResults extends React.Component {
     }
     let categories = <ul>{categoriesArr}</ul>;
 
+    let hover = null;
+    if (this.state.showHover) {
+      hover =   this.state.hover;
+    }
+
     let blurb = [];
     for (let i = 0; i < this.state.blurb.length; i++) {
       let backgroundColor = this.getColor(i);
+
+      let style = { backgroundColor };
+      let className = "sentence";
+      if ((this.state.showHover) && (i === this.state.hoverSentence) && (backgroundColor === "rgba(255, 255, 255, 0)")) {
+        console.log("hi!");
+        className = "highlight";
+        style = {};
+      }
+
       if (this.state.lineBreak[i]) {
-        blurb.push(<span key={i} style={{backgroundColor}}>{this.state.blurb[i]}<br></br><br></br></span>);
+        blurb.push(<span className={className} onMouseOver={(e) => (this.showHover(e, i))} onMouseLeave={this.hideHover} key={i} style={style}>{this.state.blurb[i]}<br></br><br></br></span>);
       } else {
-        blurb.push(<span key={i} style={{backgroundColor}}>{this.state.blurb[i]} </span>);
+        blurb.push(<span className={className} onMouseOver={(e) => (this.showHover(e, i))} onMouseLeave={this.hideHover} key={i} style={style}>{this.state.blurb[i]}</span>);
+        blurb.push(<span key={100 + i}> </span>)
       }
     }
 
@@ -267,6 +331,7 @@ class SentenceResults extends React.Component {
       <div className="sentence-results">
         <div className="sentence-categories">{categories}</div>
         <div className="text-body">{blurb}</div>
+        {hover}
       </div>
     </div>;
   }
