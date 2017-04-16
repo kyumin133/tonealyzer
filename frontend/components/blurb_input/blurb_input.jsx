@@ -12,8 +12,6 @@ class BlurbInput extends React.Component{
       error2: []
     };
 
-    // this.errors = [];
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.updateTitle = this.updateTitle.bind(this);

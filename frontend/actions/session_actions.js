@@ -25,7 +25,6 @@ export const requestDemoUser = () => dispatch => (
   .then((currentUser) => {
     return dispatch(receiveCurrentUser(currentUser));
   }).then(() => hashHistory.push('/home'))
-  // TODO why push to '/redirect?'
 );
 
 export const requestLogin = user => dispatch => (

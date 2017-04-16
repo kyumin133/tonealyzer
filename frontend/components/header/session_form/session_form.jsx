@@ -52,7 +52,6 @@ class SessionForm extends React.Component {
 
 	handleFacebookSubmit(e) {
 		e.preventDefault();
-		// this.props.googleAction();
 		window.location = "/api/auth/facebook";
 	}
 

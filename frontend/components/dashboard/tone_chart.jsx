@@ -33,8 +33,6 @@ class ToneChart extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    // this.handleKeyDown = this.handleKeyDown.bind(this);
-
   }
 
   handleClick(e) {
@@ -94,7 +92,7 @@ class ToneChart extends React.Component {
 
   updateChart() {
     this.updateLegend();
-    this.updateListeners();
+    // this.updateListeners();
   }
 
   updateLegend() {

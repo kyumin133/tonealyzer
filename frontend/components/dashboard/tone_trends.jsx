@@ -66,7 +66,7 @@ class ToneTrends extends React.Component {
             selected: false
           },
           {
-            field: 'sadness', //blue
+            field: 'sadness',
             name: 'Sadness',
             color: 'steelblue',
             style: UNSELECTED_LINE,
@@ -139,21 +139,11 @@ class ToneTrends extends React.Component {
 
   changeSelectedIndex(increment) {
     this.analysisIndex = (3 + this.analysisIndex + increment) % (3)
-
-    // this.analysisIndex = analysisIndex;
-    // this.currentAnalysis = this.analysisArr[analysisIndex];
-    // this.updateChart();
-
     this.forceUpdate();
   }
-  //
-  // componentDidUpdate() {
-  //   this.updateChart();
-  // }
 
   componentDidMount() {
     this.props.fetchBlurbs();
-    // this.updateChart();
   }
 
   componentWillReceiveProps(newProps) {
