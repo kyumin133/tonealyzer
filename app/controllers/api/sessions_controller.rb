@@ -21,7 +21,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       # debugger
-      sleep 0.5
+      sleep 0.25
       login(@user)
       render "/api/users/show"
       return
