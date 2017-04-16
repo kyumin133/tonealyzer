@@ -25,6 +25,8 @@ class ToneTrends extends React.Component {
       dataSets: []
     }
 
+    this.counter = 0;
+
     this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
     this.chartComponents = [];
   }
@@ -196,7 +198,7 @@ class ToneTrends extends React.Component {
         });
 
       }
-      
+
       this.setState({
         dataSets,
         blurbs
@@ -212,12 +214,12 @@ class ToneTrends extends React.Component {
     if (!this.fields) {
       return null;
     }
-
+    // debugger
     let index = this.analysisIndex;
     let chart;
-    let counter = 0;
-    counter += 1;
+    this.counter += 1;
     if (!!this.state.dataSets[index] && this.state.dataSets[0].length > 0) {
+      // debugger
       chart = (
       <div className="chart">
         <i className="fa fa-angle-left fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(-1))}></i>
@@ -226,7 +228,8 @@ class ToneTrends extends React.Component {
       </div>)
     // } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
       // chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
-    } else if (counter > 1) {
+    } else if (this.counter > 1) {
+      // debugger
       //TODO can we keep this from showing up before the graph is shown?
       chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
       // chart = <div className="empty-chart">&nbsp;</div>;
