@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-
+import { clearErrors } from '../actions/session_actions';
 import App from "./app";
 import Splash from "./splash";
 import DashboardContainer from "./dashboard/dashboard_container";
@@ -15,13 +15,18 @@ class Root extends React.Component {
   }
 
   redirectIfLoggedIn(nextState, replace) {
-    if (window.currentUser) {
+    const currentUser = store.getState().session.currentUser;
+
+    store.dispatch(clearErrors());
+    if (currentUser) {
       hashHistory.push("/home");
     }
   }
 
   ensureLoggedIn(nextState, replace) {
-    if (!window.currentUser) {
+    const currentUser = store.getState().session.currentUser;
+
+    if (currentUser === null) {
       hashHistory.push("/");
     }
   }

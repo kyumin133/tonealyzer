@@ -7,7 +7,9 @@ class BlurbInput extends React.Component{
     this.state = {
       title: "",
       body: "",
-      analysisLoading: false
+      analysisLoading: false,
+      error1: [],
+      error2: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,12 +31,38 @@ class BlurbInput extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({error1: []});
+    this.setState({error2: []});
     if (this.state.title.length > 0 && this.state.body.length > 0) {
       this.setState({analysisLoading: true});
       setTimeout(() => {
         this.props.createBlurb(this.state.title, this.state.body);
         this.setState({analysisLoading: true});
       }, 3000);
+    } else {
+      if (this.state.title.length === 0) {
+        this.setState({ error1: ['Please include a title.'] });
+      }
+      if (this.state.body.length === 0) {
+        this.setState({ error2: ['Please include text to analyze.'] });
+      }
+    }
+  }
+
+  renderErrors() {
+    let errors = this.state.error1.concat(this.state.error2);
+    if (errors < 1) {
+      return "";
+    } else {
+      return(
+        <ul className="errors">
+          {errors.map( (error, idx) => (
+            <li key={`blurb-error-${idx}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      )
     }
   }
 
@@ -52,6 +80,7 @@ class BlurbInput extends React.Component{
       <div className="blurb-div">
         <form onSubmit={this.handleSubmit} className="new-blurb-form">
           <h1>New Document</h1>
+          {this.renderErrors()}
           <input
             className='f-input-3'
             type="text"

@@ -12,10 +12,6 @@ class SessionForm extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		//TODO i don't think we need to bind these
-		// this.handleGoogleSubmit = this.handleGoogleSubmit.bind(this);
-		// this.handleFacebookSubmit = this.handleFacebookSubmit.bind(this);
-		// this.handleIdentitySubmit = this.handleIdentitySubmit.bind(this);
 		this.updateFormType = this.updateFormType.bind(this);
 	}
 
@@ -36,6 +32,7 @@ class SessionForm extends React.Component {
 	}
 
 	updateFormType(formType) {
+		debugger;
 		return e => this.setState({
 			formType: formType
 		});
@@ -56,7 +53,6 @@ class SessionForm extends React.Component {
 
 	handleFacebookSubmit(e) {
 		e.preventDefault();
-		// this.props.googleAction();
 		window.location = "/api/auth/facebook";
 	}
 
@@ -71,36 +67,12 @@ class SessionForm extends React.Component {
 	}
 
 	handleIdentitySubmit() {
-		//TODO make sure this still works after add line 70
 		window.location = "/api/auth/identity/callback";
 	}
 
 	handleIdentitySignUp() {
-		//TODO make sure this still works too
 		window.location = "api/auth/identity/register/callback";
 	}
-
-	// navLink() {
-	// 	if (this.state.loginOrSignUp === "login") {
-	// 		return (
-	// 			<div>
-	// 				<FlatButton
-	// 					onClick={this.updateFormType('signup')}
-	// 					label="Sign Up"
-	// 					/>
-	// 			</div>
-	// 		);
-	// 	} else {
-	// 		return (
-	// 			<div>
-	// 				<FlatButton
-	// 					onClick={this.updateFormType('login')}
-	// 					label="Login"
-	// 					/>
-	// 			</div>
-	// 		);
-	// 	}
-	// }
 
 	navLink() {
 		if (this.state.formType === "Log In") {
@@ -119,7 +91,7 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.updateFormType('Login')}
+						onClick={this.updateFormType('Log In')}
 						className="soft-button">
 						Log In
 					</button>
@@ -129,21 +101,23 @@ class SessionForm extends React.Component {
 	}
 
 	renderErrors() {
-		return(
-			<ul>
-				{this.props.errors.map((error, i) => (
-					<li className="err" key={`error-${i}`}>
-						{error}
-					</li>
-				))}
-			</ul>
-		);
+		if (this.props.errors.length > 0) {
+			return(
+				<ul className="errors">
+					{this.props.errors.map((error, i) => (
+						<li className="err" key={`error-${i}`}>
+							{error}
+						</li>
+					))}
+				</ul>
+			);
+		} else {
+			return "";
+		}
 	}
 
 	render() {
-
 		return (
-
       <div>
         <form onSubmit={this.handleSubmit} className='session-form'>
           <h1>{`Please ${this.state.formType}`}</h1>
@@ -155,10 +129,10 @@ class SessionForm extends React.Component {
 		          <img src="assets/facebook.png"></img>
 		        </button>
 						<button type="button" className="third-party-login" onClick={this.handleLinkedinSubmit}>
-		          <img src="assets/linkedin.png"></img>
+		          <img src="assets/linkedin1.png"></img>
 		        </button>
 					</div>
-          <h5>{this.renderErrors()}</h5>
+          {this.renderErrors()}
           <div className='form-input'>
             <input
 							className='f-input'
@@ -186,24 +160,13 @@ class SessionForm extends React.Component {
           </div>
 
 					<h3>Or</h3>
-					{this.navLink()}
 
         </form>
-
-
+				{this.navLink()}
 
       </div>
     );
-
-
-
-
-
-
-
-
   }
-
 }
 
 export default SessionForm;

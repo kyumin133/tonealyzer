@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # TODO add validations
+  validates :name, :uid, :provider, presence: true
 
   has_many :blurbs
   has_one :personality

@@ -25,6 +25,8 @@ class ToneTrends extends React.Component {
       dataSets: []
     }
 
+    this.counter = 0;
+
     this.changeSelectedIndex = this.changeSelectedIndex.bind(this);
     this.chartComponents = [];
   }
@@ -64,7 +66,7 @@ class ToneTrends extends React.Component {
             selected: false
           },
           {
-            field: 'sadness', //blue
+            field: 'sadness',
             name: 'Sadness',
             color: 'steelblue',
             style: UNSELECTED_LINE,
@@ -137,21 +139,11 @@ class ToneTrends extends React.Component {
 
   changeSelectedIndex(increment) {
     this.analysisIndex = (3 + this.analysisIndex + increment) % (3)
-
-    // this.analysisIndex = analysisIndex;
-    // this.currentAnalysis = this.analysisArr[analysisIndex];
-    // this.updateChart();
-
     this.forceUpdate();
   }
-  //
-  // componentDidUpdate() {
-  //   this.updateChart();
-  // }
 
   componentDidMount() {
     this.props.fetchBlurbs();
-    // this.updateChart();
   }
 
   componentWillReceiveProps(newProps) {
@@ -201,10 +193,6 @@ class ToneTrends extends React.Component {
         dataSets,
         blurbs
       });
-      // this.setState
-      // for (let i = 0; i < this.fields.length; i++) {
-      //   this.chartComponents[i] =
-      // }
     }
   }
 
@@ -212,11 +200,9 @@ class ToneTrends extends React.Component {
     if (!this.fields) {
       return null;
     }
-
     let index = this.analysisIndex;
     let chart;
-    let counter = 0;
-    counter += 1;
+    this.counter += 1;
     if (!!this.state.dataSets[index] && this.state.dataSets[0].length > 0) {
       chart = (
       <div className="chart">
@@ -224,12 +210,8 @@ class ToneTrends extends React.Component {
         <ToneChart index={index} title={this.titles[index]} changeSelectedIndex={this.changeSelectedIndex} fields={this.fields[index]} dataSet={this.state.dataSets[index]} />
         <i className="fa fa-angle-right fa-5x chart-nav" aria-hidden="true" onClick={() => (this.changeSelectedIndex(1))}></i>
       </div>)
-    // } else if (this.state.dataSets[0] && this.state.dataSets[0].length === 0) {
-      // chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
-    } else if (counter > 1) {
-      //TODO can we keep this from showing up before the graph is shown?
+    } else if (this.counter > 1) {
       chart = <h2 className="graph-filler empty-chart chart-inner">Click the new 'New Analysis' button at the top to generate your tone trends graph here.</h2>
-      // chart = <div className="empty-chart">&nbsp;</div>;
     }
 
     return (

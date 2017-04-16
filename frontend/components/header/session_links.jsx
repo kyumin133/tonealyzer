@@ -22,12 +22,14 @@ class SessionLinks extends React.Component {
     e.preventDefault();
     this.setState({open: true, formType: 'Log In'});
   }
+
   handleSignUpOpen(e) {
     e.preventDefault();
     this.setState({open: true, formType: 'Sign Up'});
   }
 
   handleClose() {
+    this.props.clearErrors();
     this.setState({open: false});
   }
 
@@ -39,9 +41,7 @@ class SessionLinks extends React.Component {
     this.props.requestDemoUser();
   }
 
-
   render() {
-
     return (
     	<div className='session-links'>
         <button
@@ -68,9 +68,7 @@ class SessionLinks extends React.Component {
           </div>
 
         </Modal>
-
     	</div>
-
     );
   }
 }

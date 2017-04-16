@@ -18,6 +18,7 @@ class Api::SessionsController < ApplicationController
     end
 
     if @user
+      sleep 0.25
       login(@user)
       render "/api/users/show"
       return
@@ -26,16 +27,23 @@ class Api::SessionsController < ApplicationController
       login(@user)
       redirect_to "#/redirect"
     else
-      redirect_to "#/redirect"
+      render(json: ['Invalid username or password.'],
+             status: 401)
     end
   end
 
   def destroy
     session[:user_id] = nil
-    render json: {}
+    @user = current_user
+
+    if @user
+      logout
+      render "/api/users/show"
+    end
   end
 
   def failure
-    redirect_to root_path, alert: "Authentication failed!"
+    # redirect_to root_path, alert: "Authentication failed!"
   end
+
 end

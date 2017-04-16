@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
 
     this.clickTab = this.clickTab.bind(this);
   }
-  
+
   componentWillReceiveProps(newProps) {
     this.setState({
       blurbs: newProps.blurbs
@@ -58,7 +58,8 @@ class Dashboard extends React.Component {
       <Documents blurbs={this.state.blurbs} fetchBlurbs={this.props.fetchBlurbs}/>
     ];
 
-    return <div className="dashboard">
+    return (
+      <div className="dashboard">
         <div className="dashboard-tabs">
           <div className={this.state.tabClasses[0]} onClick={this.clickTab}>Tone Trends</div>
           <div className={this.state.tabClasses[1]} onClick={this.clickTab}>Personality</div>
@@ -66,6 +67,7 @@ class Dashboard extends React.Component {
         </div>
         {this.components[this.state.selectedIndex]}
       </div>
+    )
   }
 }
 

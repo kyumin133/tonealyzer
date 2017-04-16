@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from "react-router";
 
 class PersonalGreeting extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -28,6 +27,10 @@ class PersonalGreeting extends React.Component {
           </button>
         </div>
       );
+    } else {
+      return (
+        <div></div>
+      )
     }
   }
 }

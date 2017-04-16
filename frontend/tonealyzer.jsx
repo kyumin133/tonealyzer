@@ -18,27 +18,21 @@ window.requestDemoUser = requestDemoUser;
 document.addEventListener('DOMContentLoaded', () => {
   let store = {};
 
-
-
-  let preloadedState =  {
-                            session: {
-                              currentUser: window.currentUser,
-                              errors: []
-                            }
-                          };
-
-  if (window.currentUser) { 
+  if (window.currentUser) {
+    let preloadedState = { session: {
+                             currentUser: window.currentUser,
+                           errors: [] }
+                         };
     store = configureStore(preloadedState);
   } else {
     store = configureStore();
   }
+
   window.fetchPersonality = actions.fetchPersonality;
   window.updatePersonality = actions.updatePersonality;
 
-
   const root = document.getElementById('root');
   window.store = store;
-
 
   ReactDOM.render(<Root store={ store } />, root);
 });
