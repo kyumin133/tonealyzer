@@ -43,11 +43,10 @@ export const requestSignup = user => dispatch => {
   .then(currentUser => {
     // debugger
     // window.currentUser = currentUser;
-    return dispatch(receiveCurrentUser(currentUser))},
-    error => dispatch(receiveErrors(error.responseJSON)),)
+    return dispatch(receiveCurrentUser(currentUser))})
+    // error => dispatch(receiveErrors(error.responseJSON)),)
   .then(() => hashHistory.push('/home'))
-  .fail( error => dispatch(receiveErrors(error.responseJSON)),
-         () => hashHistory.push('/'))
+  .fail( error => dispatch(receiveErrors(error.responseJSON)))
 )};
 
 export const requestLogout = () => dispatch => (

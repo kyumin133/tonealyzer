@@ -10,6 +10,7 @@ class Api::SessionsController < ApplicationController
                                              params[:identity][:user][:password])
 
       elsif params[:identity][:email]
+        # debugger
         @user = Identity.find_by_credentials(params[:identity][:email],
                                              params[:identity][:password])
         login(@user)
@@ -17,8 +18,10 @@ class Api::SessionsController < ApplicationController
         return
       end
     end
-    # debugger
+
     if @user
+      # debugger
+      sleep 0.5
       login(@user)
       render "/api/users/show"
       return
@@ -27,8 +30,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       redirect_to "#/redirect"
     else
-      # debugger
-      render(json: ['Invalid username or password'],
+      render(json: ['Invalid username or password.'],
              status: 401)
     end
   end
