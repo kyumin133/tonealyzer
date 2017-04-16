@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-
+import { clearErrors } from '../actions/session_actions';
 import App from "./app";
 import Splash from "./splash";
 import DashboardContainer from "./dashboard/dashboard_container";
