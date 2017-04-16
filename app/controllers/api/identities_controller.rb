@@ -3,7 +3,7 @@ class Api::IdentitiesController < ApplicationController
 
   def create
     if params[:identity]
-      if params[:identity][:user][:username].length > 0 && params[:identity][:user][:password].length > 0
+      if params[:identity][:user][:username].length > 0 && params[:identity][:user][:password].length > 5
         @user = Identity.create!(email: params[:identity][:user][:username],
                                  name: params[:identity][:user][:username],
                                  password_digest: BCrypt::Password.create(
@@ -15,7 +15,14 @@ class Api::IdentitiesController < ApplicationController
         login(@user)
         render "api/users/show"
       else
-        render(json: ['Please include both a username and a password.'],
+        json = []
+        if params[:identity][:user][:username].length == 0
+          json << 'Please include a username.'
+        end
+        if params[:identity][:user][:password].length < 6
+          json << 'Please include a password of at least 6 characters.'
+        end
+        render(json: json,
                status: 401)
       end
     end
