@@ -90,7 +90,7 @@ class SessionForm extends React.Component {
 				<div>
 					<button
 						type="button"
-						onClick={this.updateFormType('Login')}
+						onClick={this.updateFormType('Log In')}
 						className="soft-button">
 						Log In
 					</button>
@@ -102,7 +102,7 @@ class SessionForm extends React.Component {
 	renderErrors() {
 		if (this.props.errors.length > 0) {
 			return(
-				<ul>
+				<ul className="errors">
 					{this.props.errors.map((error, i) => (
 						<li className="err" key={`error-${i}`}>
 							{error}
@@ -133,7 +133,7 @@ class SessionForm extends React.Component {
 		          <img src="assets/linkedin1.png"></img>
 		        </button>
 					</div>
-          <h5>{this.renderErrors()}</h5>
+          {this.renderErrors()}
           <div className='form-input'>
             <input
 							className='f-input'
