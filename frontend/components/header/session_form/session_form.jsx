@@ -32,7 +32,6 @@ class SessionForm extends React.Component {
 	}
 
 	updateFormType(formType) {
-		debugger;
 		return e => this.setState({
 			formType: formType
 		});
@@ -161,8 +160,8 @@ class SessionForm extends React.Component {
 
 					<h3>Or</h3>
 
+					{this.navLink()}
         </form>
-				{this.navLink()}
 
       </div>
     );
