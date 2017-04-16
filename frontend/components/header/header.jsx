@@ -23,6 +23,7 @@ class Header extends React.Component {
               <SessionLinks
                 login={this.props.login}
                 requestDemoUser={this.props.requestDemoUser}
+                clearErrors={this.props.clearErrors}
               />
           }
         </div>

@@ -32,6 +32,7 @@ class SessionForm extends React.Component {
 	}
 
 	updateFormType(formType) {
+		// debugger;
 		return e => this.setState({
 			formType: formType
 		});
@@ -48,6 +49,7 @@ class SessionForm extends React.Component {
 			this.props.signup({user});
 			this.handleIdentitySignUp();
 		}
+		this.props.clearErrors();
 	}
 
 	handleFacebookSubmit(e) {
@@ -100,6 +102,7 @@ class SessionForm extends React.Component {
 	}
 
 	renderErrors() {
+		// this.props.clearErrors();
 		if (this.props.errors.length > 0) {
 			return(
 				<ul className="errors">
