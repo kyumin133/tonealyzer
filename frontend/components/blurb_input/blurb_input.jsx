@@ -78,7 +78,6 @@ class BlurbInput extends React.Component{
       );
     }
 
-    // debugger
     return (
       <div className="blurb-div">
         <form onSubmit={this.handleSubmit} className="new-blurb-form">

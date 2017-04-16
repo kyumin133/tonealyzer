@@ -3,14 +3,12 @@ class Api::SessionsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def create
-    # debugger
     if params[:identity]
       if params[:identity][:user] && params[:identity][:user][:username]
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
                                              params[:identity][:user][:password])
 
       elsif params[:identity][:email]
-        # debugger
         @user = Identity.find_by_credentials(params[:identity][:email],
                                              params[:identity][:password])
         login(@user)
@@ -20,7 +18,6 @@ class Api::SessionsController < ApplicationController
     end
 
     if @user
-      # debugger
       sleep 0.25
       login(@user)
       render "/api/users/show"
@@ -46,7 +43,6 @@ class Api::SessionsController < ApplicationController
   end
 
   def failure
-    # debugger
     # redirect_to root_path, alert: "Authentication failed!"
   end
 

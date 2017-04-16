@@ -3,7 +3,6 @@ import { requestLogout, requestLogin, requestDemoUser } from "../../actions/sess
 import Header from './header';
 
 const mapStateToProps = ({ session }) => {
-  // debugger
   return({
     errors: session.errors,
     currentUser: session.currentUser

@@ -9,12 +9,10 @@ class PersonalGreeting extends React.Component {
   }
 
   handleLogout() {
-    // debugger
     this.props.logout();
   }
 
   render() {
-    // debugger;
     if (this.props.currentUser.name) {
       return (
         <div className='header-group'>

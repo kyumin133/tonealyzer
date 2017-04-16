@@ -24,7 +24,6 @@ class Root extends React.Component {
   }
 
   ensureLoggedIn(nextState, replace) {
-    // debugger;
     const currentUser = store.getState().session.currentUser;
 
     if (currentUser === null) {

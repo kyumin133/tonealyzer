@@ -32,7 +32,6 @@ export const requestLogin = user => dispatch => (
   APIUtil.login(user)
   .then(currentUser => {
     return dispatch(receiveCurrentUser(currentUser))})
-    // error => dispatch(receiveErrors(error.responseJSON)))
   .then(() => hashHistory.push('/home'))
   .fail( error => dispatch(receiveErrors(error.responseJSON)))
 );
@@ -41,10 +40,7 @@ export const requestSignup = user => dispatch => {
   return(
   APIUtil.signup(user)
   .then(currentUser => {
-    // debugger
-    // window.currentUser = currentUser;
     return dispatch(receiveCurrentUser(currentUser))})
-    // error => dispatch(receiveErrors(error.responseJSON)),)
   .then(() => hashHistory.push('/home'))
   .fail( error => dispatch(receiveErrors(error.responseJSON)))
 )};
