@@ -25,9 +25,3 @@ Rails.application.routes.draw do
 
    }, ["CORS Preflight"]] }, :via => [:options]
 end
-
-# get 'auth/:provider', to: 'sessions#prepare'
-# get 'auth/facebook', to: 'sessions#requestFacebook'
-# get 'auth/google', to: 'sessions#requestGoogle'
-# post 'auth/identity/register/callback', to: 'sessions#create'
-# get 'auth/identity/register/callback', to: 'sessions#create'

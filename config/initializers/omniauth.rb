@@ -6,7 +6,6 @@ OmniAuth.config.on_failure = Proc.new { |env|
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   configure do |config|
-    # headers["Access-Control-Allow-Origin"] = "*"
     config.path_prefix = '/api/auth'
   end
 
