@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from "react-router";
 
 class PersonalGreeting extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -10,6 +9,7 @@ class PersonalGreeting extends React.Component {
   }
 
   handleLogout() {
+    // debugger
     this.props.logout();
   }
 

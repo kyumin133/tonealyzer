@@ -15,6 +15,7 @@ class Api::BlurbsController < ApplicationController
   end
 
   def index
+    # debugger
     @blurbs = current_user.blurbs
     render "api/blurbs/index"
   end

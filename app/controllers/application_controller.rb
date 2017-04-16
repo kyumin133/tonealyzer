@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   def current_user
+    # p session[:user_id]
+    return nil unless session[:user_id]
     @current_user ||= User.find_by_uid(session[:user_id]) if session[:user_id]
   end
 
@@ -20,6 +22,12 @@ class ApplicationController < ActionController::Base
     end
 
     @current_user = user
+  end
+
+  def logout
+    # debugger
+    session[:user_id] = nil
+    @current_user = nil
   end
 
   def require_logged_in

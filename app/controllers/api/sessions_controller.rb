@@ -3,6 +3,7 @@ class Api::SessionsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def create
+    # debugger
     if params[:identity]
       if params[:identity][:user] && params[:identity][:user][:username]
         @user = Identity.find_by_credentials(params[:identity][:user][:username],
@@ -16,7 +17,7 @@ class Api::SessionsController < ApplicationController
         return
       end
     end
-    debugger
+    # debugger
     if @user
       login(@user)
       render "/api/users/show"
@@ -26,7 +27,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       redirect_to "#/redirect"
     else
-      debugger
+      # debugger
       # render json: ["Invalid username and password combination."]
       redirect_to "/auth/failure"
     end
@@ -34,11 +35,16 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    render json: {}
+    @user = current_user
+
+    if @user
+      logout
+      render "api/users/show"
+    end
   end
 
   def failure
-    debugger
+    # debugger
     redirect_to root_path, alert: "Authentication failed!"
   end
 end

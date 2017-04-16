@@ -15,14 +15,19 @@ class Root extends React.Component {
   }
 
   redirectIfLoggedIn(nextState, replace) {
-    if (window.currentUser) {
+    const currentUser = store.getState().session.currentUser;
+
+    // store.dispatch(clearErrors());
+    if (currentUser) {
       hashHistory.push("/home");
     }
   }
 
   ensureLoggedIn(nextState, replace) {
     // debugger;
-    if (!window.currentUser) {
+    const currentUser = store.getState().session.currentUser;
+
+    if (currentUser === null) {
       hashHistory.push("/");
     }
   }
