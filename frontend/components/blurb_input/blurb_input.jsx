@@ -46,11 +46,9 @@ class BlurbInput extends React.Component{
         this.setState({ error1: ['Please include a title.'] });
       }
       if (this.state.body.length === 0) {
-        // this.errors.push('Please include some text to analyze.');
         this.setState({ error2: ['Please include text to analyze.'] });
       }
     }
-    // debugger
   }
 
   renderErrors() {
@@ -58,7 +56,6 @@ class BlurbInput extends React.Component{
     if (errors < 1) {
       return "";
     } else {
-      // debugger
       return(
         <ul className="errors">
           {errors.map( (error, idx) => (

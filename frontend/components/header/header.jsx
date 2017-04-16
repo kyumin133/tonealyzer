@@ -9,29 +9,28 @@ class Header extends React.Component {
     super(props);
   }
 
-  renderErrors() {
-    let errors = this.props.errors;
-    if (errors === undefined || errors.length < 1) {
-      return "";
-    } else {
-      return(
-        <ul className="errors">
-          {errors.map( (error, idx) => (
-            <li key={`error-${idx}`}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  }
+  // renderErrors() {
+  //   let errors = this.props.errors;
+  //   if (errors === undefined || errors.length < 1) {
+  //     return "";
+  //   } else {
+  //     return(
+  //       <ul className="errors">
+  //         {errors.map( (error, idx) => (
+  //           <li key={`error-${idx}`}>
+  //             {error}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     )
+  //   }
+  // }
 
   render() {
     return(
       <div className="header-div">
         <Link onClick={null} to={this.props.currentUser ? "home/" : "/"}><i className="fa fa-lightbulb-o fa-5x header-logo" aria-hidden="true"></i></Link>
         <div className="header-right-icons">
-          {this.renderErrors()}
           {
             this.props.currentUser ?
               <PersonalGreeting
