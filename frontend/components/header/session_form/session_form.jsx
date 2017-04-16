@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
 	}
 
 	updateFormType(formType) {
-		// debugger;
+		debugger;
 		return e => this.setState({
 			formType: formType
 		});
@@ -49,7 +49,6 @@ class SessionForm extends React.Component {
 			this.props.signup({user});
 			this.handleIdentitySignUp();
 		}
-		this.props.clearErrors();
 	}
 
 	handleFacebookSubmit(e) {
@@ -102,7 +101,6 @@ class SessionForm extends React.Component {
 	}
 
 	renderErrors() {
-		// this.props.clearErrors();
 		if (this.props.errors.length > 0) {
 			return(
 				<ul className="errors">
@@ -119,9 +117,7 @@ class SessionForm extends React.Component {
 	}
 
 	render() {
-
 		return (
-
       <div>
         <form onSubmit={this.handleSubmit} className='session-form'>
           <h1>{`Please ${this.state.formType}`}</h1>
@@ -164,24 +160,13 @@ class SessionForm extends React.Component {
           </div>
 
 					<h3>Or</h3>
-					{this.navLink()}
 
         </form>
-
-
+				{this.navLink()}
 
       </div>
     );
-
-
-
-
-
-
-
-
   }
-
 }
 
 export default SessionForm;
