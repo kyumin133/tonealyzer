@@ -14,6 +14,7 @@ class PersonalGreeting extends React.Component {
   }
 
   render() {
+    // debugger;
     if (this.props.currentUser.name) {
       return (
         <div className='header-group'>
@@ -28,6 +29,10 @@ class PersonalGreeting extends React.Component {
           </button>
         </div>
       );
+    } else {
+      return (
+        <div></div>
+      )
     }
   }
 }

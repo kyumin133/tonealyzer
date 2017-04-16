@@ -18,7 +18,6 @@ export const receiveErrors = errors => ({
 export const requestDemoUser = () => dispatch => (
   APIUtil.loginDemoUser()
   .then((currentUser) => {
-    // window.currentUser = currentUser;
     return dispatch(receiveCurrentUser(currentUser));
   }).then(() => hashHistory.push('/home'))
   // TODO why push to '/redirect?'
@@ -27,10 +26,10 @@ export const requestDemoUser = () => dispatch => (
 export const requestLogin = user => dispatch => (
   APIUtil.login(user)
   .then(currentUser => {
-    // window.currentUser = currentUser;
-    return dispatch(receiveCurrentUser(currentUser))},
-    error => dispatch(receiveErrors(error.responseJSON)))
+    return dispatch(receiveCurrentUser(currentUser))})
+    // error => dispatch(receiveErrors(error.responseJSON)))
   .then(() => hashHistory.push('/home'))
+  .fail( error => dispatch(receiveErrors(error.responseJSON)))
 );
 
 export const requestSignup = user => dispatch => {
@@ -42,7 +41,8 @@ export const requestSignup = user => dispatch => {
     return dispatch(receiveCurrentUser(currentUser))},
     error => dispatch(receiveErrors(error.responseJSON)),)
   .then(() => hashHistory.push('/home'))
-  .fail( error => dispatch(receiveErrors(error.responseJSON)))
+  .fail( error => dispatch(receiveErrors(error.responseJSON)),
+         () => hashHistory.push('/'))
 )};
 
 export const requestLogout = () => dispatch => (

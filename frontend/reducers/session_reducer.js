@@ -1,5 +1,6 @@
 import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS } from '../actions/session_actions';
 import merge from 'lodash/merge';
+import { hashHistory } from 'react-router';
 
 const _nullUser = {currentUser: null, errors: []};
 
@@ -12,9 +13,10 @@ const sessionReducer = (state = _nullUser, action) => {
       const currentUser = action.currentUser;
       return merge({}, state, { currentUser });
     case RECEIVE_ERRORS:
-      // debugger;
+      debugger;
+      // hashHistory.push('/');
       const errors = action.errors;
-      return merge({}, _nullUser, { errors });
+      return merge({}, state, { errors });
     default:
       return state;
   }

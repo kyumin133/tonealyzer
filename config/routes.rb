@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#root'
-  # get 'auth/failure', to: 'api/sessions#failure'
+  get 'auth/failure', to: 'api/sessions#failure'
 
   namespace :api, defaults: {format: :json} do
     get 'auth/:provider/callback', to: 'sessions#create'
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'auth/identity/register/callback', to: 'identities#create'
     post 'auth/identity/register/callback', to: 'identities#create'
     get 'signout', to: 'sessions#destroy', as: 'signout'
+    get 'auth/failure', to: 'sessions#failure'
     resource :session, only: [:create, :destroy]
     resources :identities, only: [:create]
     resources :blurbs, only: [:create, :show, :index]

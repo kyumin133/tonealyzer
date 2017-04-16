@@ -1,8 +1,8 @@
 OmniAuth.config.logger = Rails.logger
 OmniAuth.config.full_host = Rails.env.production? ? 'https://tonealyzer.herokuapp.com' : 'http://localhost:3000'
-# OmniAuth.config.on_failure = Proc.new { |env|
-#   OmniAuth::FailureEndpoint.new(env).redirect_to_failure
-# }
+OmniAuth.config.on_failure = Proc.new { |env|
+  OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+}
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   configure do |config|
